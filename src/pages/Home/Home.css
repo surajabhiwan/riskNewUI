@@ -1,0 +1,1265 @@
+.HeadingDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 3rem;
+}
+
+.HeadingDiv h3 {
+  color: white;
+  font-size: 4rem;
+  letter-spacing: 0.5rem;
+  font-weight: 800;
+}
+
+.headingMain {
+  color: #e2ac19;
+  font-size: 7rem;
+  letter-spacing: 0.5rem;
+  font-weight: 800;
+}
+
+.headingSwapperBtn {
+  color: white;
+  font-size: 2rem;
+  background: linear-gradient(218deg, #246cfa 0%, #1e68f6 28%, #0047d0 100%);
+  padding: 0.7rem 8rem;
+  border-radius: 2rem;
+}
+
+.advertisingDiv {
+  position: relative;
+  width: 100%;
+  max-width: 780px;
+  margin: 0 auto;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 29rem;
+}
+
+.advertisingInnerDiv {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.advertisingSlide {
+  min-width: 100%;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.advertisingSlide.active {
+  display: flex;
+}
+
+.advertisingPhoto {
+  width: 35rem;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  background-color: #343434;
+}
+
+.advertisingPhoto img {
+  width: 34rem;
+  height: auto;
+  border-radius: 1rem;
+}
+
+.advertisingCaption {
+  color: grey;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.advertisingCaption2 {
+  color: white;
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.dotsDiv {
+  text-align: center;
+  margin-top: 15px;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  margin: 0 5px;
+  background-color: gray;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  width: 12px;
+  height: 12px;
+  background-color: white;
+}
+
+.tokenAndNftOuterDiv {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  padding: 20px;
+}
+
+.tokenAndNftInnerDiv {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+  gap: 20px; /* Spacing between cards */
+  width: 80%;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: white;
+}
+
+.tabsContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.tabButton {
+  padding: 10px 20px;
+  margin: 0 10px;
+  background-color: #ccc;
+  border: none;
+  cursor: pointer;
+}
+
+.tabButton.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.swapDeskDiv {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.swapHeading {
+  color: white;
+  font-size: 4rem;
+}
+
+.cardInfo {
+  display: flex;
+  align-items: center;
+}
+
+.cardImg {
+  margin-right: 1rem;
+}
+
+.cardChart {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+/* .swapDeskDivInner {
+  z-index: 100;
+  background-color: transparent;
+}
+
+.swapBg {
+  position: relative;
+  transform: rotate(15deg);
+} */
+.swapDeskDiv {
+  position: relative;
+  text-align: center;
+  margin: 20px;
+}
+
+.swapHeading {
+  margin-bottom: 20px;
+  font-weight: 800;
+}
+
+.swapBgdiv {
+  position: relative;
+}
+
+.swapBg {
+  transform: rotate(-10deg); /* Tilt the image */
+  position: relative;
+  z-index: 1; /* Ensure the image is below SwapDex */
+}
+
+.swapBg img {
+  width: 50%; /* Adjust as needed */
+  display: block;
+}
+
+.swapDeskDivInner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2; /* Bring SwapDex above the image */
+  width: 80%; /* Adjust width as needed */
+  padding: 20px; /* Add padding if needed */
+}
+
+.viewDetailsDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.viewDetailsDiv h4 {
+  border: 2px solid white;
+  border-radius: 2rem;
+  padding: 1rem 3rem;
+  cursor: pointer;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+
+@media (max-width: 375px) {
+  .HeadingDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 0rem;
+    margin-top: 2rem;
+  }
+
+  .HeadingDiv h3 {
+    color: white;
+    font-size: 2rem;
+    letter-spacing: 0.5rem;
+    font-weight: 800;
+  }
+
+  .headingMain {
+    color: #e2ac19;
+    font-size: 2rem;
+    letter-spacing: 0.5rem;
+    font-weight: 800;
+  }
+
+  .headingSwapperBtn {
+    color: white;
+    font-size: 1rem;
+    background: linear-gradient(218deg, #246cfa 0%, #1e68f6 28%, #0047d0 100%);
+    padding: 0.5rem 3rem;
+    border-radius: 2rem;
+  }
+
+  .advertisingDiv {
+    position: relative;
+    width: 100%;
+    max-width: 780px;
+    margin: 0 auto;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 29rem;
+  }
+
+  .advertisingInnerDiv {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .advertisingSlide {
+    min-width: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .advertisingSlide.active {
+    display: flex;
+  }
+
+  .advertisingPhoto {
+    width: 22rem;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    background-color: #343434;
+  }
+
+  .advertisingPhoto img {
+    width: 34rem;
+    height: auto;
+    border-radius: 1rem;
+  }
+
+  .advertisingCaption {
+    color: grey;
+    font-size: 1rem;
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  .advertisingCaption2 {
+    color: white;
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+
+  .dotsDiv {
+    text-align: center;
+    margin-top: 15px;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .dot {
+    height: 10px;
+    width: 10px;
+    margin: 0 5px;
+    background-color: gray;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .dot.active {
+    width: 12px;
+    height: 12px;
+    background-color: white;
+  }
+
+  .tokenAndNftOuterDiv {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    padding: 20px;
+  }
+
+  .tokenAndNftInnerDiv {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+    gap: 5px; /* Spacing between cards */
+    width: 110%;
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 5px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: white;
+  }
+
+  .cardPrice p {
+    font-size: 0.5rem !important;
+  }
+  .cardChart p {
+    font-size: 0.5rem !important;
+  }
+
+  .cardImg img {
+    height: 40px !important;
+    width: 40px !important;
+  }
+  .tabsContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .tabButton {
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #ccc;
+    border: none;
+    cursor: pointer;
+  }
+
+  .tabButton.active {
+    background-color: #007bff;
+    color: white;
+  }
+
+  .swapDeskDiv {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swapHeading {
+    color: white;
+    font-size: 4rem;
+    margin-bottom: 8rem;
+    font-weight: 800;
+    font-size: 2rem;
+  }
+
+  .cardInfo {
+    display: flex;
+    align-items: center;
+  }
+
+  .cardImg {
+    margin-right: 0.2rem;
+  }
+
+  .cardChart {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+
+  /* .swapDeskDivInner {
+    z-index: 100;
+    background-color: transparent;
+  }
+  
+  .swapBg {
+    position: relative;
+    transform: rotate(15deg);
+  } */
+  .swapDeskDiv {
+    position: relative;
+    text-align: center;
+    margin: 20px;
+  }
+
+  .swapBgdiv {
+    position: relative;
+  }
+
+  .swapBg {
+    transform: rotate(-10deg); /* Tilt the image */
+    position: relative;
+    z-index: 1; /* Ensure the image is below SwapDex */
+  }
+
+  .swapBg img {
+    width: 90%; /* Adjust as needed */
+    display: block;
+  }
+
+  .swapDeskDivInner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2; /* Bring SwapDex above the image */
+    width: 110%; /* Adjust width as needed */
+    padding: 20px; /* Add padding if needed */
+  }
+
+  .viewDetailsDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  .viewDetailsDiv h4 {
+    border: 2px solid white;
+    border-radius: 2rem;
+    padding: 1rem 1rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+}
+@media (min-width: 376px) and (max-width: 426px) {
+  .HeadingDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 0rem;
+    margin-top: 2rem;
+  }
+
+  .HeadingDiv h3 {
+    color: white;
+    font-size: 2rem;
+    letter-spacing: 0.5rem;
+    font-weight: 800;
+  }
+
+  .headingMain {
+    color: #e2ac19;
+    font-size: 2rem;
+    letter-spacing: 0.5rem;
+    font-weight: 800;
+  }
+
+  .headingSwapperBtn {
+    color: white;
+    font-size: 1rem;
+    background: linear-gradient(218deg, #246cfa 0%, #1e68f6 28%, #0047d0 100%);
+    padding: 0.5rem 3rem;
+    border-radius: 2rem;
+  }
+
+  .advertisingDiv {
+    position: relative;
+    width: 100%;
+    max-width: 780px;
+    margin: 0 auto;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 29rem;
+  }
+
+  .advertisingInnerDiv {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .advertisingSlide {
+    min-width: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .advertisingSlide.active {
+    display: flex;
+  }
+
+  .advertisingPhoto {
+    width: 22rem;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    background-color: #343434;
+  }
+
+  .advertisingPhoto img {
+    width: 34rem;
+    height: auto;
+    border-radius: 1rem;
+  }
+
+  .advertisingCaption {
+    color: grey;
+    font-size: 1rem;
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  .advertisingCaption2 {
+    color: white;
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+
+  .dotsDiv {
+    text-align: center;
+    margin-top: 15px;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .dot {
+    height: 10px;
+    width: 10px;
+    margin: 0 5px;
+    background-color: gray;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .dot.active {
+    width: 12px;
+    height: 12px;
+    background-color: white;
+  }
+
+  .tokenAndNftOuterDiv {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    padding: 20px;
+  }
+
+  .tokenAndNftInnerDiv {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+    gap: 5px; /* Spacing between cards */
+    width: 100%;
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 5px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: white;
+  }
+
+  .cardPrice p {
+    font-size: 0.5rem !important;
+  }
+  .cardChart p {
+    font-size: 0.5rem !important;
+  }
+
+  .cardImg img {
+    height: 40px !important;
+    width: 40px !important;
+  }
+  .tabsContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .tabButton {
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #ccc;
+    border: none;
+    cursor: pointer;
+  }
+
+  .tabButton.active {
+    background-color: #007bff;
+    color: white;
+  }
+
+  .swapDeskDiv {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swapHeading {
+    color: white;
+    font-size: 4rem;
+    margin-bottom: 8rem;
+    font-weight: 800;
+    font-size: 2rem;
+  }
+
+  .cardInfo {
+    display: flex;
+    align-items: center;
+  }
+
+  .cardImg {
+    margin-right: 0.2rem;
+  }
+
+  .cardChart {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+
+  /* .swapDeskDivInner {
+    z-index: 100;
+    background-color: transparent;
+  }
+  
+  .swapBg {
+    position: relative;
+    transform: rotate(15deg);
+  } */
+  .swapDeskDiv {
+    position: relative;
+    text-align: center;
+    margin: 20px;
+  }
+
+  .swapBgdiv {
+    position: relative;
+  }
+
+  .swapBg {
+    transform: rotate(-10deg); /* Tilt the image */
+    position: relative;
+    z-index: 1; /* Ensure the image is below SwapDex */
+  }
+
+  .swapBg img {
+    width: 90%; /* Adjust as needed */
+    display: block;
+  }
+
+  .swapDeskDivInner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2; /* Bring SwapDex above the image */
+    width: 100%; /* Adjust width as needed */
+    padding: 20px; /* Add padding if needed */
+  }
+
+  .viewDetailsDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  .viewDetailsDiv h4 {
+    border: 2px solid white;
+    border-radius: 2rem;
+    padding: 1rem 1rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 427px) and (max-width: 767px) {
+  .HeadingDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 3rem;
+  }
+
+  .HeadingDiv h3 {
+    color: white;
+    font-size: 4rem;
+    letter-spacing: 0.5rem;
+    font-weight: 800;
+  }
+
+  .headingMain {
+    color: #e2ac19;
+    font-size: 5rem;
+    letter-spacing: 0.5rem;
+    font-weight: 800;
+  }
+
+  .headingSwapperBtn {
+    color: white;
+    font-size: 2rem;
+    background: linear-gradient(218deg, #246cfa 0%, #1e68f6 28%, #0047d0 100%);
+    padding: 0.7rem 8rem;
+    border-radius: 2rem;
+  }
+
+  .advertisingDiv {
+    position: relative;
+    width: 100%;
+    max-width: 780px;
+    margin: 0 auto;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 29rem;
+  }
+
+  .advertisingInnerDiv {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .advertisingSlide {
+    min-width: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .advertisingSlide.active {
+    display: flex;
+  }
+
+  .advertisingPhoto {
+    width: 35rem;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    background-color: #343434;
+  }
+
+  .advertisingPhoto img {
+    width: 34rem;
+    height: auto;
+    border-radius: 1rem;
+  }
+
+  .advertisingCaption {
+    color: grey;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  .advertisingCaption2 {
+    color: white;
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+
+  .dotsDiv {
+    text-align: center;
+    margin-top: 15px;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .dot {
+    height: 10px;
+    width: 10px;
+    margin: 0 5px;
+    background-color: gray;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .dot.active {
+    width: 12px;
+    height: 12px;
+    background-color: white;
+  }
+
+  .tokenAndNftOuterDiv {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    padding: 20px;
+  }
+
+  .tokenAndNftInnerDiv {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+    gap: 20px; /* Spacing between cards */
+    width: 80%;
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: white;
+  }
+
+  .tabsContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .tabButton {
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #ccc;
+    border: none;
+    cursor: pointer;
+  }
+
+  .tabButton.active {
+    background-color: #007bff;
+    color: white;
+  }
+
+  .swapDeskDiv {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swapHeading {
+    color: white;
+    font-size: 4rem;
+  }
+
+  .cardInfo {
+    display: flex;
+    align-items: center;
+  }
+
+  .cardImg {
+    margin-right: 1rem;
+  }
+
+  .cardChart {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+
+  /* .swapDeskDivInner {
+    z-index: 100;
+    background-color: transparent;
+  }
+  
+  .swapBg {
+    position: relative;
+    transform: rotate(15deg);
+  } */
+  .swapDeskDiv {
+    position: relative;
+    text-align: center;
+    margin: 20px;
+  }
+
+  .swapHeading {
+    margin-bottom: 20px;
+    font-weight: 800;
+  }
+
+  .swapBgdiv {
+    position: relative;
+  }
+
+  .swapBg {
+    transform: rotate(-10deg); /* Tilt the image */
+    position: relative;
+    z-index: 1; /* Ensure the image is below SwapDex */
+  }
+
+  .swapBg img {
+    width: 50%; /* Adjust as needed */
+    display: block;
+  }
+
+  .swapDeskDivInner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2; /* Bring SwapDex above the image */
+    width: 80%; /* Adjust width as needed */
+    padding: 20px; /* Add padding if needed */
+  }
+
+  .viewDetailsDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  .viewDetailsDiv h4 {
+    border: 2px solid white;
+    border-radius: 2rem;
+    padding: 1rem 3rem;
+    cursor: pointer;
+  }
+}
+@media (min-width: 767px) and (max-width: 1024px) {
+  .HeadingDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 3rem;
+  }
+
+  .HeadingDiv h3 {
+    color: white;
+    font-size: 4rem;
+    letter-spacing: 0.5rem;
+    font-weight: 800;
+  }
+
+  .headingMain {
+    color: #e2ac19;
+    font-size: 5rem;
+    letter-spacing: 0.5rem;
+    font-weight: 800;
+  }
+
+  .headingSwapperBtn {
+    color: white;
+    font-size: 2rem;
+    background: linear-gradient(218deg, #246cfa 0%, #1e68f6 28%, #0047d0 100%);
+    padding: 0.7rem 8rem;
+    border-radius: 2rem;
+  }
+
+  .advertisingDiv {
+    position: relative;
+    width: 100%;
+    max-width: 780px;
+    margin: 0 auto;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 29rem;
+  }
+
+  .advertisingInnerDiv {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .advertisingSlide {
+    min-width: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .advertisingSlide.active {
+    display: flex;
+  }
+
+  .advertisingPhoto {
+    width: 35rem;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    background-color: #343434;
+  }
+
+  .advertisingPhoto img {
+    width: 34rem;
+    height: auto;
+    border-radius: 1rem;
+  }
+
+  .advertisingCaption {
+    color: grey;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  .advertisingCaption2 {
+    color: white;
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+
+  .dotsDiv {
+    text-align: center;
+    margin-top: 15px;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .dot {
+    height: 10px;
+    width: 10px;
+    margin: 0 5px;
+    background-color: gray;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .dot.active {
+    width: 12px;
+    height: 12px;
+    background-color: white;
+  }
+
+  .tokenAndNftOuterDiv {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    padding: 20px;
+  }
+
+  .tokenAndNftInnerDiv {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+    gap: 20px; /* Spacing between cards */
+    width: 95%;
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: white;
+  }
+
+  .tabsContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .tabButton {
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #ccc;
+    border: none;
+    cursor: pointer;
+  }
+
+  .tabButton.active {
+    background-color: #007bff;
+    color: white;
+  }
+
+  .swapDeskDiv {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swapHeading {
+    color: white;
+    font-size: 4rem;
+  }
+
+  .cardInfo {
+    display: flex;
+    align-items: center;
+  }
+
+  .cardImg {
+    margin-right: 1rem;
+  }
+
+  .cardChart {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+
+  /* .swapDeskDivInner {
+    z-index: 100;
+    background-color: transparent;
+  }
+  
+  .swapBg {
+    position: relative;
+    transform: rotate(15deg);
+  } */
+  .swapDeskDiv {
+    position: relative;
+    text-align: center;
+    margin: 20px;
+  }
+
+  .cardPrice p {
+    font-size: 1rem !important;
+  }
+  .swapHeading {
+    margin-bottom: 20px;
+    font-weight: 800;
+  }
+
+  .swapBgdiv {
+    position: relative;
+  }
+
+  .swapBg {
+    transform: rotate(-10deg); /* Tilt the image */
+    position: relative;
+    z-index: 1; /* Ensure the image is below SwapDex */
+  }
+
+  .swapBg img {
+    width: 50%; /* Adjust as needed */
+    display: block;
+  }
+
+  .swapDeskDivInner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2; /* Bring SwapDex above the image */
+    width: 80%; /* Adjust width as needed */
+    padding: 20px; /* Add padding if needed */
+  }
+
+  .viewDetailsDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  .viewDetailsDiv h4 {
+    border: 2px solid white;
+    border-radius: 2rem;
+    padding: 1rem 3rem;
+    cursor: pointer;
+  }
+}

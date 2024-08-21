@@ -1,0 +1,43 @@
+.tabs-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #142028;
+    border-radius: 10px;
+    padding: 10px;
+    position: relative;
+  }
+  
+  .tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    color: #939393;
+    transition: color 0.3s;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .tab:hover {
+    color: #fff;
+  }
+  
+  .active-tab {
+    color: #fff;
+  }
+  
+  .icon {
+    margin-right: 8px;
+  }
+  
+  .indicator {
+    position: absolute;
+    background: #3a4956;
+    border-radius: 10px;
+    transition: width 0.3s ease, height 0.3s ease, left 0.3s ease, top 0.3s ease;
+    z-index: 0;
+  }
+  

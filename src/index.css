@@ -1,0 +1,566 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.glowClassDiv {
+  box-shadow: 0px 0px 14px rgb(255, 197, 7);
+  border-radius: 7px;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.scrollable-invisible::-webkit-scrollbar {
+  display: none;
+}
+
+.headercontainer {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 4fr 2fr auto;
+  grid-gap: 0.5rem;
+}
+
+@media (max-width: 1024px) {
+  .headercontainer {
+    display: none;
+  }
+}
+
+.walletconnect {
+  display: grid;
+  width: 100%;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 1.5rem;
+}
+
+@keyframes fadeIn {
+  0% {
+    background-color: rgba(92, 94, 105, 0.2);
+  }
+
+  100% {
+    background-color: hsla(0, 0%, 5%, 0.54);
+  }
+}
+
+.custom-modaloverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: blur(10px);
+  animation: fadeIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(0.8) translateY(1000px) translateX(-50%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1) translateY(-50%) translateX(-50%);
+    opacity: 1;
+  }
+}
+
+.custom-modalcontent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  background-color: #142028;
+  border: none;
+  border-radius: 15px;
+  transform: translate(-50%, -50%);
+  animation: scaleUp 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+@media (max-width: 868px) {
+  .custom-modalcontent {
+    width: 100%;
+    height: 100%;
+    border-radius: 0px;
+  }
+}
+
+.mobileNavout {
+  animation-name: showout;
+  animation-duration: 0.2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes showout {
+  0% {
+    right: -208px;
+  }
+
+  100% {
+    right: 0px;
+  }
+}
+
+.mobileNavin {
+  animation-name: showin;
+  animation-duration: 0.2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes showin {
+  0% {
+    right: 0px;
+  }
+
+  100% {
+    right: -208px;
+  }
+}
+
+.simplebar-scrollbar {
+  background-color: #121218;
+}
+
+.hideScrollbar::-webkit-scrollbar {
+  background-color: black;
+  height: 8px;
+}
+
+.hideScrollbar::-webkit-scrollbar-thumb {
+  border-radius: 15px;
+  background-color: #121218;
+}
+
+.hidePageScrollbar::-webkit-scrollbar {
+  background-color: #202020;
+  height: 8px;
+  width: 6px;
+}
+
+.hidePageScrollbar::-webkit-scrollbar-thumb {
+  border-radius: 15px;
+  background-color: #090a0a;
+}
+
+.dropdownScrollbar::-webkit-scrollbar {
+  background-color: #121218;
+  width: 3px;
+}
+
+.dropdownScrollbar::-webkit-scrollbar-thumb {
+  border-radius: 15px;
+  background-color: #9f9fa8;
+}
+
+.myinput[type="checkbox"]:before {
+  position: relative;
+  display: block;
+  width: 11px;
+  height: 11px;
+  border: 1px solid #808080;
+  content: "";
+  background: #fff;
+}
+
+.myinput[type="checkbox"]:after {
+  position: relative;
+  display: block;
+  left: 2px;
+  top: -11px;
+  width: 7px;
+  height: 7px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #b3b3b3 #dcddde #dcddde #b3b3b3;
+  content: "";
+  background-image: linear-gradient(135deg, #b1b6be 0%, #fff 100%);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.myinput[type="checkbox"]:checked:after {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAQAAABuW59YAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAB2SURBVHjaAGkAlv8A3QDyAP0A/QD+Dam3W+kCAAD8APYAAgTVZaZCGwwA5wr0AvcA+Dh+7UX/x24AqK3Wg/8nt6w4/5q71wAAVP9g/7rTXf9n/+9N+AAAtpJa/zf/S//DhP8H/wAA4gzWj2P4lsf0JP0A/wADAHB0Ngka6UmKAAAAAElFTkSuQmCC"),
+    linear-gradient(135deg, #b1b6be 0%, #fff 100%);
+}
+
+.myinput[type="checkbox"]:disabled:after {
+  opacity: 0.4;
+}
+
+.myinput[type="checkbox"]:not(:disabled):checked:hover:after {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAQAAABuW59YAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAB2SURBVHjaAGkAlv8A3QDyAP0A/QD+Dam3W+kCAAD8APYAAgTVZaZCGwwA5wr0AvcA+Dh+7UX/x24AqK3Wg/8nt6w4/5q71wAAVP9g/7rTXf9n/+9N+AAAtpJa/zf/S//DhP8H/wAA4gzWj2P4lsf0JP0A/wADAHB0Ngka6UmKAAAAAElFTkSuQmCC"),
+    linear-gradient(135deg, #8bb0c2 0%, #fff 100%);
+}
+
+.myinput[type="checkbox"]:not(:disabled):hover:after {
+  background-image: linear-gradient(135deg, #8bb0c2 0%, #fff 100%);
+  border-color: #85a9bb #92c2da #92c2da #85a9bb;
+}
+
+.myinput[type="checkbox"]:not(:disabled):hover:before {
+  border-color: none;
+}
+
+/* Large checkboxes */
+.myinput.large {
+  height: 22px;
+  width: 22px;
+}
+
+.myinput.large[type="checkbox"]:before {
+  width: 22px;
+  height: 22px;
+}
+
+.myinput.large[type="checkbox"]:after {
+  top: -20px;
+  width: 16px;
+  height: 16px;
+}
+
+.my-component {
+  background-image: url("assests/bg.svg");
+  background-position: center;
+  background-repeat: repeat;
+  background-size: contain;
+  background-clip: content-box;
+  backdrop-filter: blue(9px);
+  filter: blur(4px);
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+html.theme-dark .label-e9c6dycV {
+  display: none !important;
+}
+
+html.theme-dark .label-e9c6dycV .logoWrap-e9c6dycV svg path {
+  display: none !important;
+}
+
+.scroll-moadl::-webkit-scrollbar {
+  width: 12px;
+  /* Width of the scrollbar */
+}
+
+/* Track (the area where the scrollbar is located) */
+.scroll-moadl::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  /* Color of the scrollbar track */
+}
+
+/* Handle (the draggable part of the scrollbar) */
+.scroll-moadl::-webkit-scrollbar-thumb {
+  background: #888;
+  /* Color of the scrollbar handle */
+  border-radius: 6px;
+  /* Rounded corners of the scrollbar handle */
+}
+
+/* Handle on hover */
+.scroll-moadl::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  /* Color of the scrollbar handle on hover */
+}
+
+.slider-container {
+  position: relative;
+  padding-left: 1rem;
+}
+
+.slider-container::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  background-color: #000000c2;
+  width: 50px;
+  height: 100%;
+  /* backdrop-filter: blur(5px); */
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.824) 33%,
+    rgba(2, 0, 36, 0) 100%
+  );
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#08203E", endColorstr="#557C93", GradientType=1);
+}
+
+.slider-container::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  background-color: #000000c2;
+  width: 50px;
+  height: 100%;
+  /* backdrop-filter: blur(5px); */
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    280deg,
+    rgba(0, 0, 0, 0.791) 33%,
+    rgba(2, 0, 36, 0) 100%
+  );
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#08203E", endColorstr="#557C93", GradientType=1);
+}
+
+.tv-lightweight-charts {
+  position: relative;
+  z-index: 0;
+}
+
+/* Custom scrollbar styles */
+/* Scrollbar width */
+.scrollbarr::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Scrollbar track */
+.scrollbarr::-webkit-scrollbar-track {
+  background: #d1cdcd;
+}
+
+/* Scrollbar handle */
+.scrollbarr::-webkit-scrollbar-thumb {
+  background: #1a1818;
+  border-radius: 20px;
+}
+
+/* Change scrollbar on hover */
+.scrollbarr:hover::-webkit-scrollbar-thumb {
+  background: #555;
+}
+
+/* MOdal for nft more info*/
+
+.custom-modaloverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: blur(10px);
+  animation: fadeIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(0.8) translateY(1000px) translateX(-50%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1) translateY(-50%) translateX(-50%);
+    opacity: 1;
+  }
+}
+
+.custom-modalcontent-nftinfo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  /* background-color: #142028; */
+  border: none;
+  border-radius: 15px;
+
+  transform: translate(-50%, -50%);
+  animation: scaleUp 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+@media (max-width: 868px) {
+  .custom-modalcontent-nftinfo {
+    width: 90%;
+  }
+}
+
+/* MOdal for nft more info END*/
+
+@media screen and (min-width: 1277px) {
+  .riskLogoHide {
+    display: none;
+  }
+}
+@media screen and (min-width: 1800px) {
+  .riskLogoHide {
+    display: block;
+  }
+}
+
+.ad-container:hover {
+  box-shadow: 0px 0px 20px 1px #ffbb763f;
+}
+
+.glowScoreBtn {
+  width: fit-content;
+  display: flex;
+  padding: 0.8em 1.1em;
+  gap: 0.4rem;
+  border: none;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  text-shadow: 2px 2px 3px rgb(136 0 136 / 50%);
+  background-color: rgb(245, 51, 253);
+  background-size: 300%;
+  background-position: left center;
+  transition: background 0.3s ease;
+  color: #fff;
+}
+.glowScoreBtn:hover {
+  background-size: 320%;
+  background-position: right center;
+}
+
+.glowScoreBtn:hover svg {
+  fill: #fff;
+}
+
+.glowScoreBtn svg {
+  width: 23px;
+  fill: #f09f33;
+  transition: 0.3s ease;
+}
+
+/* inspired from this svgbackgrounds.com/ */
+.button {
+  width: fit-content;
+  display: flex;
+  padding: 0.8em 1.1em;
+  gap: 0.4rem;
+  border: none;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  text-shadow: 2px 2px 3px rgb(136 0 136 / 50%);
+  background: linear-gradient(
+      15deg,
+      #880088,
+      #aa2068,
+      #cc3f47,
+      #de6f3d,
+      #f09f33,
+      #de6f3d,
+      #cc3f47,
+      #aa2068,
+      #880088
+    )
+    no-repeat;
+  background-size: 300%;
+  background-position: left center;
+  transition: background 0.3s ease;
+  color: #fff;
+}
+
+.button:hover {
+  background-size: 320%;
+  background-position: right center;
+}
+
+.button:hover svg {
+  fill: #fff;
+}
+
+.button svg {
+  width: 23px;
+  fill: #f09f33;
+  transition: 0.3s ease;
+}
+
+/* welcome to riskwise pro hover */
+/* === removing default button style ===*/
+.welcome-hov {
+  margin: 0;
+  height: auto;
+  background: transparent;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+
+/* button styling */
+.welcome-hov {
+  --border-right: 6px;
+  --text-stroke-color: rgba(255, 255, 255, 0.6);
+  --animation-color: #c4c437;
+  --fs-size: 2em;
+  letter-spacing: 3px;
+  text-decoration: none;
+  font-size: var(--fs-size);
+  font-family: "Arial";
+  position: relative;
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--text-stroke-color);
+}
+/* this is the text, when you hover on button */
+.hover-text {
+  position: absolute;
+  box-sizing: border-box;
+  content: attr(data-text);
+  color: var(--animation-color);
+  width: 0%;
+  inset: 0;
+  border-right: var(--border-right) solid var(--animation-color);
+  overflow: hidden;
+  transition: 0.5s;
+  -webkit-text-stroke: 1px var(--animation-color);
+}
+/* hover */
+.welcome-hov:hover .hover-text {
+  width: 100%;
+  filter: drop-shadow(0 0 23px var(--animation-color));
+}
+
+/* Hide swap button from charts page in mob-landscape */
+@media (orientation: landscape) and (max-height: 500px) {
+  .swap_button {
+    display: none;
+  }
+}
+
+.hidden-text {
+  display: none;
+}
+
+.reveal-text span {
+  display: inline-block;
+  opacity: 0;
+  animation: reveal 1s forwards;
+}
+
+.reveal-text span:nth-child(1) {
+  animation-delay: 0.04s;
+}
+
+.reveal-text span:nth-child(2) {
+  animation-delay: 0.07s;
+}
+
+.reveal-text span:nth-child(3) {
+  animation-delay: 0.1s;
+}
+
+@keyframes reveal {
+  to {
+    opacity: 1;
+  }
+}
+
+.blueBg {
+  background: linear-gradient(180deg, #246cf9 0%, #1e68f6 50%, #0047d0 100%);
+}

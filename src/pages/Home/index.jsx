@@ -36,11 +36,11 @@ const Home = () => {
 
   useEffect(() => {
     const slideInterval = setInterval(() => {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % bannerData.length);
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % bannerData?.length);
     }, 5000); // Change slide every 5 seconds
 
     return () => clearInterval(slideInterval); // Clean up the interval on component unmount
-  }, [bannerData.length]);
+  }, [bannerData?.length]);
 
   const handleSlideChange = (index) => {
     setCurrentSlide(index);

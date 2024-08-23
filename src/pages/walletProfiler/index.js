@@ -30,6 +30,12 @@ const WalletProfiler = () => {
   const { walletAddress, stakeAddress, isPro } = useSelector(
     (state) => state.walletProfilerReducer
   );
+
+  console.log("wallet address from wallet Profiler", walletAddress);
+  console.log("wallet stakeAddress from wallet Profiler", stakeAddress);
+
+  console.log("wallet isPro from wallet Profiler", isPro);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isConnect } = useCardano();
@@ -48,8 +54,14 @@ const WalletProfiler = () => {
       key: encryption(data),
     };
     try {
+      console.log("function running fetchUTXos");
+
       const response = await axios.post(transactionAll, encryptedData);
+      console.log("function running fetchUTXos2", response);
+
       const result = decryption(response?.data);
+      console.log("function running fetchUTXos3", result);
+
       const transactions = result?.transactions;
       console.log("blockFrostApi", transactions);
 
@@ -96,8 +108,14 @@ const WalletProfiler = () => {
       key: encryption(data),
     };
     try {
+      console.log("function running fetchUTXos");
+
       const response = await axios.post(UTXos, encryptedData);
+      console.log("function running fetchUTXos2", response);
+
       const result = decryption(response?.data);
+      console.log("function running fetchUTXos2", result);
+
       console.log("proUTXos", result);
       const transacWithAmount = await Promise.all(
         result?.utxos?.map(async (trans) => {
@@ -164,8 +182,13 @@ const WalletProfiler = () => {
       key: encryption(data),
     };
     try {
+      console.log("function running walletPoisiton");
       const response = await axios.post(walletPositionApi, encryptedData);
+      console.log("function running walletPoisiton2", response);
+
       const result = decryption(response?.data);
+      console.log("function running walletPoisiton3", result);
+
       console.log(
         "balanceprofiler1 iamsun",
         result.walletPosition.positionsNft

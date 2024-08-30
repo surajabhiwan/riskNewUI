@@ -105,11 +105,11 @@ function Routers() {
             </GeneralRoute>
           }
         /> */}
-         <Route
+        <Route
           path={viewAllAssets}
           element={
             <GeneralRoute layout={MainLayout}>
-             <TableDataNftAndToken></TableDataNftAndToken>
+              <TableDataNftAndToken></TableDataNftAndToken>
             </GeneralRoute>
           }
         />

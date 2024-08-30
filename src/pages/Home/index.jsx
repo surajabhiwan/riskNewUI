@@ -64,343 +64,345 @@ const Home = () => {
   }, []);
 
   console.log("banner data to shown", bannerData);
-
+  console.log("data idhar aya", data);
   const renderCardsForTab = () => {
-    if (type === "token") {
-      return (
-        <div className="tokenAndNftInnerDiv">
-          {data?.map((data) => {
-            return (
-              <>
-                <Link
-                  to={
-                    data?.unit || data?.policy
-                      ? `/charts?token=${data?.name}&unit=${
-                          type === "token" ? data?.unit : data?.policy
-                        }&pairID=${data?.policy}&type=${type}`
-                      : "#"
-                  }
-                >
-                  <div className="card">
-                    <div className="cardInfo">
-                      <div className="cardImg">
-                        {type === "token" && data?.unit ? (
-                          <img
-                            width={100}
-                            height={100}
-                            style={{ borderRadius: "50%" }}
-                            src={
-                              data?.name === "SNEK"
-                                ? `${getImage}/image?unit=279c909f348e533da5808898f87f9a14bb2c3dfbbacccd631d927a3f534e454b`
-                                : data?.unit
-                                ? `${getImage}/image?unit=${data?.unit}`
-                                : data?.imgSrc
-                            }
-                            className="ml-2 logo"
-                            alt="riskWise"
-                          />
-                        ) : type === "nft" && data?.logo ? (
-                          <img
-                            width={100}
-                            height={100}
-                            style={{ borderRadius: "50%" }}
-                            src={
-                              data?.image
-                                ? `${getImageNft}/${data?.image}`
-                                : data?.logo
-                            }
-                            className="ml-2 logo"
-                            alt="riskWise"
-                          />
-                        ) : (
-                          <div
-                            className="xl:w-10 sm:w-7 w-6 xl:h-10 sm:h-7 h-6 ml-3 rounded-full flex items-center justify-center"
-                            style={{ backgroundColor: "#00008B" }}
-                          >
-                            <span className="text-white font-medium">
-                              {data?.name?.split("")[0]}
-                            </span>
-                          </div>
-                        )}
-                      </div>
-                      <div className="cardNameAndPriceDiv">
-                        <div className="cardPrice">
-                          <div className="ml-2">
-                            <p className="text-white text-xl  font-normal max-2xl:max-w-[80px] truncate float-left">
-                              {data?.name?.length > 18
-                                ? data?.name.slice(0, 17) + "..."
-                                : data?.name}
-                            </p>
-                            {type === "nft" ? (
-                              <p className="text-[#FFFFFF] text-3xl font-normal ">
-                                Floor: {data?.price} ₳
-                              </p>
-                            ) : (
-                              <p className="text-[#FFFFFF] text-3xl font-normal ">
-                                {(
-                                  parseFloat(
-                                    data?.price?.replace(/[$,]/g, "")
-                                  ) / parseFloat(adaLive?.split(" ")[1])
-                                )?.toFixed(5)}{" "}
-                                ₳
-                              </p>
-                            )}
-                          </div>
+    // if (type === "token") {
+    return (
+      <div className="tokenAndNftInnerDiv">
+        {data?.map((data) => {
+          return (
+            <>
+              <Link
+                to={
+                  data?.unit || data?.policy
+                    ? `/charts?token=${data?.name}&unit=${
+                        type === "token" ? data?.unit : data?.policy
+                      }&pairID=${data?.policy}&type=${type}`
+                    : "#"
+                }
+              >
+                <div className="card">
+                  <div className="cardInfo">
+                    <div className="cardImg">
+                      {type === "token" && data?.unit ? (
+                        <img
+                          width={100}
+                          height={100}
+                          style={{ borderRadius: "50%" }}
+                          src={
+                            data?.name === "SNEK"
+                              ? `${getImage}/image?unit=279c909f348e533da5808898f87f9a14bb2c3dfbbacccd631d927a3f534e454b`
+                              : data?.unit
+                              ? `${getImage}/image?unit=${data?.unit}`
+                              : data?.imgSrc
+                          }
+                          className="ml-2 logo"
+                          alt="riskWise"
+                        />
+                      ) : type === "nft" && data?.logo ? (
+                        <img
+                          width={100}
+                          height={100}
+                          style={{ borderRadius: "50%" }}
+                          src={
+                            data?.image
+                              ? `${getImageNft}/${data?.image}`
+                              : data?.logo
+                          }
+                          className="ml-2 logo"
+                          alt="riskWise"
+                        />
+                      ) : (
+                        <div
+                          className="xl:w-10 sm:w-7 w-6 xl:h-10 sm:h-7 h-6 ml-3 rounded-full flex items-center justify-center"
+                          style={{ backgroundColor: "#00008B" }}
+                        >
+                          <span className="text-white font-medium">
+                            {data?.name?.split("")[0]}
+                          </span>
                         </div>
-                      </div>
-                      <div className="cardSymbol"></div>
+                      )}
                     </div>
-                    <div className="cardChart">
-                      <div className="flex items-center justify-start">
-                        {type === "nft" ? (
-                          <p className="text-[#939393] text-sm font-normal">
-                            {" "}
-                            {convertMillion(data?.marketCap)} ₳
+                    <div className="cardNameAndPriceDiv">
+                      <div className="cardPrice">
+                        <div className="ml-2">
+                          <p className="text-white text-xl  font-normal max-2xl:max-w-[80px] truncate float-left">
+                            {data?.name?.length > 18
+                              ? data?.name.slice(0, 17) + "..."
+                              : data?.name}
                           </p>
-                        ) : (
-                          <p className="text-[#939393] text-sm font-normal">
-                            {" "}
-                            {convertMillion(
-                              parseFloat(data?.mcap?.replace(/[$,]/g, "")) /
+                          {type === "nft" ? (
+                            <p className="text-[#FFFFFF] text-3xl font-normal ">
+                              {data?.price} ₳
+                            </p>
+                          ) : (
+                            <p className="text-[#FFFFFF] text-3xl font-normal ">
+                              {(
+                                parseFloat(data?.price) /
                                 parseFloat(adaLive?.split(" ")[1])
-                            )}{" "}
-                            ₳
-                          </p>
-                        )}
-                      </div>
-                      <div className="flex items-center justify-end">
-                        {type === "nft" ? (
-                          <p>
-                            {data?.price24hChg > 0 ? (
-                              <SVG.GoUp />
-                            ) : (
-                              <SVG.GoDown />
-                            )}{" "}
-                          </p>
-                        ) : (
-                          <p>
-                            {" "}
-                            {parseFloat(data?.twofourhr?.split("%")[0]) > 0 ? (
-                              <SVG.GoUp />
-                            ) : (
-                              <SVG.GoDown />
-                            )}
-                          </p>
-                        )}
-                        {type === "nft" ? (
-                          <p
-                            className={
-                              data?.price24hChg > 0
-                                ? `text-[#20eb7a] sm:text-sm text-xs`
-                                : `text-[#ff422b] sm:text-sm text-xs`
-                            }
-                          >
-                            &nbsp;{" "}
-                            {(data?.price24hChg > 0
-                              ? data?.price24hChg * 100
-                              : data?.price24hChg * -100
-                            )?.toFixed(2)}
-                            %
-                          </p>
-                        ) : (
-                          <p
-                            className={
-                              parseFloat(data?.twofourhr?.split("%")[0]) > 0
-                                ? `text-[#20eb7a] text-sm font-normal ml-1`
-                                : `text-[#ff422b] text-sm font-normal ml-1`
-                            }
-                          >
-                            {/* {data?.twofourHr}%</p> */}
-                            {data?.twofourhr?.split(" ")[0] === "--"
-                              ? "-0%"
-                              : parseFloat(data?.twofourhr?.split("%")[0]) < 0
-                              ? parseFloat(data?.twofourhr?.split("%")[0]) *
-                                  -1 +
-                                "%"
-                              : data?.twofourhr}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              </>
-            );
-          })}
-          <div className="card">
-            <div className="viewDetailsDiv">
-              <h4
-                onClick={() => {
-                  navigate("/viewAllAssets");
-                }}
-                style={{ cursor: "pointer" }}
-              >
-                View All Assets
-              </h4>
-            </div>
-          </div>
-        </div>
-      );
-    } else if (type === "nft") {
-      return (
-        <div className="tokenAndNftInnerDiv">
-          {data?.map((data) => {
-            return (
-              <>
-                <Link
-                  to={
-                    data?.unit || data?.policy
-                      ? `/charts?token=${data?.name}&unit=${
-                          type === "token" ? data?.unit : data?.policy
-                        }&pairID=${data?.policy}&type=${type}`
-                      : "#"
-                  }
-                >
-                  <div className="card">
-                    <div className="cardInfo">
-                      <div className="cardImg">
-                        {type === "token" && data?.unit ? (
-                          <img
-                            width={100}
-                            height={100}
-                            style={{ borderRadius: "50%" }}
-                            src={
-                              data?.name === "SNEK"
-                                ? `${getImage}/image?unit=279c909f348e533da5808898f87f9a14bb2c3dfbbacccd631d927a3f534e454b`
-                                : data?.unit
-                                ? `${getImage}/image?unit=${data?.unit}`
-                                : data?.imgSrc
-                            }
-                            className="ml-2 logo"
-                            alt="riskWise"
-                          />
-                        ) : type === "nft" && data?.logo ? (
-                          <img
-                            width={100}
-                            height={100}
-                            style={{ borderRadius: "50%" }}
-                            src={
-                              data?.image
-                                ? `${getImageNft}/${data?.image}`
-                                : data?.logo
-                            }
-                            className="ml-2 logo"
-                            alt="riskWise"
-                          />
-                        ) : (
-                          <div
-                            className="xl:w-10 sm:w-7 w-6 xl:h-10 sm:h-7 h-6 ml-3 rounded-full flex items-center justify-center"
-                            style={{ backgroundColor: "#00008B" }}
-                          >
-                            <span className="text-white font-medium">
-                              {data?.name?.split("")[0]}
-                            </span>
-                          </div>
-                        )}
-                      </div>
-                      <div className="cardNameAndPriceDiv">
-                        <div className="cardName">{data?.name}</div>
-                        <div className="cardPrice">
-                          <div className="ml-2">
-                            <p className="text-white text-sm font-normal max-2xl:max-w-[80px] truncate">
-                              {data?.name?.length > 18
-                                ? data?.name.slice(0, 17) + "..."
-                                : data?.name}
-                            </p>
-                            {type === "nft" ? (
-                              <p className="text-[#939393] text-sm font-normal">
-                                Floor: {data?.price} ₳
-                              </p>
-                            ) : (
-                              <p className="text-[#939393] text-sm font-normal">
-                                {(
-                                  parseFloat(
-                                    data?.price?.replace(/[$,]/g, "")
-                                  ) / parseFloat(adaLive?.split(" ")[1])
-                                )?.toFixed(5)}{" "}
-                                ₳
-                              </p>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="cardSymbol">
-                        <div className="flex items-center justify-end">
-                          {type === "nft" ? (
-                            <p>
-                              {data?.price24hChg > 0 ? (
-                                <SVG.GoUp />
-                              ) : (
-                                <SVG.GoDown />
-                              )}{" "}
-                            </p>
-                          ) : (
-                            <p>
-                              {" "}
-                              {parseFloat(data?.twofourhr?.split("%")[0]) >
-                              0 ? (
-                                <SVG.GoUp />
-                              ) : (
-                                <SVG.GoDown />
-                              )}
-                            </p>
-                          )}
-                          {type === "nft" ? (
-                            <p
-                              className={
-                                data?.price24hChg > 0
-                                  ? `text-[#20eb7a] sm:text-sm text-xs`
-                                  : `text-[#ff422b] sm:text-sm text-xs`
-                              }
-                            >
-                              &nbsp;{" "}
-                              {(data?.price24hChg > 0
-                                ? data?.price24hChg * 100
-                                : data?.price24hChg * -100
-                              )?.toFixed(2)}
-                              %
-                            </p>
-                          ) : (
-                            <p
-                              className={
-                                parseFloat(data?.twofourhr?.split("%")[0]) > 0
-                                  ? `text-[#20eb7a] text-sm font-normal ml-1`
-                                  : `text-[#ff422b] text-sm font-normal ml-1`
-                              }
-                            >
-                              {/* {data?.twofourHr}%</p> */}
-                              {data?.twofourhr?.split(" ")[0] === "--"
-                                ? "-0%"
-                                : parseFloat(data?.twofourhr?.split("%")[0]) < 0
-                                ? parseFloat(data?.twofourhr?.split("%")[0]) *
-                                    -1 +
-                                  "%"
-                                : data?.twofourhr}
+                              )?.toFixed(5)}
+                              {/* {(
+                                parseFloat(data?.price?.replace(/[$,]/g, "")) /
+                                parseFloat(adaLive?.split(" ")[1])
+                              )?.toFixed(5)}{" "} */}
+                              ₳
                             </p>
                           )}
                         </div>
                       </div>
                     </div>
+                    <div className="cardSymbol"></div>
                   </div>
-                </Link>
-              </>
-            );
-          })}
-          <div className="card">
-            <div className="viewDetailsDiv">
-              <h4
-                onClick={() => {
-                  navigate("/viewAllAssets");
-                }}
-                style={{ cursor: "pointer" }}
-              >
-                View All Assets
-              </h4>
-            </div>
+                  <div className="cardChart">
+                    <div className="flex items-center justify-start">
+                      {type === "nft" ? (
+                        <p className="text-[#939393] text-sm font-normal">
+                          {" "}
+                          {convertMillion(data?.marketCap)} ₳
+                        </p>
+                      ) : (
+                        <p className="text-[#939393] text-sm font-normal">
+                          {" "}
+                          {convertMillion(
+                            parseFloat(data?.mcap?.replace(/[$,]/g, "")) /
+                              parseFloat(adaLive?.split(" ")[1])
+                          )}{" "}
+                          ₳
+                        </p>
+                      )}
+                    </div>
+                    <div className="flex items-center justify-end">
+                      {type === "nft" ? (
+                        <p>
+                          {data?.price24hChg > 0 ? (
+                            <SVG.GoUp />
+                          ) : (
+                            <SVG.GoDown />
+                          )}{" "}
+                        </p>
+                      ) : (
+                        <p>
+                          {" "}
+                          {parseFloat(data?.twofourhr?.split("%")[0]) > 0 ? (
+                            <SVG.GoUp />
+                          ) : (
+                            <SVG.GoDown />
+                          )}
+                        </p>
+                      )}
+                      {type === "nft" ? (
+                        <p
+                          className={
+                            data?.price24hChg > 0
+                              ? `text-[#20eb7a] sm:text-sm text-xs`
+                              : `text-[#ff422b] sm:text-sm text-xs`
+                          }
+                        >
+                          &nbsp;{" "}
+                          {(data?.price24hChg > 0
+                            ? data?.price24hChg * 100
+                            : data?.price24hChg * -100
+                          )?.toFixed(2)}
+                          %
+                        </p>
+                      ) : (
+                        <p
+                          className={
+                            parseFloat(data?.twofourhr?.split("%")[0]) > 0
+                              ? `text-[#20eb7a] text-sm font-normal ml-1`
+                              : `text-[#ff422b] text-sm font-normal ml-1`
+                          }
+                        >
+                          {/* {data?.twofourHr}%</p> */}
+                          {data?.twofourhr?.split(" ")[0] === "--"
+                            ? "-0%"
+                            : parseFloat(data?.twofourhr?.split("%")[0]) < 0
+                            ? parseFloat(data?.twofourhr?.split("%")[0]) * -1 +
+                              "%"
+                            : data?.twofourhr}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </>
+          );
+        })}
+        <div className="card">
+          <div className="viewDetailsDiv">
+            <h4
+              onClick={() => {
+                navigate("/viewAllAssets");
+              }}
+              style={{ cursor: "pointer" }}
+            >
+              View All Assets
+            </h4>
           </div>
         </div>
-      );
-    }
+      </div>
+    );
+    // } else if (type === "nft") {
+    //   return (
+    //     <div className="tokenAndNftInnerDiv">
+    //       {data?.map((data) => {
+    //         return (
+    //           <>
+    //             <Link
+    //               to={
+    //                 data?.unit || data?.policy
+    //                   ? `/charts?token=${data?.name}&unit=${
+    //                       type === "token" ? data?.unit : data?.policy
+    //                     }&pairID=${data?.policy}&type=${type}`
+    //                   : "#"
+    //               }
+    //             >
+    //               <div className="card">
+    //                 <div className="cardInfo">
+    //                   <div className="cardImg">
+    //                     {type === "token" && data?.unit ? (
+    //                       <img
+    //                         width={100}
+    //                         height={100}
+    //                         style={{ borderRadius: "50%" }}
+    //                         src={
+    //                           data?.name === "SNEK"
+    //                             ? `${getImage}/image?unit=279c909f348e533da5808898f87f9a14bb2c3dfbbacccd631d927a3f534e454b`
+    //                             : data?.unit
+    //                             ? `${getImage}/image?unit=${data?.unit}`
+    //                             : data?.imgSrc
+    //                         }
+    //                         className="ml-2 logo"
+    //                         alt="riskWise"
+    //                       />
+    //                     ) : type === "nft" && data?.logo ? (
+    //                       <img
+    //                         width={100}
+    //                         height={100}
+    //                         style={{ borderRadius: "50%" }}
+    //                         src={
+    //                           data?.image
+    //                             ? `${getImageNft}/${data?.image}`
+    //                             : data?.logo
+    //                         }
+    //                         className="ml-2 logo"
+    //                         alt="riskWise"
+    //                       />
+    //                     ) : (
+    //                       <div
+    //                         className="xl:w-10 sm:w-7 w-6 xl:h-10 sm:h-7 h-6 ml-3 rounded-full flex items-center justify-center"
+    //                         style={{ backgroundColor: "#00008B" }}
+    //                       >
+    //                         <span className="text-white font-medium">
+    //                           {data?.name?.split("")[0]}
+    //                         </span>
+    //                       </div>
+    //                     )}
+    //                   </div>
+    //                   <div className="cardNameAndPriceDiv">
+    //                     <div className="cardName">{data?.name}</div>
+    //                     <div className="cardPrice">
+    //                       <div className="ml-2">
+    //                         <p className="text-white text-sm font-normal max-2xl:max-w-[80px] truncate">
+    //                           {data?.name?.length > 18
+    //                             ? data?.name.slice(0, 17) + "..."
+    //                             : data?.name}
+    //                         </p>
+    //                         {type === "nft" ? (
+    //                           <p className="text-[#939393] text-sm font-normal">
+    //                             Floor: {data?.price} ₳
+    //                           </p>
+    //                         ) : (
+    //                           <p className="text-[#939393] text-sm font-normal">
+    //                             {(
+    //                               parseFloat(
+    //                                 data?.price?.replace(/[$,]/g, "")
+    //                               ) / parseFloat(adaLive?.split(" ")[1])
+    //                             )?.toFixed(5)}{" "}
+    //                             ₳
+    //                           </p>
+    //                         )}
+    //                       </div>
+    //                     </div>
+    //                   </div>
+    //                   <div className="cardSymbol">
+    //                     <div className="flex items-center justify-end">
+    //                       {type === "nft" ? (
+    //                         <p>
+    //                           {data?.price24hChg > 0 ? (
+    //                             <SVG.GoUp />
+    //                           ) : (
+    //                             <SVG.GoDown />
+    //                           )}{" "}
+    //                         </p>
+    //                       ) : (
+    //                         <p>
+    //                           {" "}
+    //                           {parseFloat(data?.twofourhr?.split("%")[0]) >
+    //                           0 ? (
+    //                             <SVG.GoUp />
+    //                           ) : (
+    //                             <SVG.GoDown />
+    //                           )}
+    //                         </p>
+    //                       )}
+    //                       {type === "nft" ? (
+    //                         <p
+    //                           className={
+    //                             data?.price24hChg > 0
+    //                               ? `text-[#20eb7a] sm:text-sm text-xs`
+    //                               : `text-[#ff422b] sm:text-sm text-xs`
+    //                           }
+    //                         >
+    //                           &nbsp;{" "}
+    //                           {(data?.price24hChg > 0
+    //                             ? data?.price24hChg * 100
+    //                             : data?.price24hChg * -100
+    //                           )?.toFixed(2)}
+    //                           %
+    //                         </p>
+    //                       ) : (
+    //                         <p
+    //                           className={
+    //                             parseFloat(data?.twofourhr?.split("%")[0]) > 0
+    //                               ? `text-[#20eb7a] text-sm font-normal ml-1`
+    //                               : `text-[#ff422b] text-sm font-normal ml-1`
+    //                           }
+    //                         >
+    //                           {/* {data?.twofourHr}%</p> */}
+    //                           {data?.twofourhr?.split(" ")[0] === "--"
+    //                             ? "-0%"
+    //                             : parseFloat(data?.twofourhr?.split("%")[0]) < 0
+    //                             ? parseFloat(data?.twofourhr?.split("%")[0]) *
+    //                                 -1 +
+    //                               "%"
+    //                             : data?.twofourhr}
+    //                         </p>
+    //                       )}
+    //                     </div>
+    //                   </div>
+    //                 </div>
+    //               </div>
+    //             </Link>
+    //           </>
+    //         );
+    //       })}
+    //       <div className="card">
+    //         <div className="viewDetailsDiv">
+    //           <h4
+    //             onClick={() => {
+    //               navigate("/viewAllAssets");
+    //             }}
+    //             style={{ cursor: "pointer" }}
+    //           >
+    //             View All Assets
+    //           </h4>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   );
+    // }
   };
 
   const { nftTableData } = useSelector((state) => state.tableREducer);

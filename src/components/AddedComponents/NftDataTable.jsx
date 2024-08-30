@@ -20,7 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { tableAction } from "../../store/slices/TableData";
 import { HashLink } from "react-router-hash-link";
 
-const NftDataTable = (props) => {
+const NftDataTable = (data) => {
   // const [isLoading, setIsLoading] = useState(false);
   // const [nftTableData, setNftTableData] = useState([]);
   // const dispatch = useDispatch()
@@ -36,9 +36,9 @@ const NftDataTable = (props) => {
           </p>
         </SkeletonTheme>
       ) : (
-        nftData?.map((data, idx) => (
+        data?.data?.map((data, idx) => (
           <div
-            className={`cursor-pointer h-full w-full pt-3 overflow-x-hidden  hover:bg-[#3a4956] hover:bg-opacity-60 hover:rounded-lg`}
+            className={`cursor-pointer   pt-3 overflow-x-hidden  hover:bg-[#3a4956] hover:bg-opacity-60 hover:rounded-lg`}
             key={idx}
             style={{ borderBottom: "1px solid grey" }}
           >
@@ -49,7 +49,7 @@ const NftDataTable = (props) => {
                   : "#"
               }
             >
-              <div className="flex  px-2 mb-3  w-full">
+              <div className="flex  px-2 mb-3  ">
                 <div className="flex items-center xl:w-1/5 w-3/5">
                   {/* <div className="flex w-3 h-3 items-center justify-center sm:text-sm text-xs">
                                         <SVG.WatchList />

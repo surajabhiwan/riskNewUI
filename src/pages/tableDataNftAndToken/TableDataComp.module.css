@@ -1,0 +1,50 @@
+.container {
+  padding: 20px;
+}
+
+.toggleButtons {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.toggleButtons button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+.toggleButtons button.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.cardsContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.card {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 8px;
+  width: 50%;
+  height: 65vh;
+  overflow-y: auto;
+  /* Adjust card size or layout if needed */
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.TokenTable {
+  color: white;
+}
+.NftTable {
+  color: white;
+}

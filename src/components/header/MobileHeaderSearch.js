@@ -434,7 +434,7 @@ const MobileHeaderSearch = () => {
       // Encrypt the ticker value
       const encryptedData = {
         key: encryption({
-          ticker: tickerVal,
+          query: tickerVal,
         }),
       };
 
@@ -577,42 +577,50 @@ const MobileHeaderSearch = () => {
                     </div>
                   </Link>
                 ))} */}
-                {tickerData?.map((data, idx) => (
-                  <Link
-                    key={idx}
-                    to={
-                      data?.unit
-                        ? `/charts?token=${data?.ticker}&unit=${data?.unit}&pairID=${data?.pairId}&type=token`
-                        : "#"
-                    }
-                    onClick={() => setShowSearch(false)}
-                  >
-                    <div className="flex items-center p-2 hover:bg-[#3a4956] rounded-lg cursor-pointer">
-                      {data?.unit ? (
-                        <img
-                          width={40}
-                          height={40}
-                          style={{ borderRadius: "50%" }}
-                          src={`${getImage}/image?unit=${data?.unit}`}
-                          alt={data.ticker}
-                          className="mr-2"
-                        />
-                      ) : (
-                        <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-lg text-white">
-                          {data?.ticker}
-                        </div>
-                      )}
-                      <div>
-                        <span className="text-white">{data?.ticker}</span>
-                        <br />
-                        <span className="text-zinc-400 text-sm">
-                          {/* {{stringToFixedNumber(data?.price, 2)} ₳ } */}
-                          {/* {data?.price} */}
-                        </span>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
+{tickerData?.map((data, idx) => (
+  <Link
+    key={idx}
+    to={
+      data?.type === "token" && data?.unit
+        ? `/charts?token=${data?.ticker}&unit=${data?.unit}&pairID=${data?.pairId}&type=token`
+        : data?.type === "nft"
+        ? `/nft-details?policy=${data?.policy}&name=${data?.name}`
+        : "#"
+    }
+    onClick={() => setShowSearch(false)}
+  >
+    <div className="flex items-center p-2 hover:bg-[#3a4956] rounded-lg cursor-pointer">
+      {data?.type === "token" && data?.unit ? (
+        <img
+          width={40}
+          height={40}
+          style={{ borderRadius: "50%" }}
+          src={`${getImage}/image?unit=${data?.unit}`}
+          alt={data.ticker}
+          className="mr-2"
+        />
+      ) : data?.type === "nft" ? (
+        <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-lg text-white">
+          {data?.name?.charAt(0)}
+        </div>
+      ) : (
+        <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-lg text-white">
+          {data?.ticker}
+        </div>
+      )}
+      <div>
+        <span className="text-white">{data?.type === "token" ? data?.ticker : data?.name}</span>
+        <br />
+        <span className="text-zinc-400 text-sm">
+          {data?.type === "token" 
+            ? `${stringToFixedNumber(data?.price, 2)} ₳`
+            : `${data?.price} ₳`}
+        </span>
+      </div>
+    </div>
+  </Link>
+))}
+
               </div>
             )}
           </div>

@@ -1,6 +1,7 @@
 // const ip = "https://devapi.riskwisepro.io";
 // 192.168.1.95:3013
-const ip = "http://192.168.1.95:3013";
+// const ip = "http://192.168.1.95:3013";
+const ip = "https://devenvapi.riskwisepro.io";
 
 // maintanace check
 export const maintainace = `${ip}/api/admin/check/maintainace`;
@@ -25,6 +26,17 @@ export const buySellDataApi = `${ip}/api/token/stats`;
 export const tickerDataAll = `${ip}/api/getAlltokens`;
 
 //#endregion
+
+// New Apis by digvijay
+// For tokens
+export const topMarketCapTokens = `${ip}/api/tokens/top-market-cap`;
+export const topLiquidityTokens = `${ip}/api/tokens/top-liquidity`;
+export const topVolumeTokens = `${ip}/api/tokens/top-volume`;
+
+// For NFTs
+export const topRankingNfts = `${ip}/api/nfts/top-rankings`;
+
+export const topVolumeCollection = `${ip}/api/nfts/top-volume`;
 
 //#region NFT APi
 export const topNftAPi = `${ip}/api/nft/top/timeframe`;

@@ -25,6 +25,8 @@ import axios from "axios";
 import { decryption, encryption } from "../../functions/crypto";
 import HomeTableHeader from "../../components/Home/HomeTableHeader";
 import useMedia from "../../common/mediaQuery";
+import HomeTableHeaderMarketcap from "../../components/Home/HomeTableHeader copy 4";
+import TableDataComp from "./TableDataComp";
 
 const TableDataNftAndToken = () => {
   const [menu, setMenu] = useState("");
@@ -218,10 +220,12 @@ const TableDataNftAndToken = () => {
             <HomeViewAll />
           </div>
         </div>
-        <div className="bg-[#142028] rounded-2xl px-1 py-2">
+
+        <TableDataComp tab={tab}></TableDataComp>
+        {/* <div className="bg-[#142028] rounded-2xl px-1 py-2">
           <HomeTableHeader tab={tab} />
           {tab ? <HomeTableContent /> : <NftDataTable />}
-        </div>
+        </div> */}
       </div>
     </div>
   );

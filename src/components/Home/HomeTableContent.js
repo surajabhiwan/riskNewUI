@@ -103,7 +103,7 @@ const HomeTableContent = ({ data }) => {
                 </div>
                 <div
                   className={
-                    "xl:flex xl:items-center hidden justify-end transition-all duration-300 cursor-pointer  w-[12%]  gap-2 "
+                    "xl:flex xl:items-center hidden justify-end transition-all duration-300 cursor-pointer  gap-2 "
                   }
                 >
                   <div className="flex flex-col items-end">

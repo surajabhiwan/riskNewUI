@@ -66,6 +66,7 @@ import {
   educationPro,
   crowScore,
   viewAllAssets,
+  educationProVideo,
 } from "./routes";
 import Cryptocurrencies from "../components/AddedComponents/Cryptocurrencies.jsx";
 import CommingSoon from "../components/AddedComponents/CommingSoon/CommingSoon.jsx";
@@ -88,12 +89,13 @@ import EducationPro from "../pages/educationPro/index.jsx";
 import CrowScore from "../pages/glowScore/index.jsx";
 import Home from "../pages/Home/index.jsx";
 import TableDataNftAndToken from "../pages/tableDataNftAndToken/index.js";
+import VideoPlayerPage from "../pages/educationPro/VideoPlayerPage.jsx";
 
 function Routers() {
   return (
     <>
       <Routes>
-        {/* <Route
+        <Route
           path={educationPro}
           render={({ location }) => {
             ReactGA.pageview(location.pathname);
@@ -104,7 +106,20 @@ function Routers() {
               <EducationPro></EducationPro>
             </GeneralRoute>
           }
-        /> */}
+        />
+         <Route
+          path={educationProVideo}
+          render={({ location }) => {
+            ReactGA.pageview(location.pathname);
+            return null;
+          }}
+          element={
+            <GeneralRoute layout={MainLayout}>
+              <VideoPlayerPage></VideoPlayerPage>
+            </GeneralRoute>
+          }
+        />
+
         <Route
           path={viewAllAssets}
           element={

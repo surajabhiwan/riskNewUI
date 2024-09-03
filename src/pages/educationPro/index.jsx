@@ -1,54 +1,186 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import VideoPlayer from "./VideoPlayer"; // Example component for video player
-import CourseContent from "./CourseContent"; // Example component for course content
+// HomePage.jsx
+import React from "react";
+import { Link } from "react-router-dom";
+import "./index.css"; // Include your CSS for styling
+
+const dummyVideos = [
+  // Your dummy video data
+  {
+    id: 1,
+    thumbnail: "/edu1.png",
+    title: "Video 1",
+    description: "Description for Video 1",
+  },
+  {
+    id: 2,
+    thumbnail: "/edu2.png",
+
+    title: "Video 2",
+    description: "Description for Video 2",
+  },
+  {
+    id: 3,
+    thumbnail: "/edu3.png",
+
+    title: "Video 3",
+    description: "Description for Video 3",
+  },
+  {
+    id: 4,
+    thumbnail: "/edu4.png",
+
+    title: "Video 4",
+    description: "Description for Video 4",
+  },
+  {
+    id: 5,
+    thumbnail: "/edu5.jpg",
+
+    title: "Video 5",
+    description: "Description for Video 5",
+  },
+  {
+    id: 6,
+    thumbnail: "/edu1.png",
+    title: "Video 6",
+    description: "Description for Video 6",
+  },
+  {
+    id: 7,
+    thumbnail: "/edu2.png",
+
+    title: "Video 7",
+    description: "Description for Video 7",
+  },
+  {
+    id: 8,
+    thumbnail: "/edu3.png",
+
+    title: "Video 8",
+    description: "Description for Video 8",
+  },
+  {
+    id: 9,
+    thumbnail: "/edu4.png",
+
+    title: "Video 9",
+    description: "Description for Video 9",
+  },
+  {
+    id: 10,
+    thumbnail: "/edu5.jpg",
+
+    title: "Video 10",
+    description: "Description for Video 10",
+  },
+  {
+    id: 11,
+    thumbnail: "/edu1.png",
+
+    title: "Video 11",
+    description: "Description for Video 11",
+  },
+  {
+    id: 12,
+    thumbnail: "/edu2.png",
+
+    title: "Video 12",
+    description: "Description for Video 12",
+  },
+  {
+    id: 13,
+    thumbnail: "/edu3.png",
+
+    title: "Video 13",
+    description: "Description for Video 13",
+  },
+  {
+    id: 14,
+    thumbnail: "/edu4.png",
+
+    title: "Video 14",
+    description: "Description for Video 14",
+  },
+  {
+    id: 15,
+    thumbnail: "/edu5.jpg",
+
+    title: "Video 15",
+    description: "Description for Video 15",
+  },
+  {
+    id: 16,
+    thumbnail: "/edu1.png",
+
+    title: "Video 16",
+    description: "Description for Video 16",
+  },
+  {
+    id: 17,
+    thumbnail: "/edu2.png",
+
+    title: "Video 17",
+    description: "Description for Video 17",
+  },
+  {
+    id: 18,
+    thumbnail: "/edu3.png",
+
+    title: "Video 18",
+    description: "Description for Video 18",
+  },
+  {
+    id: 19,
+    thumbnail: "/edu4.png",
+
+    title: "Video 19",
+    description: "Description for Video 19",
+  },
+  {
+    id: 20,
+    thumbnail: "/edu5.jpg",
+
+    title: "Video 20",
+    description: "Description for Video 20",
+  },
+];
 
 const EducationPro = () => {
-  const [selectedVideo, setSelectedVideo] = useState('video.webm');
-
-  const handleVideoSelect = (videoUrl) => {
-    setSelectedVideo(videoUrl);
-  };
+  const courses = dummyVideos.slice(0, 6); // First 5 videos as courses
+  const otherVideos = dummyVideos.slice(6); // Remaining videos
 
   return (
-    <CoursePageContainer>
-      <VideoContainer>
-        <VideoPlayer videoUrl={selectedVideo} />
-      </VideoContainer>
-      <ContentContainer>
-        <CourseContent onVideoSelect={handleVideoSelect} />
-      </ContentContainer>
-    </CoursePageContainer>
+    <div className="home-page">
+      <div className="headingAndNewCourseBtnDiv">
+        <h1>Recent Uploads</h1>
+        <button className="addNewCourseBtn">Add a new Course</button>
+      </div>
+      <div className="course-list">
+        {courses.map((video) => (
+          <div key={video.id} className="course-item">
+            <Link to={`/video/${video.id}`}>
+              <img src={video.thumbnail} alt={video.title} />
+              <h3>{video.title}</h3>
+              <p>{video.description}</p>
+            </Link>
+          </div>
+        ))}
+      </div>
+
+      {/* <h1 cla>All Videos</h1> */}
+      <div className="video-grid">
+        {otherVideos.map((video) => (
+          <div key={video.id} className="video-item">
+            <Link to={`/video/${video.id}`}>
+              <img src={video.thumbnail} alt={video.title} />
+              <h3>{video.title}</h3>
+              <p>{video.description}</p>
+            </Link>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
-
-const CoursePageContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-  background-color: #f5f5f5;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  height: 80vh;
-`;
-
-const VideoContainer = styled.div`
-  flex: 3;
-  margin-right: 20px;
-  transition: transform 0.3s ease;
-
-  &:hover {
-    transform: scale(1.02);
-  }
-`;
-
-const ContentContainer = styled.div`
-  flex: 1;
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-`;
 
 export default EducationPro;

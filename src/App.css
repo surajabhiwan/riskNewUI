@@ -9,7 +9,9 @@ input[data-autocompleted] {
 .bgHome {
   background-image: url("../public/bg.png");
   background-repeat: no-repeat;
-  object-fit: contain;
+  object-fit: cover;
+  background-position: top left; /* Align the image to the top-left corner */
+  background-size: cover;
 }
 .ebCsMe {
   padding: 16px;

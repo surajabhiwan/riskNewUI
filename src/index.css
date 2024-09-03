@@ -231,7 +231,7 @@ code {
 }
 
 .my-component {
-  background-image: url("assests/bg.svg");
+  /* background-image: url("assests/bg.svg"); */
   background-position: center;
   background-repeat: repeat;
   background-size: contain;

@@ -1,0 +1,100 @@
+.home-page {
+  padding: 2rem 7rem;
+}
+.home-page h1 {
+  color: white;
+  font-size: 2rem;
+  text-decoration: underline;
+}
+
+.addNewCourseBtn {
+  position: relative;
+  padding: 1rem 2rem; /* Adjust padding as needed */
+  color: white;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1;
+  font-size: 1rem;
+  border-radius: 2rem;
+  letter-spacing: 0.2rem;
+  font-weight: 800;
+}
+
+.addNewCourseBtn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 2rem; /* Match the border-radius of the button */
+  padding: 2px; /* Adjust the width of the border */
+  background: linear-gradient(to right, #342af1, #303f71);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: -1; /* Make sure the border is behind the button content */
+}
+
+
+
+.headingAndNewCourseBtnDiv {
+  margin-bottom: 4rem;
+  display: flex;
+  justify-content: space-between;
+}
+.course-list {
+  display: flex;
+  overflow-x: scroll;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.course-item {
+  flex: 0 0 auto;
+  margin-right: 15px;
+  /* text-align: center; */
+  color: white;
+}
+
+.course-item img {
+  width: 16rem;
+  height: auto;
+}
+
+.course-item h3 {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.course-item p {
+  font-size: 0.9rem;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  color: white;
+}
+
+.video-item {
+  /* text-align: center; */
+}
+
+.video-item img {
+  width: 100%;
+  height: auto;
+}
+
+.video-item h3 {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.video-item p {
+  font-size: 0.9rem;
+}

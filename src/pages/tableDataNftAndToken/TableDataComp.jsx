@@ -170,13 +170,13 @@ const TableDataComp = (tab) => {
         <div className={styles.cardsContainer}>
           <div className={styles.card}>
             {/* {renderTableSample(tokenData.topMarketCap.data)} */}
-            {renderTable(tokenData.topMarketCap.data)}
+            {renderTable(tokenData.topMarketCap?.data)}
           </div>
           <div className={styles.card}>
-            {renderTable(tokenData.topLiquidity.data)}
+            {renderTable(tokenData.topLiquidity?.data)}
           </div>
           <div className={styles.card}>
-            {renderTable(tokenData.topVolume.data)}
+            {renderTable(tokenData.topVolume?.data)}
           </div>
         </div>
       );

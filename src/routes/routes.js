@@ -2,6 +2,7 @@ export const HOME = "/";
 export const AdvancedChart = "/advancedChart";
 export const DiscordChatBot = "/discordChatBot";
 export const educationPro = "/educationPro";
+export const educationProVideo = "/video/:videoId";
 
 export const LOGIN = "/login";
 export const REGISTER = "/signup";
@@ -39,6 +40,3 @@ export const Neo_Viking = "/neo-viking";
 export const Gaming = "/gaming";
 export const crowScore = "/crowScore";
 export const viewAllAssets = "/viewAllAssets";
-
-
-

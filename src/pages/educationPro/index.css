@@ -1,6 +1,8 @@
+/* Base styles */
 .home-page {
   padding: 2rem 7rem;
 }
+
 .home-page h1 {
   color: white;
   font-size: 2rem;
@@ -39,29 +41,27 @@
   z-index: -1; /* Make sure the border is behind the button content */
 }
 
-
-
 .headingAndNewCourseBtnDiv {
   margin-bottom: 4rem;
   display: flex;
   justify-content: space-between;
 }
+
 .course-list {
   display: flex;
   overflow-x: scroll;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 4rem;
 }
 
 .course-item {
   flex: 0 0 auto;
   margin-right: 15px;
-  /* text-align: center; */
   color: white;
 }
 
 .course-item img {
-  width: 16rem;
+  width: 20.5rem;
   height: auto;
 }
 
@@ -76,13 +76,13 @@
 
 .video-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
   gap: 15px;
   color: white;
 }
 
 .video-item {
-  /* text-align: center; */
+  text-align: center;
 }
 
 .video-item img {
@@ -97,4 +97,128 @@
 
 .video-item p {
   font-size: 0.9rem;
+}
+
+/* Responsive styles for screens below 768px */
+@media (max-width: 768px) {
+  .home-page {
+    padding: 1rem;
+  }
+
+  .home-page h1 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .addNewCourseBtn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border-radius: 1.5rem;
+  }
+
+  .headingAndNewCourseBtnDiv {
+    margin-bottom: 2rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .course-list {
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+  }
+
+  .course-item {
+    margin-bottom: 1rem;
+    width: 100%;
+    max-width: 20rem;
+    text-align: center;
+  }
+
+  .course-item img {
+    width: 100%;
+    height: auto;
+  }
+
+  .course-item h3 {
+    font-size: 1rem;
+  }
+
+  .course-item p {
+    font-size: 0.8rem;
+  }
+
+  .video-grid {
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  }
+
+  .video-item h3 {
+    font-size: 1rem;
+  }
+
+  .video-item p {
+    font-size: 0.8rem;
+  }
+}
+
+/* Responsive styles for screens below 400px */
+@media (max-width: 400px) {
+  .home-page {
+    padding: 0.5rem;
+  }
+
+  .home-page h1 {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .addNewCourseBtn {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    border-radius: 1rem;
+  }
+
+  .headingAndNewCourseBtnDiv {
+    margin-bottom: 1rem;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .course-list {
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+  }
+
+  .course-item {
+    margin-bottom: 0.5rem;
+    width: 100%;
+    max-width: 18rem;
+    text-align: center;
+  }
+
+  .course-item img {
+    width: 100%;
+    height: auto;
+  }
+
+  .course-item h3 {
+    font-size: 0.9rem;
+  }
+
+  .course-item p {
+    font-size: 0.7rem;
+  }
+
+  .video-grid {
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  }
+
+  .video-item h3 {
+    font-size: 0.9rem;
+  }
+
+  .video-item p {
+    font-size: 0.7rem;
+  }
 }

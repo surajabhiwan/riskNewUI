@@ -1,7 +1,8 @@
 // HomePage.jsx
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./index.css"; // Include your CSS for styling
+import { educationProVideoAddNewCourse } from "../../routes/routes";
 
 const dummyVideos = [
   // Your dummy video data
@@ -142,18 +143,173 @@ const dummyVideos = [
 
     title: "Video 20",
     description: "Description for Video 20",
+  },{
+    id: 20,
+    thumbnail: "/edu5.jpg",
+
+    title: "Video 20",
+    description: "Description for Video 20",
+  },{
+    id: 20,
+    thumbnail: "/edu5.jpg",
+
+    title: "Video 20",
+    description: "Description for Video 20",
+  },{
+    id: 20,
+    thumbnail: "/edu5.jpg",
+
+    title: "Video 20",
+    description: "Description for Video 20",
+  },{
+    id: 20,
+    thumbnail: "/edu5.jpg",
+
+    title: "Video 20",
+    description: "Description for Video 20",
+  },{
+    id: 20,
+    thumbnail: "/edu5.jpg",
+
+    title: "Video 20",
+    description: "Description for Video 20",
+  },{
+    id: 20,
+    thumbnail: "/edu5.jpg",
+
+    title: "Video 20",
+    description: "Description for Video 20",
+  },{
+    id: 20,
+    thumbnail: "/edu5.jpg",
+
+    title: "Video 20",
+    description: "Description for Video 20",
+  },{
+    id: 20,
+    thumbnail: "/edu5.jpg",
+
+    title: "Video 20",
+    description: "Description for Video 20",
+  },{
+    id: 20,
+    thumbnail: "/edu5.jpg",
+
+    title: "Video 20",
+    description: "Description for Video 20",
+  },{
+    id: 20,
+    thumbnail: "/edu5.jpg",
+
+    title: "Video 20",
+    description: "Description for Video 20",
+  },{
+    id: 20,
+    thumbnail: "/edu5.jpg",
+
+    title: "Video 20",
+    description: "Description for Video 20",
+  },{
+    id: 20,
+    thumbnail: "/edu5.jpg",
+
+    title: "Video 20",
+    description: "Description for Video 20",
+  },{
+    id: 20,
+    thumbnail: "/edu5.jpg",
+
+    title: "Video 20",
+    description: "Description for Video 20",
+  },{
+    id: 20,
+    thumbnail: "/edu5.jpg",
+
+    title: "Video 20",
+    description: "Description for Video 20",
+  },{
+    id: 20,
+    thumbnail: "/edu5.jpg",
+
+    title: "Video 20",
+    description: "Description for Video 20",
+  },{
+    id: 20,
+    thumbnail: "/edu5.jpg",
+
+    title: "Video 20",
+    description: "Description for Video 20",
+  },{
+    id: 20,
+    thumbnail: "/edu5.jpg",
+
+    title: "Video 20",
+    description: "Description for Video 20",
+  },{
+    id: 20,
+    thumbnail: "/edu5.jpg",
+
+    title: "Video 20",
+    description: "Description for Video 20",
+  },{
+    id: 20,
+    thumbnail: "/edu5.jpg",
+
+    title: "Video 20",
+    description: "Description for Video 20",
+  },{
+    id: 20,
+    thumbnail: "/edu5.jpg",
+
+    title: "Video 20",
+    description: "Description for Video 20",
+  },{
+    id: 20,
+    thumbnail: "/edu5.jpg",
+
+    title: "Video 20",
+    description: "Description for Video 20",
+  },{
+    id: 20,
+    thumbnail: "/edu5.jpg",
+
+    title: "Video 20",
+    description: "Description for Video 20",
+  },{
+    id: 20,
+    thumbnail: "/edu5.jpg",
+
+    title: "Video 20",
+    description: "Description for Video 20",
+  },{
+    id: 20,
+    thumbnail: "/edu5.jpg",
+
+    title: "Video 20",
+    description: "Description for Video 20",
+  },{
+    id: 20,
+    thumbnail: "/edu5.jpg",
+
+    title: "Video 20",
+    description: "Description for Video 20",
   },
 ];
 
 const EducationPro = () => {
+  const navigate = useNavigate();
   const courses = dummyVideos.slice(0, 6); // First 5 videos as courses
   const otherVideos = dummyVideos.slice(6); // Remaining videos
-
+  const addNewCourseHandler = () => {
+    navigate(educationProVideoAddNewCourse);
+  };
   return (
     <div className="home-page">
       <div className="headingAndNewCourseBtnDiv">
         <h1>Recent Uploads</h1>
-        <button className="addNewCourseBtn">Add a new Course</button>
+        <button className="addNewCourseBtn" onClick={addNewCourseHandler}>
+          Add a new Course
+        </button>
       </div>
       <div className="course-list">
         {courses.map((video) => (

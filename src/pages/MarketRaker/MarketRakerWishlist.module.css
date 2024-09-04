@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+.container {
+  text-align: center;
+  padding: 20px;
+}
+
+.heading {
+  font-size: 4rem;
+  margin-bottom: 10px;
+  color: white;
+  letter-spacing: 4px;
+  font-weight: 800;
+  font-family: "Montserrat", sans-serif;
+}
+
+.subheading {
+  color: #e2ac19;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  letter-spacing: 4px;
+  font-weight: 800;
+  font-family: "Montserrat", sans-serif;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+  gap: 20px;
+  justify-items: center;
+  margin-top: 3rem;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 300px;
+  gap: 1rem;
+}
+
+.cardTitle {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.cardDescription {
+  font-size: 1rem;
+  color: white;
+}
+
+.searchBar {
+  width: 100%;
+}
+
+.searchBar input[type="text"] {
+  margin-bottom: 10px;
+  padding: 0.6rem;
+  width: 60%;
+  border: 1px solid #2f3241;
+  border-radius: 2rem;
+  background-color: #2f3241;
+  color: #ffffff;
+}
+input::placeholder {
+  font-weight: 900;
+  color: white;
+  padding-left: 1rem;
+}

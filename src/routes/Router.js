@@ -67,6 +67,10 @@ import {
   crowScore,
   viewAllAssets,
   educationProVideo,
+  educationProVideoAddNewVideo,
+  educationProVideoAddNewCourse,
+  marketRaker,
+  marketRakerWishlist,
 } from "./routes";
 import Cryptocurrencies from "../components/AddedComponents/Cryptocurrencies.jsx";
 import CommingSoon from "../components/AddedComponents/CommingSoon/CommingSoon.jsx";
@@ -90,6 +94,10 @@ import CrowScore from "../pages/glowScore/index.jsx";
 import Home from "../pages/Home/index.jsx";
 import TableDataNftAndToken from "../pages/tableDataNftAndToken/index.js";
 import VideoPlayerPage from "../pages/educationPro/VideoPlayerPage.jsx";
+import AddNewCourse from "../pages/educationPro/addNewCourse/AddNewCourse.jsx";
+import AddNewVideo from "../pages/educationPro/addNewVideo/AddNewVideo.jsx";
+import MarketRaker from "../pages/MarketRaker/MarketRaker.jsx";
+import MarketRakerWishlist from "../pages/MarketRaker/MarketRakerWishlist.jsx";
 
 function Routers() {
   return (
@@ -107,7 +115,7 @@ function Routers() {
             </GeneralRoute>
           }
         />
-         <Route
+        <Route
           path={educationProVideo}
           render={({ location }) => {
             ReactGA.pageview(location.pathname);
@@ -119,7 +127,54 @@ function Routers() {
             </GeneralRoute>
           }
         />
-
+        <Route
+          path={educationProVideoAddNewCourse}
+          render={({ location }) => {
+            ReactGA.pageview(location.pathname);
+            return null;
+          }}
+          element={
+            <GeneralRoute layout={MainLayout}>
+              <AddNewCourse></AddNewCourse>
+            </GeneralRoute>
+          }
+        />
+        <Route
+          path={educationProVideoAddNewVideo}
+          render={({ location }) => {
+            ReactGA.pageview(location.pathname);
+            return null;
+          }}
+          element={
+            <GeneralRoute layout={MainLayout}>
+              <AddNewVideo></AddNewVideo>
+            </GeneralRoute>
+          }
+        />
+        <Route
+          path={marketRaker}
+          render={({ location }) => {
+            ReactGA.pageview(location.pathname);
+            return null;
+          }}
+          element={
+            <GeneralRoute layout={MainLayout}>
+              <MarketRaker></MarketRaker>
+            </GeneralRoute>
+          }
+        />
+        <Route
+          path={marketRakerWishlist}
+          render={({ location }) => {
+            ReactGA.pageview(location.pathname);
+            return null;
+          }}
+          element={
+            <GeneralRoute layout={MainLayout}>
+              <MarketRakerWishlist></MarketRakerWishlist>
+            </GeneralRoute>
+          }
+        />
         <Route
           path={viewAllAssets}
           element={

@@ -3,6 +3,12 @@ export const AdvancedChart = "/advancedChart";
 export const DiscordChatBot = "/discordChatBot";
 export const educationPro = "/educationPro";
 export const educationProVideo = "/video/:videoId";
+export const educationProVideoAddNewCourse = "/educationPro/addNewCourse";
+export const educationProVideoAddNewVideo = "/educationPro/addNewVideo";
+export const marketRaker = "/marketRaker";
+export const marketRakerWishlist = "/marketRakerWishlist";
+
+
 
 export const LOGIN = "/login";
 export const REGISTER = "/signup";

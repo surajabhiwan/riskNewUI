@@ -1,0 +1,36 @@
+/* Modal.module.css */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100000000000000;
+}
+
+.modalContent {
+  background-color: black;
+  border: 1px solid white;
+  border-radius: 2rem;
+  padding: 4rem;
+  position: relative;
+  width: 80%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.closeButton {
+  position: absolute;
+  top: -18px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 4.5rem;
+  color: #fff;
+  cursor: pointer;
+}

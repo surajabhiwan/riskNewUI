@@ -1,7 +1,7 @@
 // const ip = "https://devapi.riskwisepro.io";
 // 192.168.1.95:3013
-// const ip = "http://192.168.1.95:3013";
-const ip = "https://devenvapi.riskwisepro.io";
+const ip = "http://192.168.1.95:3013";
+// const ip = "https://devenvapi.riskwisepro.io";
 
 // maintanace check
 export const maintainace = `${ip}/api/admin/check/maintainace`;

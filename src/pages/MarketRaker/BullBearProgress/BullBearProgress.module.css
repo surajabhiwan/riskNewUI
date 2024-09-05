@@ -8,7 +8,7 @@
 }
 
 .bull {
-  background-color: #d4f7c4;
+  background-color: #06a036;
   color: black;
   display: flex;
   justify-content: right;
@@ -17,11 +17,10 @@
 }
 
 .bear {
-  background-color: #f7c4c4;
+  background-color: #d11b1b;
   color: black;
   display: flex;
   justify-content: left;
   align-items: center;
   padding-left: 1rem;
-
 }

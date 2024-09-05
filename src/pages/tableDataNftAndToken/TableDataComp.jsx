@@ -22,7 +22,7 @@ const TableDataComp = (tab) => {
   });
   console.log("tab iamsun", tab);
   const [nftData, setNftData] = useState({ topVolume: [], topRankings: [] });
-
+  console.log("nftData data", nftData);
   console.log("token data iamsun", tokenData.topMarketCap);
   console.log("token data iamsun topLiquidity", tokenData.topLiquidity);
 
@@ -149,17 +149,17 @@ const TableDataComp = (tab) => {
       </table>
     </div>
   );
-  const renderTable = (data) => (
+  const renderTable = (data, heading) => (
     <div>
-      <HomeTableHeaderToken tab={tab}></HomeTableHeaderToken>
+      <HomeTableHeaderToken tab={tab} heading={heading}></HomeTableHeaderToken>
 
-      <HomeTableContent data={data}></HomeTableContent>
+      <HomeTableContent data={data} heading={heading}></HomeTableContent>
     </div>
   );
-  const renderTableNft = (data) => (
+  const renderTableNft = (data, heading) => (
     <div>
-      <HomeTableHeaderNft tab={tab}></HomeTableHeaderNft>
-      <NftDataTable data={data}></NftDataTable>
+      <HomeTableHeaderNft tab={tab} heading={heading}></HomeTableHeaderNft>
+      <NftDataTable data={data} heading={heading}></NftDataTable>
     </div>
   );
   // Render cards
@@ -170,13 +170,13 @@ const TableDataComp = (tab) => {
         <div className={styles.cardsContainer}>
           <div className={styles.card}>
             {/* {renderTableSample(tokenData.topMarketCap.data)} */}
-            {renderTable(tokenData.topMarketCap?.data)}
+            {renderTable(tokenData.topMarketCap?.data, "MarketCap")}
           </div>
           <div className={styles.card}>
-            {renderTable(tokenData.topLiquidity?.data)}
+            {renderTable(tokenData.topLiquidity?.data, "Liquidy")}
           </div>
           <div className={styles.card}>
-            {renderTable(tokenData.topVolume?.data)}
+            {renderTable(tokenData.topVolume?.data, "Volume")}
           </div>
         </div>
       );
@@ -185,10 +185,10 @@ const TableDataComp = (tab) => {
       return (
         <div className={styles.cardsContainer}>
           <div className={styles.card}>
-            {renderTableNft(nftData.topVolume.data)}
+            {renderTableNft(nftData.topVolume?.data, "Volume")}
           </div>
           <div className={styles.card}>
-            {renderTableNft(nftData.topRankings.data)}
+            {renderTableNft(nftData.topRankings?.data, "TopRanking")}
           </div>
           {/* Render a hidden card for layout purposes */}
           <div className={styles.card} style={{ visibility: "hidden" }}></div>

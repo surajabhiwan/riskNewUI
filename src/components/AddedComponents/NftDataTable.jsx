@@ -20,7 +20,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { tableAction } from "../../store/slices/TableData";
 import { HashLink } from "react-router-hash-link";
 
-const NftDataTable = (data) => {
+const NftDataTable = (data, heading) => {
+  console.log("heading for home table NFT ", heading);
+  console.log("data for nft with heading ", heading, data);
+
   // const [isLoading, setIsLoading] = useState(false);
   // const [nftTableData, setNftTableData] = useState([]);
   // const dispatch = useDispatch()

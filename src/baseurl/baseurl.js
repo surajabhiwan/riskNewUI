@@ -1,6 +1,6 @@
 // const ip = "https://devapi.riskwisepro.io";
 // 192.168.1.95:3013
-const ip = "http://192.168.1.95:3013";
+export const ip = "http://192.168.0.48:3012";
 // const ip = "https://devenvapi.riskwisepro.io";
 
 // maintanace check

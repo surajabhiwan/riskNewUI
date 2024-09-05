@@ -32,24 +32,114 @@
 
 .card {
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-evenly;
+
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.2); /* Slightly more opaque background */
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Slightly larger shadow */
   width: 100%;
-  max-width: 300px;
-  gap: 1rem;
+  max-width: 320px; /* Slightly wider max width */
+  gap: 1.5rem; /* Increased gap between elements */
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.card:hover {
+  transform: translateY(-10px); /* Lift effect on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Darker shadow on hover */
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px; /* Rounded corners for images */
 }
 
 .cardTitle {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-  color: white;
+  font-size: 1.4rem; /* Slightly larger font size */
+  margin-bottom: 12px; /* Increased margin */
+  color: #e2ac19; /* Gold color for titles */
+  font-weight: 700; /* Bold title */
 }
 
 .cardDescription {
-  font-size: 1rem;
-  color: white;
+  font-size: 1.1rem; /* Slightly larger font size */
+  color: #ffffff; /* White color for description */
+  text-align: center; /* Center-align text */
 }
+
+.searchBar {
+  width: 100%;
+}
+
+.searchBar input[type="text"] {
+  margin-bottom: 10px;
+  padding: 0.6rem;
+  width: 60%;
+  border: 1px solid #2f3241;
+  border-radius: 2rem;
+  background-color: #2f3241;
+  color: #ffffff;
+}
+
+input::placeholder {
+  font-weight: 900;
+  color: white;
+  padding-left: 1rem;
+}
+
+.iconContainer {
+  cursor: pointer;
+  position: absolute; /* Position the icon in the top-right corner */
+  top: 10px;
+  right: 10px;
+  transition: transform 0.3s ease, fill 0.3s ease;
+}
+
+.iconContainer:hover {
+  transform: scale(1.1);
+}
+/* Other styles */
+
+.selectAllButton {
+  background-color: #3A4956; /* Green background */
+  color: white; /* White text */
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 0;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.selectAllButton:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+.viewMoreButtonContainer {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.viewMoreButton {
+  background-color: #3A4956; /* Background color for button */
+  color: white; /* Text color */
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.viewMoreButton:hover {
+  background-color: #45a049; /* Darker background on hover */
+}
+

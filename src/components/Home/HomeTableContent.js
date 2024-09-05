@@ -17,7 +17,10 @@ import { tableAction } from "../../store/slices/TableData";
 import Placeholder from "../AddedComponents/Loader/Placeholder";
 import { HashLink } from "react-router-hash-link";
 
-const HomeTableContent = ({ data }) => {
+const HomeTableContent = ({ data, heading }) => {
+  console.log("iamsun heading for home table token", heading);
+  console.log("iamsun heading for home table data", data);
+
   const { dataTokenTabs, adaLive } = useSelector((state) => state.tableREducer);
   const isLoading = useSelector((state) => state.tableREducer.loadingTokenTab);
   const dispatch = useDispatch();
@@ -101,56 +104,71 @@ const HomeTableContent = ({ data }) => {
                     {"$" + parseFloat(item?.price).toFixed(3)}
                   </span>
                 </div>
-                <div
-                  className={
-                    "xl:flex xl:items-center hidden justify-end transition-all duration-300 cursor-pointer  gap-2 "
-                  }
-                >
-                  <div className="flex flex-col items-end">
-                    <div className="text-white font-sm flex justify-center items-center ">
-                      {convertMillion(
-                        parseFloat(item?.mcap) /
-                          parseFloat(adaLive?.split(" ")[1])
-                      )}{" "}
-                      ₳
-                    </div>
-                    <div className="text-[#939393] text-xs flex justify-center items-center ">
-                      {"$" + parseFloat(item?.mcap).toFixed(3)}
+
+                {/* market Cap */}
+                {heading === "MarketCap" && (
+                  <div
+                    className={
+                      "xl:flex xl:items-center hidden justify-end transition-all duration-300 cursor-pointer  gap-2 "
+                    }
+                  >
+                    <div className="flex flex-col items-end">
+                      <div className="text-white font-sm flex justify-center items-center ">
+                        {convertMillion(
+                          parseFloat(item?.mcap) /
+                            parseFloat(adaLive?.split(" ")[1])
+                        )}{" "}
+                        ₳
+                      </div>
+                      <div className="text-[#939393] text-xs flex justify-center items-center ">
+                        {"$" + parseFloat(item?.mcap).toFixed(3)}
+                      </div>
                     </div>
                   </div>
-                </div>
-                {/* {/ Volume /} */}
-                {/* <div
-                  id="volume"
-                  className={xl:flex xl:items-center hidden justify-end  cursor-pointer transition-all duration-300  w-[12%] gap-2 }
-                >
-                  <div className="flex flex-col items-end">
-                    <div className="text-white font-normal flex justify-center items-center ">
-                      {console.log("Volume ", data?.volume)}
-                      {convertMillion(
-                        parseFloat(data?.volume) /
-                          parseFloat(adaLive?.split(" ")[1])
-                      )}{" "}
-                      ₳
+                )}
+
+                {heading === "Volume" && (
+                  <div
+                    id="volume"
+                    className={
+                      "xl:flex xl:items-center hidden justify-end  cursor-pointer transition-all duration-300  w-[12%] gap-2 "
+                    }
+                  >
+                    <div className="flex flex-col items-end">
+                      <div className="text-white font-normal flex justify-center items-center ">
+                        {console.log("Volume ", data?.volume)}
+                        {convertMillion(
+                          parseFloat(data?.volume) /
+                            parseFloat(adaLive?.split(" ")[1])
+                        )}{" "}
+                        ₳
+                      </div>
+                      {data?.volume}
+                      <SVG.Progress data={data?.percentagevolumeADA} />
                     </div>
-                    <SVG.Progress data={data?.percentagevolumeADA} />
                   </div>
-                </div> */}
+                )}
+
                 {/* {/ Liquid /} */}
-                {/* <div
-                  className={xl:flex xl:items-center hidden  justify-end cursor-pointer  transition-all duration-300 w-[12%] gap-2}
-                >
-                  <div className="flex flex-col items-end">
-                    <div className="text-white font-normal flex justify-center items-center ">
-                      {convertMillion(
-                        parseFloat(data?.liquidity) /
-                          parseFloat(adaLive?.split(" ")[1])
-                      )}{" "}
-                      ₳
+                {heading === "Liquidy" && (
+                  <div
+                    className={
+                      "xl:flex xl:items-center hidden  justify-end cursor-pointer  transition-all duration-300 w-[12%] gap-2"
+                    }
+                  >
+                    <div className="flex flex-col items-end">
+                      <div className="text-white font-normal flex justify-center items-center ">
+                        {convertMillion(
+                          parseFloat(data?.liquidity) /
+                            parseFloat(adaLive?.split(" ")[1])
+                        )}{" "}
+                        ₳
+                      </div>
+                      {data?.liquidity}
+                      <SVG.Progress data={data?.percentagetotalLiquidityADA} />
                     </div>
-                    <SVG.Progress data={data?.percentagetotalLiquidityADA} />
                   </div>
-                </div> */}
+                )}
 
                 {/* <div className="ml-auto flex flex-col items-end">
                   <LineChart timeseries={item?.timeseries} homePage={true} />

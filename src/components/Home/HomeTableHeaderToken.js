@@ -12,7 +12,8 @@ import {
   topVolumeTokens,
 } from "../../baseurl/baseurl";
 
-const HomeTableHeaderToken = ({ tab }) => {
+const HomeTableHeaderToken = ({ tab, heading }) => {
+  console.log("heading received from parent", heading);
   const { data, nftTableData } = useSelector((state) => state.tableREducer);
 
   const [rotation, setRotation] = useState(false);
@@ -473,86 +474,95 @@ const HomeTableHeaderToken = ({ tab }) => {
         </div> */}
 
         {/* MarketCap */}
-        <div
-          onClick={() => {
-            rotateMarketComponent();
-            handleSortMarket(rotationMarket ? "asc" : "dsc");
-          }}
-          id="marketCap"
-          className={`xl:flex xl:items-center hidden justify-end transition-all duration-300 cursor-pointer  gap-2 hover:mt-[-8px]`}
-        >
-          <div className="text-white font-normal flex justify-center items-center ">
-            MarketCap{" "}
-          </div>
-          {/* <div className="text-white font-normal flex justify-center items-center" title={tab ? "Circulating supply * price " : "Current on-chain * current price"}><SVG.Alert /></div> */}
+        {heading === "MarketCap" && (
           <div
-            className={`text-white font-normal flex justify-center items-center ml-0 transition-all duration-300 ${
-              rotationMarket ? " rotate-180" : ""
-            }`}
+            onClick={() => {
+              rotateMarketComponent();
+              handleSortMarket(rotationMarket ? "asc" : "dsc");
+            }}
+            id="marketCap"
+            className={`xl:flex xl:items-center hidden justify-end transition-all duration-300 cursor-pointer  gap-2 hover:mt-[-8px]`}
           >
-            <SVG.Arrow />{" "}
+            <div className="text-white font-normal flex justify-center items-center ">
+              MarketCap{" "}
+            </div>
+            {/* <div className="text-white font-normal flex justify-center items-center" title={tab ? "Circulating supply * price " : "Current on-chain * current price"}><SVG.Alert /></div> */}
+            <div
+              className={`text-white font-normal flex justify-center items-center ml-0 transition-all duration-300 ${
+                rotationMarket ? " rotate-180" : ""
+              }`}
+            >
+              <SVG.Arrow />{" "}
+            </div>
           </div>
-        </div>
+        )}
+
         {/* Volume */}
-        {/* <div
-          onClick={() => {
-            rotateVloumeComponent();
-            handleSortVolume(rotationVolume ? "asc" : "dsc");
-          }}
-          id="volume"
-          className={`xl:flex xl:items-center hidden justify-end  cursor-pointer transition-all duration-300  w-[12%] gap-2 hover:mt-[-8px]`}
-        >
-          <div className="text-white font-normal flex justify-center items-center ">
-            Volume{" "}
-          </div>
+        {heading === "Volume" && (
           <div
-            className="text-white font-normal flex justify-center items-center"
-            title={
-              tab
-                ? "Amount of ADA that has been traded with this token in last 24h"
-                : "Total trading volume in last 24h"
-            }
+            onClick={() => {
+              rotateVloumeComponent();
+              handleSortVolume(rotationVolume ? "asc" : "dsc");
+            }}
+            id="volume"
+            className={`xl:flex xl:items-center hidden justify-end  cursor-pointer transition-all duration-300  w-[12%] gap-2 hover:mt-[-8px]`}
           >
-            <SVG.Alert />
+            <div className="text-white font-normal flex justify-center items-center ">
+              Volume{" "}
+            </div>
+            <div
+              className="text-white font-normal flex justify-center items-center"
+              title={
+                tab
+                  ? "Amount of ADA that has been traded with this token in last 24h"
+                  : "Total trading volume in last 24h"
+              }
+            >
+              <SVG.Alert />
+            </div>
+            <div
+              className={`text-white font-normal flex justify-center items-center ml-0 transition-all duration-300  ${
+                rotationVolume ? "rotate-180" : ""
+              }`}
+            >
+              <SVG.Arrow />
+            </div>
           </div>
-          <div
-            className={`text-white font-normal flex justify-center items-center ml-0 transition-all duration-300  ${
-              rotationVolume ? "rotate-180" : ""
-            }`}
-          >
-            <SVG.Arrow />
-          </div>
-        </div> */}
+        )}
+
         {/* Liquid */}
-        {/* <div
-          onClick={() => {
-            rotateLiquidityComponent();
-            handleSortLiquidity(rotationLiquidity ? "asc" : "dsc");
-          }}
-          id="liquididy"
-          className={`xl:flex xl:items-center hidden  justify-end cursor-pointer  transition-all duration-300 w-[12%] gap-2 hover:mt-[-8px]  `}
-        >
-          <div className="text-white font-normal flex justify-center items-center ">
-            {tab ? "Liquidity" : "%Items Listed"}{" "}
-          </div>
+        {heading === "Liquidy" && (
           <div
-            className="text-white font-normal flex justify-center items-center "
-            title={
-              tab
-                ? "Total amount of ADA in liquidity for this token across all DEXs"
-                : ""
-            }
+            onClick={() => {
+              rotateLiquidityComponent();
+              handleSortLiquidity(rotationLiquidity ? "asc" : "dsc");
+            }}
+            id="liquididy"
+            className={`xl:flex xl:items-center hidden  justify-end cursor-pointer  transition-all duration-300 w-[12%] gap-2 hover:mt-[-8px]  `}
           >
-            {tab ? <SVG.Alert /> : ""}{" "}
+            <div className="text-white font-normal flex justify-center items-center ">
+              {tab ? "Liquidity" : "%Items Listed"}{" "}
+            </div>
+            <div
+              className="text-white font-normal flex justify-center items-center "
+              title={
+                tab
+                  ? "Total amount of ADA in liquidity for this token across all DEXs"
+                  : ""
+              }
+            >
+              {tab ? <SVG.Alert /> : ""}{" "}
+            </div>
+            <div
+              className={`text-white font-normal flex justify-center items-center ml-0 transition-all duration-300  ${
+                rotationLiquidity ? " rotate-180" : ""
+              }`}
+            >
+              <SVG.Arrow />{" "}
+            </div>
           </div>
-          <div
-            className={`text-white font-normal flex justify-center items-center ml-0 transition-all duration-300  ${
-              rotationLiquidity ? " rotate-180" : ""
-            }`}
-          >
-            <SVG.Arrow />{" "}
-          </div>
-        </div> */}
+        )}
+
         {/* <div className="xl:flex xl:items-center hidden justify-end   gap-2 w-1/5">
           <div className="text-white font-normal flex justify-center items-center  ">
             {tab ? "Last 7 Days" : "Last 7 Days"}{" "}

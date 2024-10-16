@@ -4,8 +4,7 @@ import * as SVG from "../../common/Icons";
 import Logo1 from "../../common/Logo/logo1";
 import { useSelector } from "react-redux";
 const CopyButton = ({ contentToCopy }) => {
-
-  const token = `${ contentToCopy }`;
+  const token = `${contentToCopy}`;
 
   const [copy, setCopy] = useState(false);
   const [showCopied, setShowCopied] = useState(false);
@@ -41,7 +40,7 @@ const CopyButton = ({ contentToCopy }) => {
   };
 
   useEffect(() => {
-    if ( visible === true ) {
+    if (visible === true) {
       setHandleClass(
         "absolute -top-8 bg-[rgba(92,94,105,.3)] backdrop-blur-[10px] rounded-md px-[6px] py-1 text-[12px] text-[#fff]"
       );
@@ -58,8 +57,9 @@ const CopyButton = ({ contentToCopy }) => {
       </span> */}
       <div
         id="copy"
-        className={`relative flex justify-center ${copy === true ? "mt-1" : ""
-          }`}
+        className={`relative flex justify-center ${
+          copy === true ? "mt-1" : ""
+        }`}
         onMouseDown={mouseDown}
         onMouseUp={mouseUp}
         onMouseEnter={handleShow}

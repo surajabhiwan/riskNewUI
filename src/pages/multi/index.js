@@ -29,10 +29,12 @@ const Multi = () => {
   const showChartsModal = useSelector(
     (state) => state.chartsReducer.showChartsModal
   );
+  
   const handleShowModal = () => {
     dispatch(chartsModalAction.getModalOpen(false));
     fetchCandleChartsData();
   };
+  
   const token = searchParams.get("token");
   const unit = searchParams.get("unit");
 
@@ -75,8 +77,6 @@ const Multi = () => {
   };
 
   const handleClick = async (token, unit) => {
-    // console.log("token",token)
-
     if (unit && token) {
       setNumber((prev) => prev + 1);
       fetchCandleChartsData(unit)
@@ -155,30 +155,28 @@ const Multi = () => {
           );
         })}
 
-        <div
-          className={`flex justify-center items-center lg:w-[30%] w-full bg-[#142028] rounded-xl h-[590px] lg:h-[690px]${
-            remainNumber === 0 ? "hidden" : ""
-          }`}
-        >
-          {isChartLoading ? (
-            <SignalLoader />
-          ) : (
-            <div className="flex flex-col justify-center items-center cursor-pointer">
-              <div
-                onClick={handleTrueModal}
-                className="flex justify-center items-center w-10 h-10 bg-white rounded-full cursor-pointer"
-              >
-                <div className="flex justify-center items-center w-6 h-6 cursor-pointer">
-                  <SVG.Plus />
+        {remainNumber !== 0 && (
+          <div className="flex justify-center items-center lg:w-[30%] w-full bg-[#142028] rounded-xl h-[590px] lg:h-[690px]">
+            {isChartLoading ? (
+              <SignalLoader />
+            ) : (
+              <div className="flex flex-col justify-center items-center cursor-pointer">
+                <div
+                  onClick={handleTrueModal}
+                  className="flex justify-center items-center w-10 h-10 bg-white rounded-full cursor-pointer"
+                >
+                  <div className="flex justify-center items-center w-6 h-6 cursor-pointer">
+                    <SVG.Plus />
+                  </div>
                 </div>
+                <p className="text-white text-lg font-normal">Add new chart</p>
+                <p className="text-[#9f9fa8] text-sm font-normal">
+                  {remainNumber} of 6 slots remaining
+                </p>
               </div>
-              <p className="text-white text-lg font-normal">Add new chart</p>
-              <p className="text-[#9f9fa8] text-sm font-normal">
-                {remainNumber} of 6 slots remaining
-              </p>
-            </div>
-          )}
-        </div>
+            )}
+          </div>
+        )}
       </div>
       <Modal
         isOpen={showChartsModal}

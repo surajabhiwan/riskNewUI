@@ -2,13 +2,15 @@ export const HOME = "/";
 export const AdvancedChart = "/advancedChart";
 export const DiscordChatBot = "/discordChatBot";
 export const educationPro = "/educationPro";
-export const educationProVideo = "/video/:videoId";
+export const educationProVideo = "/video/:id";
+export const educationProCourse = "/course/:id";
+export const educationProCourseRecentlyWatched = "/course/:id/video/:videoId";
+
+
 export const educationProVideoAddNewCourse = "/educationPro/addNewCourse";
 export const educationProVideoAddNewVideo = "/educationPro/addNewVideo";
 export const marketRaker = "/marketRaker";
 export const marketRakerWishlist = "/marketRakerWishlist";
-
-
 
 export const LOGIN = "/login";
 export const REGISTER = "/signup";
@@ -33,6 +35,15 @@ export const PARTNER = "/partner";
 export const CHATPRO = "/chatpro";
 
 export const nftMarketplace = "/nftmarketplace";
+
+//new links
+export const nftjpgStore = "/nftjpgstore";
+export const cardanoScan = "/cardanoScan";
+export const nftCSwap = "/nftcswap";
+export const nftCrasher = "/nftcrasher";
+export const poolPm = "/poolpm";
+export const dexscreener = "/dexscreener";
+
 // export const EducationPro = "/educationPro";
 export const lending = "/lending";
 export const bubbles = "/bubbles";

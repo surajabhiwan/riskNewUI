@@ -1,7 +1,9 @@
+/* Base Styles */
 .container {
   padding: 20px;
 }
 
+/* Toggle Buttons for Token/NFT */
 .toggleButtons {
   display: flex;
   justify-content: space-around;
@@ -13,6 +15,7 @@
   border: none;
   background-color: #ddd;
   cursor: pointer;
+  font-size: 16px;
 }
 
 .toggleButtons button.active {
@@ -20,31 +23,281 @@
   color: white;
 }
 
+/* Cards Container */
 .cardsContainer {
   display: flex;
   flex-direction: row;
-  gap: 2rem;
+  gap: 1rem;
   width: 100%;
-  justify-content: space-between;
+  justify-content: space-around;
+  /* flex-wrap: wrap; */
 }
 
 .card {
   border: 1px solid #ccc;
   padding: 20px;
   border-radius: 8px;
-  width: 50%;
-  height: 65vh;
+  height: 61vh;
   overflow-y: auto;
-  /* Adjust card size or layout if needed */
 }
 
+/* Hidden class for visibility control */
 .hidden {
   visibility: hidden;
 }
 
-.TokenTable {
-  color: white;
-}
+/* Token and NFT table styles */
+.TokenTable,
 .NftTable {
   color: white;
+}
+.scrollableBody {
+  max-height: 29rem; /* Set this to your desired height */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: white;
+  /* margin-bottom: 20px; */
+  font-size: 16px;
+}
+
+.table th,
+.table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+.table thead {
+  box-shadow: 0 0 14px #ffc507;
+  color: #ffffff;
+  position: sticky; /* Keep header fixed */
+  top: 0; /* Stick to the top */
+  background: #2a2f35; /* Background color for header */
+  z-index: 1; /* Ensure it is above other elements */
+}
+
+.table th {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.table .index {
+  width: 5%; /* Adjust as needed */
+  text-align: center;
+}
+
+.table td {
+  /* background-color: #1e242a; */
+}
+
+.tableRow {
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.tableRow:hover {
+  background-color: #2a2f35; /* Change to a lighter or darker shade */
+}
+
+img {
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Responsive Styles */
+
+/* Mobile devices (max-width: 375px) */
+@media (max-width: 375px) {
+  .toggleButtons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .toggleButtons button {
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+
+  .cardsContainer {
+    flex-direction: column;
+  }
+
+  .card {
+    width: 100%;
+    height: auto; /* Allow card height to adjust */
+  }
+
+  .table {
+    font-size: 9px;
+  }
+
+  .table th,
+  .table td {
+    padding: 10px 8px;
+  }
+
+  .table th {
+    font-size: 13px;
+  }
+
+  .flex {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  img {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Small tablets and larger mobile devices (376px to 426px) */
+@media (min-width: 376px) and (max-width: 426px) {
+  .toggleButtons {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .toggleButtons button {
+    flex: 1;
+    margin: 0 5px;
+    font-size: 16px;
+  }
+
+  .cardsContainer {
+    flex-direction: column;
+  }
+
+  .card {
+    /* width: calc(50% - 1rem); Two cards per row */
+    width: 100%;
+  }
+
+  .table {
+    font-size: 13px;
+  }
+
+  .table th,
+  .table td {
+    padding: 10px 12px;
+  }
+
+  img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* Tablets (427px to 767px) */
+@media (min-width: 427px) and (max-width: 767px) {
+  .toggleButtons {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .toggleButtons button {
+    flex: 1;
+    margin: 0 5px;
+    font-size: 16px;
+  }
+
+  .cardsContainer {
+    flex-direction: column; /* Stack cards vertically */
+  }
+
+  .card {
+    width: 100%;
+    height: auto;
+  }
+
+  .table {
+    font-size: 15px;
+  }
+
+  .table th,
+  .table td {
+    padding: 12px 10px;
+  }
+
+  .flex {
+    flex-direction: row;
+  }
+}
+
+/* Desktops (768px to 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .cardsContainer {
+    flex-direction: column;
+  }
+
+  .card {
+    width: 100% /* Two cards per row */
+  }
+
+  .table {
+    font-size: 12px;
+  }
+
+  .table th,
+  .table td {
+    padding: 8px 2px;
+  }
+
+  img {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+/* Large Desktops (1025px and up) */
+
+/* Skeleton Loading Effect */
+.skeleton-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: #142028;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #444 25%, #333 50%, #444 75%);
+  height: 50px;
+  width: 100%;
+  border-radius: 0.25rem;
+  animation: skeleton-animation 1.2s infinite;
+}
+
+@keyframes skeleton-animation {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+/* Link Row for Redirecting */
+.linkRow {
+  display: flex;
+  width: 100%;
+  text-decoration: none;
+  color: inherit; /* Keeps the text color the same */
+  padding: 10px; /* Adjust padding as needed */
+}
+
+.linkRow:hover {
+  background-color: #f0f0f0; /* Add hover effect */
 }

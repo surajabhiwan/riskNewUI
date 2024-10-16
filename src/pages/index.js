@@ -14,7 +14,13 @@ import HomeHeaderSlick from "../components/Home/HomeHeaderSlick";
 import { useDispatch, useSelector } from "react-redux";
 import NftDataTable from "../components/AddedComponents/NftDataTable";
 import { getTableDataForHome, tableAction } from "../store/slices/TableData";
-import { getNftImage, getNftTimeseries, topNftAPi } from "../baseurl/baseurl";
+import {
+  getNftImage,
+  getNftTimeseries,
+  topNftAPi,
+  topTenNfts,
+  topTenTokens,
+} from "../baseurl/baseurl";
 import axios from "axios";
 import { decryption, encryption } from "../functions/crypto";
 
@@ -24,6 +30,8 @@ const IndexOne = () => {
   const [isLoading, setIsLoading] = useState(false);
   const isSmall = useMedia();
   const isActive = isSmall.useIsSmall;
+  const [tokensTenData, setTenTokenData] = useState(false);
+  const [nftTenData, setTenNftData] = useState(false);
   useEffect(() => {
     var current = window.location.pathname.substring(
       window.location.pathname.lastIndexOf("/") + 1
@@ -177,14 +185,14 @@ const IndexOne = () => {
     }
     dispatch(tableAction.setNftTableLOading(false));
   };
-  useEffect(() => {
-    fetchTableDataNftt();
-    // nftTableLoading
-  }, []);
+  // useEffect(() => {
+  //   fetchTableDataNftt();
+  //   // nftTableLoading
+  // }, []);
 
-  useEffect(() => {
-    fetchTableDataNft();
-  }, []);
+  // useEffect(() => {
+  //   fetchTableDataNft();
+  // }, []);
 
   console.log("homePage ka trending nft", nftTableData);
   return (

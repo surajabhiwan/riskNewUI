@@ -25,7 +25,7 @@ const Navbar = () => {
   }, [
     window.location.pathname.substring(
       window.location.pathname.lastIndexOf("/") + 1
-    )
+    ),
   ]);
 
   return (
@@ -39,21 +39,19 @@ const Navbar = () => {
           id="Navbar"
         >
           {/* Navbar header */}
-          <NavbarHeader  />
+          <NavbarHeader />
           {/* Navbar Body */}
-          <div
-            className="p-[3px] pt-[2px] h-[90%] flex flex-col items-start  relative"
-          >
-            <NavarHome menu={menu}  />
+          <div className="p-[3px] pt-[2px] h-[90%] flex flex-col items-start  relative">
+            <NavarHome menu={menu} />
             <NavbarCharts menu={menu} />
-            <NavbarPortfolio menu={menu}  />
-            <NavbarMarkets menu={menu}  />
-            <NavbarWatchList menu={menu}  />
-            <NavbarNews menu={menu}  />
+            <NavbarPortfolio menu={menu} />
+            <NavbarMarkets menu={menu} />
+            <NavbarWatchList menu={menu} />
+            <NavbarNews menu={menu} />
             <div className="p-2 flex justify-start mt-2">
               <p className="text-yellow-400 font-medium text-xs">PRO</p>
             </div>
-            <NavbarProfiler menu={menu}  />
+            <NavbarProfiler menu={menu} />
             {/* <NavbarHotProfiler menu={menu}  />
             <NavbarMoneyFlow menu={menu}  />
             <NavbarAccount menu={menu}  /> */}

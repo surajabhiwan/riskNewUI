@@ -17,8 +17,8 @@ const PortfolioButton = (props) => {
 
         </div>
         <div className="flex flex-col items-start gap-2 max-w-[70%]">
-          <p className={`w-full ${data?.id === 0 ? 'text-black' : 'text-white'}  font-normal whitespace-nowrap inline-block  overflow-hidden text-ellipsis`}>{data.value}</p>
-          <p className={`${data?.id === 0 ? 'text-black' : 'text-white'} font-normal`}>{data?.price ? data?.price : '0'} ₳</p>
+          <p className={`w-full ${data?.id === 0 ? 'text-white' : 'text-white'}  font-normal whitespace-nowrap inline-block  overflow-hidden text-ellipsis`}>{data.value}</p>
+          <p className={`${data?.id === 0 ? 'text-white' : 'text-white'} font-normal`}>{data?.price ? data?.price : '0'} ₳</p>
         </div>
       </div>
 

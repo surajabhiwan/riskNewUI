@@ -8,6 +8,7 @@ import {
   tableDataApi,
   topMcapApi,
   topVolumeApi,
+  topVolumeCollection,
 } from "../../baseurl/baseurl";
 import { Link, useSearchParams } from "react-router-dom";
 import LineChart from "../AddedComponents/LineChart";
@@ -19,22 +20,46 @@ import { convertMillion } from "../../functions/functions";
 import SimpleBarReact from "simplebar-react";
 import "simplebar-react/dist/simplebar.min.css";
 import { HashLink } from "react-router-hash-link";
+import { decryption, encryption } from "../../functions/crypto";
+import axios from "axios";
 
 const ChartsNFTTrending = () => {
   const [data, setData] = useState([]);
-  const isLoading = useSelector((state) => state.tableREducer.loading);
+  const [isLoading, setIsLoading] = useState([]);
+
+  // const isLoading = useSelector((state) => state.tableREducer.loading);
 
   const nftData = useSelector((state) => state.tableREducer.nftTableData);
   const localData = JSON.parse(sessionStorage.getItem("cachedNftTableData"));
 
-  useEffect(() => {
-    if (localData) {
-      setData(localData);
-    } else {
-      setData(nftData);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (localData) {
+  //     setData(localData);
+  //   } else {
+  //     setData(nftData);
+  //   }
+  // }, []);
+  const fetchTopNFTVolume = async () => {
+    setIsLoading(true); // Start loading
+    const data = { timeframe: "24h", page: 1, perPage: 10 };
+    const encryptedData = { key: encryption({ query: data }) };
 
+    try {
+      const response = await axios.post(topVolumeCollection, encryptedData);
+      const result = decryption(response?.data);
+      setData((prev) => ({ ...prev, topVolume: result }));
+    } catch (error) {
+      console.error(
+        "Error fetching top NFT collections by trading volume:",
+        error
+      );
+    } finally {
+      setIsLoading(false); // Stop loading after data is fetched
+    }
+  };
+  useEffect(() => {
+    fetchTopNFTVolume();
+  }, []);
   return (
     <div>
       <h1 className="text-white p-4 flex">
@@ -54,7 +79,7 @@ const ChartsNFTTrending = () => {
             </SkeletonTheme>
           ) : (
             <div className="rounded-lg bg-zinc-900 pt-4 pb-4 ">
-              {data?.map((data, idx) => (
+              {data.topVolume?.data?.map((data, idx) => (
                 <div
                   className={`cursor-pointer h-full  overflow-x-hidden `}
                   key={data?.idx}
@@ -63,7 +88,7 @@ const ChartsNFTTrending = () => {
                     <div className="flex items-center xl:w-1/2 w-1/2">
                       {data?.image ? (
                         <img
-                          src={getImageNft + `/${data?.image}`}
+                          src={data?.image}
                           className="xl:w-8 sm:w-7 w-6 xl:h-8 sm:h-7 h-6 ml-5 rounded-full"
                           alt="unit"
                         />
@@ -86,38 +111,48 @@ const ChartsNFTTrending = () => {
                       </div>
                     </div>
 
-                    {/* Price */}
-                    <div className="flex flex-col items-end justify-center xl:w-[7%] sm:w-[10%] w-[20%]">
+             <div className="flex flex-col items-end justify-center xl:w-[7%] sm:w-[10%] w-[20%]">
                       <div className="flex text-white font-normal  sm:text-sm text-xs ">
                         {convertMillion(data?.price)}₳
                       </div>
                       <div className="font-normal text-xs text-[#939393] ">
                         {/* $ {convertAdaToUsd(data?.price)} */}
+                        {/* $ {convertAdaToUsd(data?.price)} */}
+
                       </div>
-                    </div>
+                    </div> 
                     {/* 24hr */}
                     <div
                       className={`flex items-center  justify-end cursor-pointer transition-all duration-300 xl:w-[30%] sm:w-[10%] w-[20%]`}
                     >
-                      {data?.price24hChg > 0 ? <SVG.GoUp /> : <SVG.GoDown />}{" "}
+                      {/* {data?.price24hChg > 0 ? <SVG.GoUp /> : <SVG.GoDown />}{" "} */}
                       &nbsp;
                       <p
                         className={
-                          data?.price24hChg > 0
+                          parseInt(data?.price) > 0
+                            ? "text-[#20eb7a] text-[12px]"
+                            : "text-[#ff422b] text-[12px]"
+                        }
+                      >
+                        {data?.price?.toFixed(2)}
+                      </p>
+                      {/* <p
+                        className={
+                          data?.price > 0
                             ? `text-[#20eb7a] sm:text-sm text-xs`
                             : `text-[#ff422b] sm:text-sm text-xs`
                         }
                       >
-                        {(data?.price24hChg > 0
-                          ? data?.price24hChg * 100
-                          : data?.price24hChg * -100
+                        {(data?.price > 0
+                          ? data?.price * 100
+                          : data?.price * -100
                         )?.toFixed(2)}
                         %
-                      </p>
+                      </p> */}
                     </div>
 
                     {/* 24hr */}
-                    <div
+                    {/* <div
                       className={`flex items-center  justify-end cursor-pointer transition-all duration-300 xl:w-[20%] sm:w-[10%] w-[20%]p-4`}
                       title="Show live data"
                     >
@@ -132,7 +167,7 @@ const ChartsNFTTrending = () => {
                         <SVG.SwapChart />
                       </HashLink>{" "}
                       &nbsp; &nbsp;
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               ))}

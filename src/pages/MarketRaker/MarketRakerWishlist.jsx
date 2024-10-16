@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import styles from "./MarketRakerWishlist.module.css";
 import axios from "axios";
 import { ip } from "../../baseurl/baseurl";
+import { useNavigate } from "react-router-dom";
 
 const MarketRakerWishlist = () => {
   const [wishlist, setWishlist] = useState([]);
@@ -10,12 +11,13 @@ const MarketRakerWishlist = () => {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   console.log("cards", cards);
+
   // Search-related state
   const [searchQuery, setSearchQuery] = useState(""); // search query state
   const [searchCards, setSearchCards] = useState([]); // search results state
   const [searchPage, setSearchPage] = useState(1); // search pagination
   const [hasMoreSearchResults, setHasMoreSearchResults] = useState(true); // search result pagination flag
-
+  const userId = localStorage.getItem("userId");
   // Fetch data from API for pagination
   const fetchData = useCallback(async () => {
     try {
@@ -61,9 +63,30 @@ const MarketRakerWishlist = () => {
       fetchSearchData();
     }
   }, [fetchSearchData]);
+
+  // Fetch user's wishlist tokens
+  const fetchCardData = useCallback(async () => {
+    try {
+      // const userId = "66d9993d33d1d754a435aea2"; 
+      const response = await axios.post(
+        `${ip}/api/market-raker/user_token_list`,
+        { user_id: userId }
+      );
+      const newCards = response.data.data.tokens;
+      setWishlist(newCards.map((card) => card._id));
+    } catch (error) {
+      console.error("Error fetching card data:", error);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchCardData();
+  }, [fetchCardData]);
+
   const removeFromWishlist = async (id) => {
     try {
-      const userId = "66d9993d33d1d754a435aea2"; // Replace with actual logged-in user ID
+      
+      // const userId = "66d9993d33d1d754a435aea2";
       const response = await axios.post(
         `${ip}/api/market-raker/remove_token_from_watchlist`,
         {
@@ -74,7 +97,7 @@ const MarketRakerWishlist = () => {
 
       if (response.data.success) {
         console.log("Token removed from watchlist successfully");
-        // Update the state to reflect the removal
+  
         setWishlist(wishlist.filter((itemId) => itemId !== id));
       } else {
         console.error(
@@ -94,7 +117,7 @@ const MarketRakerWishlist = () => {
       setWishlist([...wishlist, id]);
 
       try {
-        const userId = "66d9993d33d1d754a435aea2"; // Replace with actual logged-in user ID
+        // const userId = "66d9993d33d1d754a435aea2";
         const response = await axios.post(
           `${ip}/api/market-raker/add_token_to_watchlist`,
           {
@@ -147,14 +170,19 @@ const MarketRakerWishlist = () => {
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
-    setSearchPage(1); // Reset search page when a new query is entered
-    setSearchCards([]); // Clear previous search results
+    setSearchPage(1); 
+    setSearchCards([]); 
   };
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    setSearchPage(1); // Reset search page on submit
-    setSearchCards([]); // Clear search results before new search
+    setSearchPage(1); 
+    setSearchCards([]); 
+  };
+
+  const navigate = useNavigate();
+  const navigateHandler = (path) => {
+    navigate(path);
   };
 
   return (
@@ -172,20 +200,30 @@ const MarketRakerWishlist = () => {
           value={searchQuery}
           onChange={handleSearchChange}
         />
-        <button type="submit">Search</button>
+        <button type="submit"></button>
       </form>
 
-      <div style={{ width: "100%", display: "flex", marginLeft: "5rem" }}>
-        <button className={styles.selectAllButton} onClick={handleSelectAll}>
+      <div style={{ width: "100%", display: "flex" }}>
+        {/* <button className={styles.selectAllButton} onClick={handleSelectAll}>
           {selectAll ? "Deselect All" : "Select All"}
-        </button>
+        </button> */}
+        <div className={styles.headingViewListDiv}>
+          <h3
+            className={styles.headingViewList}
+            onClick={() => {
+              navigateHandler("/marketRaker");
+            }}
+          >
+            View Watch List
+          </h3>
+        </div>
       </div>
 
       {/* Display Search Results if there's a search query */}
       {searchQuery ? (
         <>
           <div className={styles.grid}>
-            {searchCards.map((card) => (
+            {searchCards?.map((card) => (
               <div key={card._id} className={styles.card}>
                 <div
                   className={styles.iconContainer}
@@ -223,34 +261,27 @@ const MarketRakerWishlist = () => {
                 </div>
                 <div>
                   <h3 className={styles.cardTitle}>{card.ticker}</h3>
-                  <p className={styles.cardDescription}>
-                    ${card.price.toFixed(2)} - Liquidity: $
-                    {card.liquidity.toLocaleString()}
-                  </p>
+                  <p className={styles.cardDescription}>${card.price}</p>
                 </div>
               </div>
             ))}
           </div>
           {hasMoreSearchResults && (
-            <div className={styles.viewMoreButtonContainer}>
-              <button
-                className={styles.viewMoreButton}
-                onClick={loadMoreSearchResults}
-              >
-                View More Search Results
-              </button>
-            </div>
+            <button onClick={loadMoreSearchResults}>Load More</button>
           )}
         </>
       ) : (
         <>
-          {/* Display Paginated Results if no search query */}
           <div className={styles.grid}>
             {cards.map((card) => (
               <div key={card._id} className={styles.card}>
                 <div
-                  className={styles.iconContainer}
-                  onClick={() => toggleWishlist(card._id)}
+                  className={`${styles.iconContainer} ${
+                    wishlist.includes(card._id) ? styles.disabled : ""
+                  }`}
+                  onClick={() =>
+                    !wishlist.includes(card._id) && toggleWishlist(card._id)
+                  }
                 >
                   {wishlist.includes(card._id) ? (
                     <svg
@@ -284,20 +315,15 @@ const MarketRakerWishlist = () => {
                 </div>
                 <div>
                   <h3 className={styles.cardTitle}>{card.ticker}</h3>
-                  <p className={styles.cardDescription}>
-                    ${card.price.toFixed(2)} - Liquidity: $
-                    {card.liquidity.toLocaleString()}
-                  </p>
+                  <p className={styles.cardDescription}>${card.price}</p>
                 </div>
               </div>
             ))}
           </div>
           {hasMore && (
-            <div className={styles.viewMoreButtonContainer}>
-              <button className={styles.viewMoreButton} onClick={loadMore}>
-                View More
-              </button>
-            </div>
+            <button className={styles.loadMoreButton} onClick={loadMore}>
+              Load More
+            </button>
           )}
         </>
       )}

@@ -1,4 +1,4 @@
-const search = (props) => {
+const Search = (props) => {
   return (
     <>
       <svg
@@ -17,4 +17,4 @@ const search = (props) => {
     </>
   );
 };
-export default search;
+export default Search;

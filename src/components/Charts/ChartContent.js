@@ -35,7 +35,7 @@ const ChartContent = () => {
 
   // Extracting values from search params
   const token = searchParams.get("token");
-  const unit = searchParams.get("unit");
+  const unit = searchParams.get("unit") || "f43a62fdc3965df486de8a0d32fe800963589c41b38946602a0dc53541474958";
   const pairID = searchParams.get("pairID");
   const type = searchParams.get("type");
 

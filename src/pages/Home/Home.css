@@ -5,6 +5,20 @@
   flex-direction: column;
   margin-bottom: 3rem;
 }
+.loading-spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 
 .HeadingDiv h3 {
   color: white;
@@ -92,7 +106,7 @@
   text-align: center;
   margin-top: 15px;
   position: absolute;
-  bottom: 10px;
+  bottom: 0px;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -136,6 +150,8 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   color: white;
+  max-width: 20rem;
+  min-width: 20rem;
 }
 
 .tabsContainer {
@@ -165,6 +181,16 @@
   align-items: center;
 }
 
+.swapDecBg {
+  background: url("../../assests/swapBg.png");
+  background-size: contain;
+  background-position: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-repeat: no-repeat;
+}
+
 .swapHeading {
   color: white;
   font-size: 4rem;
@@ -178,7 +204,10 @@
 .cardImg {
   margin-right: 1rem;
 }
-
+.cardImg img {
+  height: 40px !important;
+  width: 40px !important;
+}
 .cardChart {
   display: flex;
   justify-content: space-between;
@@ -247,7 +276,6 @@
 * {
   scroll-behavior: smooth;
 }
-
 
 @media (max-width: 375px) {
   .HeadingDiv {
@@ -345,7 +373,7 @@
     text-align: center;
     margin-top: 15px;
     position: absolute;
-    bottom: 10px;
+    bottom: 0px;
     left: 50%;
     transform: translateX(-50%);
   }
@@ -389,6 +417,8 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: white;
+    max-width: 7rem;
+    min-width: 7rem;
   }
 
   .cardPrice p {
@@ -422,7 +452,7 @@
   }
 
   .swapDeskDiv {
-    width: 90%;
+    width: 80%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -603,7 +633,7 @@
     text-align: center;
     margin-top: 15px;
     position: absolute;
-    bottom: 10px;
+    bottom: 0px;
     left: 50%;
     transform: translateX(-50%);
   }
@@ -647,6 +677,8 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: white;
+    max-width: 9rem;
+    min-width: 9rem;
   }
 
   .cardPrice p {
@@ -680,7 +712,7 @@
   }
 
   .swapDeskDiv {
-    width: 100%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -777,37 +809,38 @@
 
   .HeadingDiv h3 {
     color: white;
-    font-size: 4rem;
+    font-size: 2rem;
     letter-spacing: 0.5rem;
     font-weight: 800;
   }
 
   .headingMain {
     color: #e2ac19;
-    font-size: 5rem;
+    font-size: 3rem;
     letter-spacing: 0.5rem;
     font-weight: 800;
   }
 
   .headingSwapperBtn {
     color: white;
-    font-size: 2rem;
+    font-size: 1rem;
     background: linear-gradient(218deg, #246cfa 0%, #1e68f6 28%, #0047d0 100%);
-    padding: 0.7rem 8rem;
+    padding: 0.7rem 1rem;
     border-radius: 2rem;
   }
 
   .advertisingDiv {
     position: relative;
     width: 100%;
-    max-width: 780px;
+    max-width: 100%;
     margin: 0 auto;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    min-height: 29rem;
+    min-height: 27rem;
+    /* padding: 1rem; */
   }
 
   .advertisingInnerDiv {
@@ -816,6 +849,8 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin: 1rem;
+    border-radius: 20px;
   }
 
   .advertisingSlide {
@@ -831,7 +866,7 @@
   }
 
   .advertisingPhoto {
-    width: 35rem;
+    width: 25rem;
     padding: 1rem 2rem;
     border-radius: 2rem;
     background-color: #343434;
@@ -861,7 +896,7 @@
     text-align: center;
     margin-top: 15px;
     position: absolute;
-    bottom: 10px;
+    bottom: 0px;
     left: 50%;
     transform: translateX(-50%);
   }
@@ -905,6 +940,8 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: white;
+    max-width: 10rem;
+    min-width: 10rem;
   }
 
   .tabsContainer {
@@ -1108,7 +1145,7 @@
     text-align: center;
     margin-top: 15px;
     position: absolute;
-    bottom: 10px;
+    bottom: 0px;
     left: 50%;
     transform: translateX(-50%);
   }
@@ -1152,6 +1189,8 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: white;
+    max-width: 12rem;
+    min-width: 12rem;
   }
 
   .tabsContainer {
@@ -1183,7 +1222,7 @@
 
   .swapHeading {
     color: white;
-    font-size: 4rem;
+    font-size: 3rem;
   }
 
   .cardInfo {
@@ -1220,7 +1259,7 @@
     font-size: 1rem !important;
   }
   .swapHeading {
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     font-weight: 800;
   }
 

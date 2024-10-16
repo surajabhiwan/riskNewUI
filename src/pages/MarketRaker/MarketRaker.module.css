@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+
 .container {
   text-align: center;
   padding: 20px;
@@ -34,9 +35,13 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.2); /* Slightly more opaque background */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.2
+  ); /* Slightly more opaque background */
   padding: 20px;
   border-radius: 15px; /* Rounded corners */
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Slightly larger shadow */
@@ -91,9 +96,10 @@ input::placeholder {
   padding-left: 1rem;
 }
 
+/* Existing icon container */
 .iconContainer {
   cursor: pointer;
-  position: absolute; /* Position the icon in the top-right corner */
+  position: absolute;
   top: 10px;
   right: 10px;
   transition: transform 0.3s ease, fill 0.3s ease;
@@ -102,10 +108,29 @@ input::placeholder {
 .iconContainer:hover {
   transform: scale(1.1);
 }
-/* Other styles */
+
+/* New delete icon container */
+.deleteIcon {
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px; /* Ensure it's aligned with the top-right corner */
+  width: 24px;
+  height: 24px;
+  color: lightcoral;
+  /* background-image: url('/path/to/delete-icon.svg'); Add the delete icon image here */
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.deleteIcon:hover {
+  transform: scale(1.2); /* Slightly enlarge on hover */
+  opacity: 0.8; /* Add opacity effect on hover */
+}
 
 .selectAllButton {
-  background-color: #3A4956; /* Green background */
+  background-color: #3a4956; /* Green background */
   color: white; /* White text */
   border: none;
   padding: 10px 20px;
@@ -129,7 +154,7 @@ input::placeholder {
 }
 
 .viewMoreButton {
-  background-color: #3A4956; /* Background color for button */
+  background-color: #3a4956; /* Background color for button */
   color: white; /* Text color */
   border: none;
   padding: 10px 20px;
@@ -141,5 +166,224 @@ input::placeholder {
 
 .viewMoreButton:hover {
   background-color: #45a049; /* Darker background on hover */
+}
+
+/* Add this to MarketRaker.module.css */
+
+.loadingMessage {
+  font-size: 18px;
+  color: #555;
+  text-align: center;
+  margin: 20px 0;
+  font-weight: bold;
+  position: relative;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1); /* Light gray border */
+  border-left: 4px solid #3498db; /* Blue color for the spinner */
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -15px;
+  margin-left: -15px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 375px) {
+  .heading {
+    font-size: 2rem;
+  }
+
+  .subheading {
+    font-size: 1.5rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr; /* 1 card per row */
+  }
+
+  .searchBar input[type="text"] {
+    width: 90%;
+  }
+
+  .card {
+    max-width: 100%;
+    min-width: 100%;
+    max-height: auto; /* Remove fixed height */
+    min-height: auto; /* Remove fixed height */
+  }
+
+  .card img {
+    max-height: 80px;
+    min-height: 80px;
+  }
+
+  .cardTitle {
+    font-size: 1rem;
+  }
+
+  .cardDescription {
+    font-size: 0.9rem;
+  }
+
+  .selectAllButton,
+  .viewMoreButton {
+    width: 90%;
+  }
+}
+
+/* Small tablets and larger mobile screens */
+@media (min-width: 376px) and (max-width: 426px) {
+  .heading {
+    font-size: 2.5rem;
+  }
+
+  .subheading {
+    font-size: 1.8rem;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+  }
+
+  .searchBar input[type="text"] {
+    width: 80%;
+  }
+
+
+  .card {
+    max-width: 100%;
+    min-width: 100%;
+    display: flex; /* Ensure card content is displayed flexibly */
+    flex-direction: column; /* Stack image and text vertically */
+    align-items: center; /* Center items horizontally */
+    padding: 10px; /* Padding for card content */
+    gap: 0rem;
+  }
+  .card img {
+    max-width: 100%; /* Ensure image does not exceed card width */
+    height: auto; /* Allow height to adjust automatically */
+    max-height: 90px; /* Cap height to avoid overflowing */
+    object-fit: cover; /* Cover the container while preserving aspect ratio */
+  }
+
+  .cardTitle {
+    font-size: 1.2rem;
+  }
+
+  .cardDescription {
+    font-size: 0.6rem;
+  }
+
+  .selectAllButton,
+  .viewMoreButton {
+    width: 80%;
+  }
+}
+
+/* Tablets and small laptops */
+@media (min-width: 427px) and (max-width: 767px) {
+  .heading {
+    font-size: 3rem;
+  }
+
+  .subheading {
+    font-size: 2rem;
+  }
+
+  .grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+  }
+
+  .searchBar input[type="text"] {
+    width: 70%;
+  }
+
+  .card {
+    max-width: 100%;
+    min-width: 100%;
+    display: flex; /* Ensure card content is displayed flexibly */
+    flex-direction: column; /* Stack image and text vertically */
+    align-items: center; /* Center items horizontally */
+    padding: 10px; /* Padding for card content */
+    gap: 0rem;
+  }
+
+  .card img {
+    max-width: 100%; /* Ensure image does not exceed card width */
+    height: auto; /* Allow height to adjust automatically */
+    max-height: 100px; /* Cap height to avoid overflowing */
+    object-fit: cover; /* Cover the container while preserving aspect ratio */
+  }
+
+  .cardTitle {
+    font-size: 1.3rem;
+  }
+
+  .cardDescription {
+    font-size: 1.1rem;
+  }
+
+  .selectAllButton,
+  .viewMoreButton {
+    width: 70%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .heading {
+    font-size: 3.5rem;
+  }
+
+  .subheading {
+    font-size: 2.2rem;
+  }
+
+  .grid {
+    grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+  }
+
+  .searchBar input[type="text"] {
+    width: 60%;
+  }
+
+  .card {
+    max-width: 100%;
+    min-width: 100%;
+    display: flex; /* Ensure card content is displayed flexibly */
+    flex-direction: column; /* Stack image and text vertically */
+    align-items: center; /* Center items horizontally */
+    padding: 10px; /* Padding for card content */
+    gap: 0rem;
+  }
+
+  .card img {
+    max-width: 100%; /* Ensure image does not exceed card width */
+    height: auto; /* Allow height to adjust automatically */
+    max-height: 100px; /* Cap height to avoid overflowing */
+    object-fit: cover; /* Cover the container while preserving aspect ratio */
+  }
+
+  .cardTitle {
+    font-size: 1.4rem;
+  }
+
+  .cardDescription {
+    font-size: 0.8rem;
+  }
+
+  .selectAllButton,
+  .viewMoreButton {
+    width: 60%;
+  }
 }
 

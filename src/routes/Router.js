@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import Login from "../pages/login";
 import TradingViewChart from "../pages/advancedChart/index.jsx";
 import discordChatBot from "../pages/discord/index.jsx";
@@ -71,6 +71,14 @@ import {
   educationProVideoAddNewCourse,
   marketRaker,
   marketRakerWishlist,
+  nftjpgStore,
+  nftCSwap,
+  nftCrasher,
+  poolPm,
+  cardanoScan,
+  dexscreener,
+  educationProCourse,
+  educationProCourseRecentlyWatched,
 } from "./routes";
 import Cryptocurrencies from "../components/AddedComponents/Cryptocurrencies.jsx";
 import CommingSoon from "../components/AddedComponents/CommingSoon/CommingSoon.jsx";
@@ -98,7 +106,15 @@ import AddNewCourse from "../pages/educationPro/addNewCourse/AddNewCourse.jsx";
 import AddNewVideo from "../pages/educationPro/addNewVideo/AddNewVideo.jsx";
 import MarketRaker from "../pages/MarketRaker/MarketRaker.jsx";
 import MarketRakerWishlist from "../pages/MarketRaker/MarketRakerWishlist.jsx";
-
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useEffect } from "react";
+import NftCSwap from "../pages/NftCSwap/index.jsx";
+import NftCrasher from "../pages/NftCrasher/index.jsx";
+import PoolPm from "../pages/PoolPm/index.jsx";
+import NftjpgStore from "../pages/NftjpgStore/index.jsx";
+import CardanoScanIFrame from "../pages/cardanScan/CardanoScanIFrame.js";
+import DexScreener from "../pages/dexScreener/DexScreener.js";
 function Routers() {
   return (
     <>
@@ -128,6 +144,30 @@ function Routers() {
           }
         />
         <Route
+          path={educationProCourse}
+          render={({ location }) => {
+            ReactGA.pageview(location.pathname);
+            return null;
+          }}
+          element={
+            <GeneralRoute layout={MainLayout}>
+              <VideoPlayerPage></VideoPlayerPage>
+            </GeneralRoute>
+          }
+        />
+        <Route
+          path={educationProCourseRecentlyWatched}
+          render={({ location }) => {
+            ReactGA.pageview(location.pathname);
+            return null;
+          }}
+          element={
+            <GeneralRoute layout={MainLayout}>
+              <VideoPlayerPage></VideoPlayerPage>
+            </GeneralRoute>
+          }
+        />
+        {/* <Route
           path={educationProVideoAddNewCourse}
           render={({ location }) => {
             ReactGA.pageview(location.pathname);
@@ -150,7 +190,7 @@ function Routers() {
               <AddNewVideo></AddNewVideo>
             </GeneralRoute>
           }
-        />
+        /> */}
         <Route
           path={marketRaker}
           render={({ location }) => {
@@ -532,6 +572,78 @@ function Routers() {
           }
         />
 
+        <Route
+          path={nftjpgStore}
+          render={({ location }) => {
+            ReactGA.pageview(location.pathname);
+            return null;
+          }}
+          element={
+            <GeneralRoute layout={MainLayout}>
+              <NftjpgStore />
+            </GeneralRoute>
+          }
+        />
+        <Route
+          path={cardanoScan}
+          render={({ location }) => {
+            ReactGA.pageview(location.pathname);
+            return null;
+          }}
+          element={
+            <GeneralRoute layout={MainLayout}>
+              <CardanoScanIFrame />
+            </GeneralRoute>
+          }
+        />
+        <Route
+          path={dexscreener}
+          render={({ location }) => {
+            ReactGA.pageview(location.pathname);
+            return null;
+          }}
+          element={
+            <GeneralRoute layout={MainLayout}>
+              <DexScreener />
+            </GeneralRoute>
+          }
+        />
+        <Route
+          path={nftCSwap}
+          render={({ location }) => {
+            ReactGA.pageview(location.pathname);
+            return null;
+          }}
+          element={
+            <GeneralRoute layout={MainLayout}>
+              <NftCSwap />
+            </GeneralRoute>
+          }
+        />
+        <Route
+          path={nftCrasher}
+          render={({ location }) => {
+            ReactGA.pageview(location.pathname);
+            return null;
+          }}
+          element={
+            <GeneralRoute layout={MainLayout}>
+              <NftCrasher />
+            </GeneralRoute>
+          }
+        />
+        <Route
+          path={poolPm}
+          render={({ location }) => {
+            ReactGA.pageview(location.pathname);
+            return null;
+          }}
+          element={
+            <GeneralRoute layout={MainLayout}>
+              <PoolPm />
+            </GeneralRoute>
+          }
+        />
         <Route
           path={CHATPRO}
           element={

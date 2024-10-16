@@ -1,113 +1,158 @@
-import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import * as SVG from "../../../common/Icons";
-import { walletListsMobile, walletListsDesk } from "./Data";
-import { showWalletConnectModalDesk, showWalletConnectModalMobile } from "../../../store/slices/wallet";
-import { ConnectWalletList } from "@cardano-foundation/cardano-connect-with-wallet";
-import toast from "react-hot-toast";
+import {
+  showWalletConnectModalDesk,
+  showWalletConnectModalMobile,
+} from "../../../store/slices/wallet";
 
+import React, { useState, useEffect } from "react";
+import { Address } from "@emurgo/cardano-serialization-lib-asmjs"; // Import the library
+import { useDispatch } from "react-redux"; // Import useDispatch if you're using Redux
+import { toast } from "react-toastify"; // Make sure to import toast
+let Buffer = require("buffer/").Buffer;
+
+// List of wallet names to support
+const walletList = ["nami", "eternl", "flint", "vespr"];
+
+// Function to connect to a specific wallet
+export const connectToAccount = async (
+  walletKey,
+  setIsConnected,
+  setWalletInfo,
+  onConnectWallet
+) => {
+  try {
+    if (window.cardano && window.cardano[walletKey]) {
+      const wallet = await window.cardano[walletKey].enable();
+      const addresses = await wallet.getUsedAddresses(); // Get wallet addresses
+      const balance = await wallet.getBalance(); // Get wallet balance
+
+      // Decode the first hex address to bech32
+      const hexAddress = addresses[0];
+      const decodedAddress = Address.from_bytes(
+        Buffer.from(hexAddress, "hex")
+      ).to_bech32();
+
+      console.log("decoded address", decodedAddress);
+      setIsConnected(true);
+      setWalletInfo({
+        address: decodedAddress, // Set the decoded bech32 address
+        balance: parseInt(balance, 16) / 1000000, // Convert balance from Lovelace to ADA
+      });
+
+      // Save connection status and wallet info in local storage
+      localStorage.setItem("isWalletConnected", "true");
+      localStorage.setItem(
+        "walletInfo",
+        JSON.stringify({
+          address: decodedAddress,
+          balance: parseInt(balance, 16) / 1000000,
+        })
+      );
+
+      // Call onConnectWallet to handle post-connection actions
+      onConnectWallet();
+    } else {
+      alert(
+        `${
+          walletKey.charAt(0).toUpperCase() + walletKey.slice(1)
+        } Wallet is not installed`
+      );
+    }
+  } catch (error) {
+    console.error(`Failed to connect to ${walletKey} Wallet:`, error);
+  }
+};
+
+// Function to disconnect the wallet
+export const disconnectWallet = (setIsConnected, setWalletInfo) => {
+  setIsConnected(false);
+  setWalletInfo(null);
+  localStorage.removeItem("isWalletConnected"); // Remove connection status from local storage
+  localStorage.removeItem("walletInfo"); // Remove wallet info from local storage
+  toast.success(`Wallet disconnected successfully`); // Show success message
+};
+
+// React component for Cardano Wallet connection
 const WalletConnectModalMobile = () => {
-  const [walletLists, setWalletList] = useState([]);
-
+  const [isConnected, setIsConnected] = useState(false);
+  const [walletInfo, setWalletInfo] = useState(null);
   const dispatch = useDispatch();
-  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    window.addEventListener("resize", handleWindowResize());
-    handleWindowResize();
+    // Check local storage for wallet connection status and info on component mount
+    const connected = localStorage.getItem("isWalletConnected") === "true";
+    setIsConnected(connected);
 
-    if (!isMobile) {
-      setWalletList(walletListsDesk);
-    } else {
-      setWalletList(walletListsMobile);
+    // Retrieve wallet information from local storage if connected
+    if (connected) {
+      const storedWalletInfo = localStorage.getItem("walletInfo");
+      if (storedWalletInfo) {
+        setWalletInfo(JSON.parse(storedWalletInfo)); // Parse and set wallet info
+      }
     }
-  }, [isMobile]);
+  }, []);
 
-  const handleWindowResize = () => {
-    setIsMobile(window.innerWidth <= 1023);
+  const onConnectWallet = () => {
+    dispatch(showWalletConnectModalMobile());
+    setTimeout(() => {
+      toast.success(`Wallet connected successfully`);
+    }, 300);
   };
 
-  const navigate = useNavigate();
-
-  const goLog = () => {
-    navigate("/login");
+  const handleDisconnect = () => {
+    disconnectWallet(setIsConnected, setWalletInfo);
     dispatch(showWalletConnectModalMobile());
   };
 
-  const onConnectWallet =()=>{
-    dispatch(showWalletConnectModalDesk());
-    setTimeout(()=>{
-      toast.success(`Wallet connected successfully`)
-    },300)
-  }
-
   return (
-    <div className="relative flex flex-col items-center gap-2 p-8">
-      <div
-        onClick={() => dispatch(showWalletConnectModalMobile())}
-        className="absolute top-3 right-3 flex items-center justify-center p-3 bg-black rounded-full"
-      >
-        <SVG.Close />
-      </div>
-      <div className="w-full mb-4">
-        <span className="text-white text-lg font-semibold">
-          Connect a wallet
-        </span>
-      </div>
-      <div className="walletconnect overflow-y-scroll">
-        {/* {walletLists.map((item, idx) => {
-          return (
-            <div
-              key={idx}
-              onClick={() => window.open(item.targeturl, "_blank")}
-              className="flex flex-col items-center justify-center cursor-pointer"
-            >
-              <div className="w-14 h-14 hover:border-2 hover:border-gray-600 rounded-md">
-                <img src={item.imgurl} alt="" className="rounded-md w-full" />
-              </div>
-              <span className="text-sm text-white whitespace-nowrap">
-                {item.name}
-              </span>
-              {isMobile && (
-                <span className="text-sm text-[#70ecfd] whitespace-nowrap">
-                  Get Wallet
-                </span>
-              )}
-            </div>
-          );
-        })} */}
+    <div className="bg-gray-900 text-white flex flex-col items-center justify-center p-6">
+      <h2 className="text-2xl font-bold mb-4">Cardano Wallet Connection</h2>
 
-<ConnectWalletList
-alwaysVisibleWallets = {[]}
-    borderRadius={5}
-    gap={10}
-    primaryColor="#fff"
-    onConnect={onConnectWallet}
-    customCSS={`
-        font-family: Poppins,sans-serif;
-        font-size: 1.2rem;
-        font-weight: 100;
-        width: 100%;
-        height: 100%;
-        border: none;
-        cursor: pointer;
-        & > span { padding: 1.2rem; width:21rem; background: #1C1924; display:flex; border: none; text-align: right; display: flex; justify-content: space-between; flex-direction: row-reverse};
-        & > span:hover {
-          background: #1C1938;
-        }
-        & > span:active {
-          scale: .99
-        }
-    `}
-/>
-      </div>
-      {/* <button
-        onClick={goLog}
-        className="bg-[#3a4956] rounded-lg mt-2 py-2 px-6 text-white text-sm hover:-translate-y-1 duration-300"
-      >
-        Add Manually
-      </button> */}
+      {isConnected ? (
+        <div className="mt-6 w-full max-w-md bg-gray-800 p-6 rounded-lg shadow-md">
+          <h3 className="text-lg font-semibold mb-2">Connected Wallet:</h3>
+          <p className="text-sm break-words">
+            <strong>Address:</strong> {walletInfo?.address}
+          </p>
+          <p className="text-sm mt-2">
+            <strong>Balance:</strong> {walletInfo?.balance} ADA
+          </p>
+          <button
+            className="mt-4 py-2 px-4 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-md transition duration-300"
+            onClick={handleDisconnect}
+          >
+            Disconnect Wallet
+          </button>
+        </div>
+      ) : (
+        <div className="w-full max-w-md bg-gray-800 p-6 rounded-lg shadow-md">
+          <h3 className="text-lg font-semibold mb-4">
+            Select a wallet to connect:
+          </h3>
+          <ul className="space-y-4">
+            {walletList.map((walletKey) => (
+              <li key={walletKey}>
+                <button
+                  className="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition duration-300"
+                  onClick={() =>
+                    connectToAccount(
+                      walletKey,
+                      setIsConnected,
+                      setWalletInfo,
+                      onConnectWallet
+                    )
+                  }
+                >
+                  Connect to{" "}
+                  {walletKey.charAt(0).toUpperCase() + walletKey.slice(1)}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {/* Display error message if any */}
+      {/* If you want to show error handling, you can add a similar section here */}
     </div>
   );
 };

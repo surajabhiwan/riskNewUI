@@ -24,9 +24,14 @@ import NavbarBlockminer from "../navbar/NavbarBlockminer";
 import NavbarBMS from "../navbar/NavbarBMS";
 import NavbarMarketplace from "../navbar/NavbarNftMarketplace";
 import NavbarGaming from "../navbar/NavbarMining";
+import NavBarMarketRaker from "../navbar/NavBarMarketRaker";
+import NavBarEduPro from "../navbar/NavBarEduPro";
+import NavbarMobileMarketPlace from "../navbar/NavbarMobileMarketPlace";
+import NavbarMobileCharts from "../navbar/NavbarMobileCharts";
+import NavbarMobileMining from "../navbar/NavbarMobileMining";
 const MobileNavbar = (props) => {
   const [menu, setMenu] = useState("");
-  const [show, setShow] = useState("props.show");
+  const [show, setShow] = useState(props.show);
   const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
@@ -48,6 +53,33 @@ const MobileNavbar = (props) => {
     }
   }, [props]);
 
+  const [hasToken, setHasToken] = useState(false);
+
+  useEffect(() => {
+    // Check for token initially
+    const token = localStorage.getItem("userId");
+    if (token) {
+      setHasToken(true);
+    }
+
+    // Define event handler
+    const handleAuthChange = (event) => {
+      const { token } = event.detail;
+      if (token) {
+        setHasToken(true);
+      } else {
+        setHasToken(false);
+      }
+    };
+
+    // Add event listener
+    window.addEventListener("authChange", handleAuthChange);
+
+    // Cleanup event listener on unmount
+    return () => {
+      window.removeEventListener("authChange", handleAuthChange);
+    };
+  }, []);
   return (
     <div className="">
       <div
@@ -62,29 +94,34 @@ const MobileNavbar = (props) => {
         <div className="relative flex flex-col justify-start h-[90%] py-3 px-2 overflow-scroll">
           <div className="-pr-20">
             <NavbarHome menu={menu} />
-            <NavbarCharts menu={menu} />
-            <NavbarMulti menu={menu} />
-            <NavbarCryptoMulti menu={menu} />
+            {/* <NavbarCharts menu={menu} /> */}
+            <NavbarMobileCharts></NavbarMobileCharts>
+            <NavbarMobileMarketPlace />
+            {/* <NavbarMulti menu={menu} /> */}
+            {/* <NavbarCryptoMulti menu={menu} /> */}
             {/* <NavbarNews menu={menu} /> */}
             <NavbarProfiler menu={menu} />
             <NavbarMarkets menu={menu} />
             <NavbarMarketplace menu={menu} />
             <NavbarLending menu={menu} />
             <NavbarBubbles menu={menu} />
-
-            <NavbarBlockminer menu={menu} />
+            <NavbarMobileMining></NavbarMobileMining>
+            {/* <NavbarBlockminer menu={menu} />
             <NavbarGoofy menu={menu} />
             <NavbarNeoVikings menu={menu} />
-            <NavbarBMS menu={menu} />
+            <NavbarBMS menu={menu} /> */}
 
             <NavbarWalletProfiler menu={menu} />
             {/* <NavbarMoneyFlow menu={menu} />
             <NavbarHotProfiler menu={menu} /> */}
             <NavbarPortfolio menu={menu} />
-            <NavbarPartner menu={menu} />
-            <NavBarCrowScore menu={menu} />
 
-            <NavbarGaming menu={menu} />
+            {/* <NavbarPartner menu={menu} /> */}
+            <NavBarCrowScore menu={menu} />
+            <NavBarEduPro menu={menu} />
+            {hasToken && <NavBarMarketRaker menu={menu} />}
+
+            {/* <NavbarGaming menu={menu} / > */}
             {/* <NavbarHotProfiler menu={menu} /> */}
 
             <NavbarAccount menu={menu} />

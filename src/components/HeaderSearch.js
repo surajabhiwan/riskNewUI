@@ -25,7 +25,7 @@ const HeaderSearch = () => {
             className="flex justify-center items-center bg-[#121218] w-24 h-9 cursor-pointer"
             style={{
               borderTopLeftRadius: "15px",
-              borderBottomLeftRadius: "15px"
+              borderBottomLeftRadius: "15px",
             }}
           >
             All{clicked ? "▴" : "▾"}
@@ -37,7 +37,7 @@ const HeaderSearch = () => {
           className="focus:outline-none bg-[#121218] py-2 pl-2 pr-4  text-sm w-[450px]"
           style={{
             borderTopRightRadius: "15px",
-            borderBottomRightRadius: "15px"
+            borderBottomRightRadius: "15px",
           }}
         ></input>
         <div className="absolute right-2 mx-2 bg-[#121218]">

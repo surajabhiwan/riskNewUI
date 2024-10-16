@@ -1,0 +1,197 @@
+/* Base styles for the component */
+.container {
+    position: relative;
+  }
+  
+  .searchButton {
+    display: flex;
+    align-items: center;
+    background-color: #142028;
+    border-radius: 9999px;
+    padding: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .searchButton:hover .icon {
+    color: #facc15; /* yellow-400 */
+  }
+  
+  .icon {
+    color: white;
+  }
+  
+  .searchModal {
+    position: fixed;
+    top: 4rem;
+    right: 0.5rem;
+    width: 90%; /* Adjust width for responsiveness */
+    max-width: 40rem;
+    background-color: #142028;
+    border: 1px solid #facc15; /* yellow-500 */
+    border-radius: 0.375rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 50;
+    overflow: hidden; /* Ensure content doesn't overflow */
+  }
+  
+  .searchHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #4a5568; /* gray-700 */
+  }
+  
+  .searchInput {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    color: white;
+    margin-bottom: 0!important;
+  }
+  
+  .searchInput:focus {
+    outline: none;
+  }
+  
+  .closeButton {
+    color: #facc15; /* yellow-500 */
+  }
+  
+  .closeButton:hover {
+    color: white;
+  }
+  
+  .resultsContainer {
+    padding: 1rem;
+    background-color: black;
+    max-height: 15rem;
+    overflow-y: auto;
+  }
+  
+  .resultItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid #4a5568; /* gray-700 */
+  }
+  
+  .resultItem:hover {
+    background-color: #2d3748; /* gray-800 */
+  }
+  
+  .resultTicker {
+    color: #e2e8f0; /* gray-400 */
+  }
+  
+  .resultName {
+    color: white;
+  }
+  
+  .noResults {
+    color: white;
+  }
+  
+  /* Responsive styles for very small devices (max-width: 375px) */
+  @media (max-width: 375px) {
+    .searchModal {
+      top: 2rem; /* Adjust top positioning for extra small screens */
+      width: 100%; /* Full width */
+    }
+  
+    .searchHeader {
+      flex-direction: column; /* Stack search header elements */
+      align-items: flex-start; /* Align items to the start */
+      padding: 0.75rem; /* Reduce padding for very small screens */
+    }
+  
+    .searchInput {
+      font-size: 0.75rem; /* Further reduce font size for very small screens */
+    }
+  
+    .resultsContainer {
+      max-height: 10rem; /* Reduce max-height for very small screens */
+    }
+  }
+  
+  /* Responsive styles for small devices (min-width: 376px and max-width: 426px) */
+  @media (min-width: 376px) and (max-width: 426px) {
+    .searchModal {
+      top: 2.5rem; /* Adjust top positioning */
+      width: 100%; /* Full width */
+    }
+  
+    .searchHeader {
+      padding: 0.75rem; /* Reduce padding */
+    }
+  
+    .searchInput {
+      font-size: 0.85rem; /* Slightly larger font size */
+    }
+  
+    .resultsContainer {
+      max-height: 12rem; /* Adjust max-height */
+    }
+  }
+  
+  /* Responsive styles for medium devices (min-width: 427px and max-width: 767px) */
+  @media (min-width: 427px) and (max-width: 767px) {
+    .searchModal {
+      top: 3rem; /* Adjust top positioning */
+      width: 100%; /* Full width */
+    }
+  
+    .searchHeader {
+      padding: 1rem; /* Standard padding */
+    }
+  
+    .searchInput {
+      font-size: 0.95rem; /* Standard font size */
+    }
+  
+    .resultsContainer {
+      max-height: 14rem; /* Adjust max-height */
+    }
+  }
+  
+  /* Responsive styles for tablets (min-width: 768px and max-width: 1024px) */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .searchModal {
+      top: 3.5rem; /* Adjust top positioning */
+      width: 90%; /* Adjust width for tablets */
+    }
+  
+    .searchHeader {
+      padding: 1rem; /* Standard padding */
+    }
+  
+    .searchInput {
+      font-size: 1rem; /* Standard font size */
+    }
+  
+    .resultsContainer {
+      max-height: 15rem; /* Standard max-height */
+    }
+  }
+  
+  /* Responsive styles for larger devices (min-width: 1025px) */
+  @media (min-width: 1025px) {
+    .searchModal {
+      top: 4rem; /* Default top positioning */
+      width: 80%; /* Adjust width for larger screens */
+    }
+  
+    .searchHeader {
+      padding: 1.25rem; /* Increased padding for larger screens */
+    }
+  
+    .searchInput {
+      font-size: 1.1rem; /* Larger font size for larger screens */
+    }
+  
+    .resultsContainer {
+      max-height: 15rem; /* Standard max-height */
+    }
+  }
+  

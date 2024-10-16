@@ -1,0 +1,35 @@
+.skeletonContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .skeletonBull,
+  .skeletonBear {
+    width: 100px;
+    height: 30px;
+    background-color: #ddd;
+    border-radius: 4px;
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+  
+  .skeletonBull {
+    margin-right: 10px;
+  }
+  
+  .skeletonBear {
+    margin-left: 10px;
+  }
+  
+  @keyframes pulse {
+    0% {
+      background-color: #ddd;
+    }
+    50% {
+      background-color: #ccc;
+    }
+    100% {
+      background-color: #ddd;
+    }
+  }
+  

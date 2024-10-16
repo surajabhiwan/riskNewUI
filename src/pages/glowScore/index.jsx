@@ -9,7 +9,12 @@ const CrowScore = () => {
   return (
     <div className="w-full">
         <div className="flex justify-center items-center h-[30vh]">
-            <img src="/static/images/crowScore/crowscore.png" alt="" />
+            <img src="/static/images/crowScore/crowscore.png" alt="" style={{
+            all: "unset", // Resets all CSS properties
+            display: "block", 
+            maxWidth: "100%",
+            height: "auto",
+          }} />
         </div>
       <iframe
         src="https://cryptocrow.io/pricing/"

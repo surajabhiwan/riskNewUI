@@ -9,7 +9,7 @@ import ChartSmallHeaderDirect from "../../../components/Charts/ChartSmallHeaderD
 const Distribution = () => {
   const [x, setX] = useState(0);
   const { isWalletConnected } = useSelector((state) => state.auth);
-  
+
   useEffect(() => {
     const animate = () => {
       const currentX = x;
@@ -24,13 +24,13 @@ const Distribution = () => {
   const usemedia = useMedia();
   const IsLarge = usemedia.useIsLarge;
   return (
-    <div className="h-full w-full relative pt-10" >
+    <div className="h-full w-full relative pt-10">
       <div className="bg-[#121218] flex justify-center items-center rounded-lg w-fit  lg:gap-4 gap-1 cursor-pointer">
-        {IsLarge ? (<ChartSmallHeaderDirect />) : (<ChartSmallHeader />)}
+        {IsLarge ? <ChartSmallHeaderDirect /> : <ChartSmallHeader />}
       </div>
-      {isWalletConnected ? ( <ChartDistribution />) : (<ProLanding />)}
+      {isWalletConnected ? <ChartDistribution /> : <ProLanding />}
     </div>
-  )
-}
+  );
+};
 
 export default Distribution;

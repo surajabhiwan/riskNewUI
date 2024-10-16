@@ -20,9 +20,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { tableAction } from "../../store/slices/TableData";
 import { HashLink } from "react-router-hash-link";
 
-const NftDataTable = (data, heading) => {
+const NftDataTable = ({ data, heading }) => {
   console.log("heading for home table NFT ", heading);
-  console.log("data for nft with heading ", heading, data);
+  console.log("data for nft with heading", data);
 
   // const [isLoading, setIsLoading] = useState(false);
   // const [nftTableData, setNftTableData] = useState([]);
@@ -30,6 +30,17 @@ const NftDataTable = (data, heading) => {
   const nftData = useSelector((state) => state.tableREducer.nftTableData);
   const isLoading = useSelector((state) => state.tableREducer.nftTableLoading);
   console.log("nftData iamsun", nftData);
+  const [imageErrors, setImageErrors] = useState([]);
+
+  const handleImageError = (index) => {
+    setImageErrors((prevErrors) => [...prevErrors, index]);
+  };
+  function getRandomColor() {
+    const red = Math.floor(Math.random() * 256);
+    const green = Math.floor(Math.random() * 256);
+    const blue = Math.floor(Math.random() * 256);
+    return `rgb(${red}, ${green}, ${blue})`;
+  }
   return (
     <>
       {isLoading ? (
@@ -39,9 +50,9 @@ const NftDataTable = (data, heading) => {
           </p>
         </SkeletonTheme>
       ) : (
-        data?.data?.map((data, idx) => (
+        data?.map((data, idx) => (
           <div
-            className={`cursor-pointer   pt-3 overflow-x-hidden  hover:bg-[#3a4956] hover:bg-opacity-60 hover:rounded-lg`}
+            className={`w-full p-3 flex items-center border-b border-gray-600 hover:bg-gray-700 hover:rounded-lg cursor-pointer `}
             key={idx}
             style={{ borderBottom: "1px solid grey" }}
           >
@@ -51,153 +62,76 @@ const NftDataTable = (data, heading) => {
                   ? `/charts?token=${data?.name}&unit=${data?.policy}&pairID=${data?.policy}&type=nft#chartTop`
                   : "#"
               }
+              className="flex w-full"
             >
-              <div className="flex  px-2 mb-3  ">
-                <div className="flex items-center xl:w-1/5 w-3/5">
-                  {/* <div className="flex w-3 h-3 items-center justify-center sm:text-sm text-xs">
-                                        <SVG.WatchList />
-                                    </div> */}
-                  <div className="text-white font-semibold flex justify-center items-center ml-4 sm:text-sm text-xs">
-                    {idx + 1}
-                  </div>
+              <div className="flex items-center space-x-4 w-full justify-between ">
+                <div className="text-white font-semibold text-sm flex items-center">
+                  {idx + 1}
+                </div>
+                {/* <img
+                  // src={
+                  //   data?.image
+                  //     ? getImageNft + `/${data?.image}`
+                  //     : dummyNftImage
+                  // }
+                  src={data?.image}
+                  className="w-8 h-8 rounded-full"
+                  alt="unit"
+                /> */}
+                {!imageErrors.includes(idx) && data?.policy ? (
                   <img
-                    src={
-                      data?.image
-                        ? getImageNft + `/${data?.image}`
-                        : dummyNftImage
-                    }
-                    className="xl:w-8 sm:w-7 w-6 xl:h-8 sm:h-7 h-6 ml-5 rounded-full"
+                    // src={`${getImage}/image?unit=${item?.unit}&w=32`}
+                    src={`${data?.image}`}
+                    className="w-8 h-8 rounded-full"
                     alt="unit"
+                    onError={() => handleImageError(idx)}
                   />
-                  <div className="text-white font-normal flex justify-center items-center ml-4 sm:text-sm text-xs">
-                    {data?.name}
+                ) : (
+                  <div
+                    className="w-8 h-8 rounded-full flex items-center justify-center"
+                    style={{ backgroundColor: getRandomColor() }}
+                  >
+                    <span className="text-white font-medium">
+                      {data?.name?.[0]}
+                    </span>
                   </div>
+                )}
+                <div className="text-white w-full font-normal flex justify-left items-center ml-4 sm:text-sm text-xs">
+                  {data?.name}
                 </div>
                 {/* Price */}
-                <div className="flex flex-col items-end justify-center xl:w-[7%] sm:w-[10%] w-[20%]">
-                  <div className="flex text-white font-normal  sm:text-sm text-xs ">
+                <div className="flex flex-col items-end justify-center  ">
+                  <div className="flex text-white font-normal  sm:text-sm text-xs">
                     {convertMillion(data?.price)}₳
-                  </div>
-                  <div className="font-normal text-xs text-[#939393] ">
-                    {/* {data?.price.toFixed(4)}₳ */}
-                  </div>
-                </div>
-                {/* 24hr */}
-                <div
-                  className={`flex items-center  justify-end cursor-pointer transition-all duration-300 xl:w-[7%] sm:w-[10%] w-[20%]`}
-                >
-                  {data?.price24hChg > 0 ? <SVG.GoUp /> : <SVG.GoDown />} &nbsp;
-                  <p
-                    className={
-                      data?.price24hChg > 0
-                        ? `text-[#20eb7a] sm:text-sm text-xs`
-                        : `text-[#ff422b] sm:text-sm text-xs`
-                    }
-                  >
-                    {(data?.price24hChg > 0
-                      ? data?.price24hChg * 100
-                      : data?.price24hChg * -100
-                    )?.toFixed(2)}
-                    %
-                  </p>
-                </div>
-                {/* 7 days */}
-                <div
-                  className={`sm:flex sm:items-center hidden justify-end cursor-pointer transition-all duration-300 xl:w-[7%] sm:w-[10%] `}
-                >
-                  {data?.price7dChg > 0 ? <SVG.GoUp /> : <SVG.GoDown />} &nbsp;
-                  <p
-                    className={
-                      data?.price7dChg > 0
-                        ? `text-[#20eb7a] sm:text-sm text-xs`
-                        : `text-[#ff422b] sm:text-sm text-xs`
-                    }
-                  >
-                    {" "}
-                    {(data?.price7dChg > 0
-                      ? data?.price7dChg * 100
-                      : data?.price7dChg * -100
-                    )?.toFixed(2)}
-                    %
-                  </p>
-                </div>
-                {/* 30days */}
-                <div
-                  className={`sm:flex sm:items-center hidden justify-end cursor-pointer  transition-all duration-300 xl:w-[7%] w-[10%] `}
-                >
-                  {data?.price30dChg > 0 ? <SVG.GoUp /> : <SVG.GoDown />} &nbsp;
-                  <p
-                    className={
-                      data?.price30dChg > 0
-                        ? `text-[#20eb7a] sm:text-sm text-xs`
-                        : `text-[#ff422b] sm:text-sm text-xs`
-                    }
-                  >
-                    {" "}
-                    {(data?.price30dChg > 0
-                      ? data?.price30dChg * 100
-                      : data?.price30dChg * -100
-                    )?.toFixed(2)}
-                    %
-                  </p>
-                </div>
-                {/* MarketCap */}
-                <div
-                  className={`xl:flex xl:items-center hidden justify-end transition-all duration-300 cursor-pointer  w-[12%]  gap-2 `}
-                >
-                  <div className="flex flex-col items-end">
-                    <div className="text-white font-normal flex justify-center items-center ">
-                      {convertMillion(data?.marketCap)}₳{" "}
-                    </div>
-                    <div className="text-[#939393] text-xs flex justify-center items-center ">
-                      {convertMillion(data?.marketCap)} ₳{" "}
-                    </div>
-                  </div>
-                </div>
-                {/* Volume */}
-                <div
-                  id="volume"
-                  className={`xl:flex xl:items-center hidden justify-end  cursor-pointer transition-all duration-300  w-[12%] gap-2 `}
-                >
-                  <div className="flex flex-col items-end">
-                    <div className="text-white font-normal flex justify-center items-center ">
-                      {convertMillion(data?.volume24h)}₳{" "}
-                    </div>
-                    <SVG.Progress data={data?.percentagevolume24} />
-                  </div>
-                </div>
-                {/* Liquid */}
-                {/* <div
-                                    className={`xl:flex xl:items-center hidden  justify-end cursor-pointer  transition-all duration-300 w-[12%] gap-2`}
-                                >
-                                    <div className="flex flex-col items-end">
-                                        <div className="text-white font-normal flex justify-center items-center ">
-                                        {((data?.listings / data?.supply) * 100)?.toFixed(2)}%
-                                        </div>
-                                        
-                                    </div>
-                                </div> */}
-                <div
-                  className={`xl:flex xl:items-center hidden justify-end transition-all duration-300 cursor-pointer  w-[12%]  gap-2 `}
-                >
-                  <div className="flex flex-col items-end">
-                    <div className="text-white font-normal flex justify-center items-center ">
-                      {((data?.listings / data?.supply) * 100)?.toFixed(2)}%
-                    </div>
-                    <div className="text-[#939393] text-xs flex justify-center items-center ">
-                      {`${data?.listings} of ${data?.supply}`}
-                    </div>
                   </div>
                 </div>
 
-                <div
-                  className="xl:flex xl:items-
-                                     hidden justify-end   gap-2 w-1/5"
-                >
-                  <div className="text-white font-normal flex justify-center items-center ">
-                    <LineChart timeseries={data?.timeseries} homePage={false} />
+                {/* MarketCap */}
+                {heading === "TopRanking" && (
+                  <div
+                    className={`xl:flex xl:items-center hidden justify-end transition-all duration-300 cursor-pointer  gap-2`}
+                  >
+                    <div className="flex flex-col items-end">
+                      <div className="text-white font-normal flex justify-center items-center ">
+                        {convertMillion(data?.marketCap)}₳{" "}
+                      </div>
+                    </div>
                   </div>
-                </div>
+                )}
+                {/* Volume */}
+                {heading === "Volume" && (
+                  <div
+                    id="volume"
+                    className={`xl:flex xl:items-center hidden justify-end  cursor-pointer transition-all duration-300  w-[12%] gap-2`}
+                  >
+                    <div className="flex flex-col items-end">
+                      <div className="text-white font-normal flex justify-center items-center ">
+                        {convertMillion(data?.volume)}₳{" "}
+                      </div>
+                      <SVG.Progress data={data?.percentagevolume24} />
+                    </div>
+                  </div>
+                )}
               </div>
             </HashLink>
 

@@ -53,7 +53,7 @@ const HomeTableContent = ({ data, heading }) => {
             <HashLink
               to={
                 item?.unit
-                  ? `/charts?token=${item?.name}&unit=${
+                  ? `/charts?token=${item?.ticker}&unit=${
                       item?.unit || "default-unit"
                     }&pairID=${item?.pairID}&type=token#chartTop`
                   : "#"
@@ -67,7 +67,8 @@ const HomeTableContent = ({ data, heading }) => {
                 <div className="flex items-center justify-center gap-3">
                   {!imageErrors.includes(idx) && item?.unit ? (
                     <img
-                      src={`${getImage}/image?unit=${item?.unit}&w=32`}
+                      // src={`${getImage}/image?unit=${item?.unit}&w=32`}
+                      src={`${item?.image}`}
                       className="w-8 h-8 rounded-full"
                       alt="unit"
                       onError={() => handleImageError(idx)}
@@ -136,14 +137,13 @@ const HomeTableContent = ({ data, heading }) => {
                   >
                     <div className="flex flex-col items-end">
                       <div className="text-white font-normal flex justify-center items-center ">
-                        {console.log("Volume ", data?.volume)}
+                        {console.log("Volume agya", item?.volume)}
                         {convertMillion(
-                          parseFloat(data?.volume) /
+                          parseFloat(item?.volume) /
                             parseFloat(adaLive?.split(" ")[1])
                         )}{" "}
                         ₳
                       </div>
-                      {data?.volume}
                       <SVG.Progress data={data?.percentagevolumeADA} />
                     </div>
                   </div>
@@ -159,20 +159,15 @@ const HomeTableContent = ({ data, heading }) => {
                     <div className="flex flex-col items-end">
                       <div className="text-white font-normal flex justify-center items-center ">
                         {convertMillion(
-                          parseFloat(data?.liquidity) /
+                          parseFloat(item?.liquidity) /
                             parseFloat(adaLive?.split(" ")[1])
                         )}{" "}
                         ₳
                       </div>
-                      {data?.liquidity}
                       <SVG.Progress data={data?.percentagetotalLiquidityADA} />
                     </div>
                   </div>
                 )}
-
-                {/* <div className="ml-auto flex flex-col items-end">
-                  <LineChart timeseries={item?.timeseries} homePage={true} />
-                </div> */}
               </div>
             </HashLink>
           </div>

@@ -9,24 +9,24 @@ import { tableAction } from "../../store/slices/TableData";
 import { useDispatch } from "react-redux";
 
 const HeaderData = () => {
-const [adaPrice, setAdaPrice] = useState('')
-const [changePercent, setChangePercent] = useState('')
+  const [adaPrice, setAdaPrice] = useState("");
+  const [changePercent, setChangePercent] = useState("");
 
-const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-//APi for live ADA price at homepage
+  //APi for live ADA price at homepage
   const fetchCardanoPrice = async () => {
     try {
       const response = await axios.get(cardanoPriceApi);
-      const result = decryption(response?.data)
+      const result = decryption(response?.data);
       const cardanoPrice = result?.price;
       const changepercent = result?.changeinday;
-      setAdaPrice(cardanoPrice)
-      dispatch(tableAction.getAdaLive(cardanoPrice))
-      setChangePercent(changepercent)
-      console.log('Current Cardano Price (USD):', cardanoPrice);
+      setAdaPrice(cardanoPrice);
+      dispatch(tableAction.getAdaLive(cardanoPrice));
+      setChangePercent(changepercent);
+      console.log("Current Cardano Price (USD):", cardanoPrice);
     } catch (error) {
-      console.error('Error fetching Cardano price:', error);
+      console.error("Error fetching Cardano price:", error);
     }
   };
 
@@ -34,14 +34,12 @@ const dispatch = useDispatch()
   useEffect(() => {
     if (window.location.pathname === "/") {
       fetchCardanoPrice();
-    } 
+    }
   }, [window.location.pathname]);
-
 
   return (
     <div className="flex justify-start items-center w-full lg:gap-1 gap-4 text-lg whitespace-nowrap overflow-x-scroll scrollable-invisible">
-     
-        <div className="flex gap-1">
+      {/* <div className="flex gap-1">
           <span className="text-[#9f9fa8]">{`ADA Price`}:</span>
           <span className= "text-[#70f7ff]" >{adaPrice}</span> &nbsp;
           <span className="">
@@ -54,12 +52,9 @@ const dispatch = useDispatch()
               </span>
             </div>
           </span>
-        </div>
-
+        </div> */}
     </div>
   );
 };
 
 export default HeaderData;
-
-

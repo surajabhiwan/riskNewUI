@@ -61,6 +61,7 @@ const AddNewCourse = () => {
           </div>
         </div>
       </div>
+      <button className={styles.addNewCourseBtn}>Add Course</button>
       <button className={styles.addNewVideoBtn} onClick={openModal}>
         Add Video
       </button>

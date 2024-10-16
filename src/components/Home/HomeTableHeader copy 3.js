@@ -292,9 +292,7 @@ const HomeTableHeader = ({ tab }) => {
     };
 
     const encryptedData = {
-      key: encryption({
-        query: data,
-      }),
+      key: encryption(data),
     };
 
     try {
@@ -317,9 +315,7 @@ const HomeTableHeader = ({ tab }) => {
     };
 
     const encryptedData = {
-      key: encryption({
-        query: data,
-      }),
+      key: encryption(data),
     };
 
     try {

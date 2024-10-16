@@ -40,38 +40,81 @@ class MyCustomDatafeed {
     }, 0);
   }
 
+  // resolveSymbol(symbolName, onSymbolResolvedCallback, onResolveErrorCallback) {
+  //   const finalToken = this.token;
+  //   setTimeout(() => {
+  //     if (symbolName === finalToken) {
+  //       onSymbolResolvedCallback({
+  //         name: finalToken,
+  //         session: "24x7",
+  //         timezone: "Etc/UTC",
+  //         // session: "0930-1600",
+  //         // timezone: "America/New_York",
+  //         minmov: 1,
+  //         minmov2: 0,
+  //         pointvalue: 1,
+  //         has_intraday: true,
+  //         visible_plots_set: "ohlcv",
+  //         description: finalToken,
+  //         type: "stock",
+  //         supported_resolutions: [
+  //           "60",
+  //           "D",
+  //           // "2D",
+  //           // "3D",
+  //           "W",
+  //           // "3W",
+  //           // "M",
+  //           // "6M",
+  //           // "Y",
+  //         ],
+  //         pricescale: 100,
+  //         ticker: finalToken,
+  //         // exchange: "NASDAQ",
+  //         has_daily: true,
+  //         format: "price",
+  //       });
+  //     } else {
+  //       onResolveErrorCallback("unknown_symbol");
+  //     }
+  //   });
+  // }
   resolveSymbol(symbolName, onSymbolResolvedCallback, onResolveErrorCallback) {
     const finalToken = this.token;
+
     setTimeout(() => {
       if (symbolName === finalToken) {
+        const minPrice = Math.min(...this.data.map((bar) => bar.low));
+        const maxPrice = Math.max(...this.data.map((bar) => bar.high));
+
+        // Calculate dynamic pricescale based on price range
+        let pricescale = 1;
+        const priceRange = maxPrice - minPrice;
+
+        if (priceRange < 1) {
+          pricescale = Math.pow(
+            10,
+            Math.ceil(Math.abs(Math.log10(priceRange)))
+          );
+
+        } else if (priceRange < 10) {
+          pricescale = 100; // For small price ranges
+        } else {
+          pricescale = 10; // For larger price ranges
+        }
+
+        console.log("pricescale", pricescale);
         onSymbolResolvedCallback({
           name: finalToken,
           session: "24x7",
           timezone: "Etc/UTC",
-          // session: "0930-1600",
-          // timezone: "America/New_York",
           minmov: 1,
-          minmov2: 0,
-          pointvalue: 1,
-          has_intraday: true,
-          visible_plots_set: "ohlcv",
-          description: finalToken,
-          type: "stock",
-          supported_resolutions: [
-            "60",
-            "D",
-            // "2D",
-            // "3D",
-            "W",
-            // "3W",
-            // "M",
-            // "6M",
-            // "Y",
-          ],
-          pricescale: 100,
+          pricescale: pricescale, // Set dynamic price scale
+          supported_resolutions: ["60", "D", "W"],
           ticker: finalToken,
-          // exchange: "NASDAQ",
+          has_intraday: true,
           has_daily: true,
+          type: "stock",
           format: "price",
         });
       } else {
@@ -119,6 +162,7 @@ class MyCustomDatafeed {
               ];
             }
           });
+          console.log("bars to show", bars);
           console.log(`[getBars]: returned ${bars.length} bar(s)`);
           onHistoryCallback(bars, { noData: false });
         } catch (error) {

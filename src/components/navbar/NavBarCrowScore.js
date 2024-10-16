@@ -15,14 +15,17 @@ const NavBarCrowScore = (props) => {
                 : ""
             } `}
       >
-        <Link to="/crowScore" className="flex items-center cursor-pointer gap-4">
+        <Link
+          to="/crowScore"
+          className="flex items-center cursor-pointer gap-4"
+        >
           <SVG.Parthner menu={menu} />
           <div
             className={`transition-all duration-300
                  ${menu === "partnerhome" ? "text-black" : "text-white"}  `}
           >
             <span className={`font-normal ml-1 text-sm hover:opacity-80`}>
-            CrowScore<sup className="text-yellow-400 text-[10px]">pro</sup>
+              CrowScore<sup className="text-yellow-400 text-[10px]">pro</sup>
             </span>
           </div>
         </Link>

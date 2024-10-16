@@ -1,7 +1,11 @@
 import * as SVG from "../../common/Icons";
 import { useEffect, useState } from "react";
 // import TradingViewWidget from "../AddedComponents/HomeMiniCharts";
-import { getImage, trendingApi } from "../../baseurl/baseurl";
+import {
+  getImage,
+  topMarketCapTokens,
+  trendingApi,
+} from "../../baseurl/baseurl";
 
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -9,7 +13,7 @@ import SimpleBarReact from "simplebar-react";
 import "simplebar-react/dist/simplebar.min.css";
 import { HashLink } from "react-router-hash-link";
 import axios from "axios";
-import { decryption } from "../../functions/crypto";
+import { decryption, encryption } from "../../functions/crypto";
 
 const ChartsTrendingToken = () => {
   const [data, setData] = useState([]);
@@ -29,10 +33,24 @@ const ChartsTrendingToken = () => {
     setIsLoading(false);
   };
 
-  useEffect(() => {
-    fetchTokenTabs();
-  }, []);
+  const fetchTopMarketCapTokens = async () => {
+    setIsLoading(true); // Start loading
+    const data = { type: "mcap", page: 1, perPage: 20 };
+    const encryptedData = { key: encryption(data ) };
 
+    try {
+      const response = await axios.post(topMarketCapTokens, encryptedData);
+      const result = decryption(response?.data);
+      setData((prev) => ({ ...prev, topMarketCap: result }));
+    } catch (error) {
+      console.error("Error fetching tokens with top market cap:", error);
+    } finally {
+      setIsLoading(false); // Stop loading after data is fetched
+    }
+  };
+  useEffect(() => {
+    fetchTopMarketCapTokens();
+  }, []);
   const truncateAddress = (address) => {
     if (!address) return "";
     const start = address.slice(0, 2);
@@ -74,7 +92,7 @@ const ChartsTrendingToken = () => {
             </SkeletonTheme>
           ) : (
             <div className="rounded-lg bg-zinc-900 pt-4 pb-4 ">
-              {data?.map((data, idx) => (
+              {data.topMarketCap?.data?.map((data, idx) => (
                 <div
                   className={`cursor-pointer h-full  overflow-x-hidden `}
                   key={data?.idx}
@@ -83,7 +101,7 @@ const ChartsTrendingToken = () => {
                     <div className="flex items-center xl:w-1/2 w-1/2">
                       {data?.unit ? (
                         <img
-                          src={getImage + `/image?unit=${data?.unit}&w=32`}
+                          src={`${data?.image}`}
                           className="xl:w-8 sm:w-7 w-6 xl:h-8 sm:h-7 h-6 ml-5 rounded-full"
                           alt="unit"
                         />
@@ -93,15 +111,15 @@ const ChartsTrendingToken = () => {
                           style={{ backgroundColor: "#00008B" }}
                         >
                           <span className="text-white font-medium">
-                            {data?.name?.split("")[0]}
+                            {data?.ticker?.split("")[0]}
                           </span>
                         </div>
                       )}
                       <div>
                         <div className="text-white font-normal flex justify-start items-center ml-4 sm:text-sm text-xs truncate w-[3rem] md:w-full lg:full xl:full">
-                          {data?.name?.length > 5
-                            ? data?.name?.slice(0, 5) + ".."
-                            : data?.name}
+                          {data?.ticker?.length > 5
+                            ? data?.ticker?.slice(0, 5) + ".."
+                            : data?.ticker}
                         </div>
                       </div>
                     </div>
@@ -121,20 +139,15 @@ const ChartsTrendingToken = () => {
                     <div
                       className={`flex items-center  justify-end cursor-pointer transition-all duration-300 xl:w-[30%] sm:w-[10%] w-[20%]`}
                     >
-                      {parseInt(data?.twofourhr?.split("%")[0]) > 0 ? (
-                        <SVG.GoUp />
-                      ) : (
-                        <SVG.GoDown />
-                      )}{" "}
-                      &nbsp;
+                      &nbsp; &nbsp;
                       <p
                         className={
-                          parseInt(data?.twofourhr?.split("%")[0]) > 0
-                            ? `text-[#20eb7a] sm:text-sm text-xs`
-                            : `text-[#ff422b] sm:text-sm text-xs`
+                          parseInt(data?.price) > 0
+                            ? "text-[#20eb7a] text-[12px]"
+                            : "text-[#ff422b] text-[12px]"
                         }
                       >
-                        {data?.twofourhr}
+                        {data?.price?.toFixed(2)}
                       </p>
                     </div>
 
@@ -144,7 +157,7 @@ const ChartsTrendingToken = () => {
                       title="Show live data"
                     >
                       <HashLink
-                        to={`/charts?token=${data?.name}&unit=${
+                        to={`/charts?token=${data?.ticker}&unit=${
                           data?.unit
                             ? data?.unit
                             : "f43a62fdc3965df486de8a0d32fe800963589c41b38946602a0dc53541474958"

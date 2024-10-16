@@ -17,11 +17,11 @@ const PortfolioChartHeader = ({portfolioType}) => {
         <div className="flex h-[90px]  blueBg px-3 py-2 rounded-xl">
           <div className="flex justify-between w-full gap-8">
             <div className="flex flex-col ">
-              <span className="flex gap-2 items-center text-black text-[30px] ">
+              <span className="flex gap-2 items-center text-white text-[30px] ">
               {walletPosition?.walletPosition?.adaBalance ? walletPosition?.walletPosition?.adaBalance?.toFixed() : '0'}₳
                 <p className="text-xl">{"/0"}₳</p>
               </span>
-              <span className="text-black text-xl">{0.00}₳</span>
+              <span className="text-white text-xl">{0.00}₳</span>
             </div>
             {/* <div className="flex justify-center items-center w-11 h-7 rounded-xl bg-[#2f3737] hover:bg-yellow-900 p-3 cursor-pointer" onClick={handleHide}> 
               <SVG.Visibility color={color} />

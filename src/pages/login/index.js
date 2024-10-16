@@ -48,9 +48,12 @@ const Login = () => {
         // dispatch(settoken(result?._id));
         console.log('result-login', result)
         if(result?.success){
-          localStorage.setItem("token", result?.user?._id);
+          localStorage.setItem("userId", result?.user?._id);
           localStorage.setItem("risk-email", result?.user?.email);
+
           dispatch(setIsLogin(true));
+           // Dispatch custom event
+        window.dispatchEvent(new CustomEvent('authChange', { detail: { token: result?.user?._id } }));
           navigate("/");
           toast.success('Login Successful')
         }

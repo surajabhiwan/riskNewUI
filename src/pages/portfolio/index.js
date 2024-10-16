@@ -9,51 +9,40 @@ import { decryption, encryption } from "../../functions/crypto";
 import axios from "axios";
 import { walletPositionApi } from "../../baseurl/baseurl";
 import { useDispatch } from "react-redux";
-import {  setWalletPosition } from "../../store/slices/wallet";
+import { setWalletPosition } from "../../store/slices/wallet";
 
 import { useCardano } from "@cardano-foundation/cardano-connect-with-wallet";
 
 const Portfolio = () => {
+  const { isConnected, stakeAddress } = useCardano();
 
+  const dispatch = useDispatch();
 
-  const { 
-    isConnected,
-    stakeAddress,
-} = useCardano();
+  const walletPosition = async () => {
+    const data = {
+      address: stakeAddress,
+    };
+    const encryptedData = {
+      key: encryption(data),
+    };
 
+    try {
+      const response = await axios.post(walletPositionApi, encryptedData);
+      const result = decryption(response?.data);
+      console.log("wallet-position", result);
+      dispatch(setWalletPosition(result));
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
 
-const dispatch = useDispatch()
-   
+  useEffect(() => {
+    walletPosition();
+  }, [stakeAddress]);
 
-const walletPosition = async () =>{
-  const data = {
-    address: stakeAddress,
-  }
-  const encryptedData = {
-    key : encryption(data)
-  }
-
-  try{
-    const response = await axios.post( walletPositionApi, encryptedData );
-    const result = decryption(response?.data)
-    console.log('wallet-position', result)
-    dispatch(setWalletPosition(result)); 
-  }
-  catch(error){
-    console.log("error", error)
-  }
-}
-
-
-useEffect(()=>{
-
-  walletPosition()
-},[stakeAddress])
-
-
-useEffect(()=>{
-  dispatch(setWalletPosition([]));
-},[!isConnected])
+  useEffect(() => {
+    dispatch(setWalletPosition([]));
+  }, [!isConnected]);
 
   return (
     <div className="block gap-2 w-full h-full pb-8 pt-10">
@@ -64,7 +53,7 @@ useEffect(()=>{
         </div>
         <PortfolioContentPart3 />
       </div> */}
-      <PortfolioContentPart1 /> 
+      <PortfolioContentPart1 />
       {/* <div
         onClick={() => setIsSelected(!isSelected)}
         className="fixed bottom-4 flex justify-center items-center left-4 bg-yellow-300 bg-opacity-80 w-[100px] h-[30px] rounded-2xl cursor-pointer"

@@ -73,7 +73,7 @@ const [menuItem, setMenuItem] = useState(PortfolioButtonData);
       <div className="flex flex-col gap-3 lg:w-[40%] w-full p-4">
         <div className="flex justify-between ">
           <div className="bg-gradient-to-r blueBg px-4 py-1 rounded-lg">
-            <p className="text-black text-lg font-normal">Portfolio</p>
+            <p className="text-white text-lg font-normal">Portfolio</p>
           </div>
           {/* <div className="flex justify-center items-center p-2 rounded-full cursor-pointer bg-[#142028] transition-all duration-300 transform origin-center hover:rotate-180">
             <SVG.Setting />

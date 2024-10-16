@@ -1,21 +1,25 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PartnerProfile from "../../components/Partner/PartnerProfile";
 import PartnerCutomize from "../../components/Partner/PartnerCutomize";
 import PartnerDashBoard from "../../components/Partner/PartnerDashBoard";
-
+import { Link, useNavigate } from "react-router-dom";
 import { Hidden } from "@mui/material";
-
+import { toast } from "react-hot-toast";
 import CommingSoon from "../../components/AddedComponents/CommingSoon/CommingSoon";
+import ProLanding from "../../components/Pro/ProLanding";
+import axios from "axios";
 const Partner = () => {
+  const navigate = useNavigate();
   const [isActiveProfile, setIsActiveProfile] = useState(true);
   const [isActiveCustom, setIsActiveCustom] = useState(false);
   const [isActiveDash, setIsActiveDash] = useState(false);
-  
+  const [isAuthenticated, setIsAuthenticated] = useState(true); // State to track authentication
+
   const handleClick = (value) => {
     if (value === "profile") {
       setIsActiveProfile(true);
       setIsActiveCustom(false);
-      setIsActiveDash(false)
+      setIsActiveDash(false);
     }
     if (value === "customize") {
       setIsActiveProfile(false);
@@ -27,7 +31,53 @@ const Partner = () => {
       setIsActiveCustom(false);
       setIsActiveDash(true);
     }
+  };
+  useEffect(() => {
+    const checkAuthentication = () => {
+      const walletAddress = localStorage.getItem("wallet_address");
+      const authenticatedUser = localStorage.getItem("authenticated_user_pro");
+      const authenticatedUserFinal = JSON.parse(authenticatedUser);
+      console.log(
+        "chat pro authentication",
+        JSON.parse(authenticatedUser)
+      );
+      if (!walletAddress) {
+        console.log("walletAddress iamsun", walletAddress);
+        toast.error("Please connect to the wallet first.");
+        navigate("/login");
+        return false;
+      } else if (!authenticatedUserFinal?.access?.chatPro) {
+        setIsAuthenticated(false);
+        return false;
+      }
+
+      // const user = JSON.parse(authenticatedUserFinal);
+      // if (user.success !== true) {
+      //   toast.error("User authentication failed. Redirecting to login.");
+      //   navigate("/login");
+      //   return false;
+      // }
+
+      return true;
+    };
+    checkAuthentication();
+    const handleWalletDisconnect = () => {
+      if (!checkAuthentication()) {
+        toast.error("Wallet disconnected. Redirecting to home.");
+      }
+    };
+
+    window.addEventListener("walletDisconnect", handleWalletDisconnect);
+
+    return () => {
+      window.removeEventListener("walletDisconnect", handleWalletDisconnect);
+    };
+  }, [navigate]);
+
+  if (!isAuthenticated) {
+    return <ProLanding></ProLanding>;
   }
+
   return (
     // <div className="flex flex-col items-center justify-center w-full h-full pt-10 ">
     //   {/* Header */}
@@ -47,9 +97,8 @@ const Partner = () => {
     //   {isActiveDash && <PartnerDashBoard />}
 
     // </div>
-   
-     <CommingSoon/>
-  
+
+    <CommingSoon />
   );
 };
 

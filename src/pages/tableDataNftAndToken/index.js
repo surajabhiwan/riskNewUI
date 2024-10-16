@@ -20,6 +20,7 @@ import {
   getNftImage,
   getNftTimeseries,
   topNftAPi,
+  topTenTokens,
 } from "../../baseurl/baseurl";
 import axios from "axios";
 import { decryption, encryption } from "../../functions/crypto";
@@ -32,6 +33,7 @@ const TableDataNftAndToken = () => {
   const [menu, setMenu] = useState("");
   const { nftTableData } = useSelector((state) => state.tableREducer);
   const [isLoading, setIsLoading] = useState(false);
+  
   const isSmall = useMedia();
   const isActive = isSmall.useIsSmall;
   useEffect(() => {
@@ -197,13 +199,16 @@ const TableDataNftAndToken = () => {
   }, []);
 
   console.log("homePage ka trending nft", nftTableData);
+
+
+
   return (
     <div className="w-full px-0 pb-4 lg:px-4">
       {/* <ContentHeader menu={menu} /> */}
       {/* <HomeHeaderSlick /> */}
       <div className="w-full">
         <div className="space-y-4">
-          {isActive ? <HomeTab /> : ""}
+          {/* {isActive ? <HomeTab /> : ""} */}
           {/* <Homebody
             isLoading={isLoading}
             isNftLoading={isLoading}
@@ -214,10 +219,6 @@ const TableDataNftAndToken = () => {
         <div className=" xl:flex justify-between w-full sm:mt-2 mt-7 mb-4">
           <div className="flex ">
             <HomeMarketButton />
-            {/* <HomeWalletButton /> */}
-          </div>
-          <div className="">
-            <HomeViewAll />
           </div>
         </div>
 

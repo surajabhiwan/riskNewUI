@@ -29,6 +29,7 @@ const TopNavbar = () => {
   const { enabledWallet } = useCardano();
   const dispatch = useDispatch();
   const location = useLocation();
+
   const { showwalletconnectmodaldesk, signedMessage } = useSelector(
     (state) => state.wallet
   );
@@ -74,12 +75,41 @@ const TopNavbar = () => {
       setIsActive("none");
     }
   }, [location.pathname]);
+  const [hasToken, setHasToken] = useState(false);
 
+  useEffect(() => {
+    // Check for token initially
+    const token = localStorage.getItem("userId");
+    if (token) {
+      setHasToken(true);
+    }
+
+    // Define event handler
+    const handleAuthChange = (event) => {
+      const { token } = event.detail;
+      if (token) {
+        setHasToken(true);
+      } else {
+        setHasToken(false);
+      }
+    };
+
+    // Add event listener
+    window.addEventListener("authChange", handleAuthChange);
+
+    // Cleanup event listener on unmount
+    return () => {
+      window.removeEventListener("authChange", handleAuthChange);
+    };
+  }, []);
   return (
     <div
       className={`fixed top-0  z-[99999] pt-3 opacity-90   flex w-full h-[70px] drop-shadow-lg bg-transparent`}
       id="Navbar"
-      style={{ filter: "drop-shadow(0px 10px 10px #000010)" }}
+      style={{
+        filter: "drop-shadow(0px 10px 10px #000010)",
+        backgroundColor: "#050a1a",
+      }}
     >
       {/* Navbar header */}
       <NavbarHeaderLarge />
@@ -163,25 +193,47 @@ const TopNavbar = () => {
                       className="absolute z-10 hidden bg-gray-800 rounded-md mt-0 group-hover:block"
                       style={{ width: "10rem" }}
                     >
+                      {/* <Link to={"/nftcrasher"}>
+                        {" "}
+                        <span
+                          className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 w-full cursor-pointer"
+                          style={{ textWrap: "no-wrap !important" }}
+                        >
+                          NFT-Crashr
+                        </span>
+                      </Link> */}
                       <Link
-                        to={"/nftmarketplace"}
+                        to={"/nftjpgstore"}
                         className="block px-4 py-2 text-sm text-gray-300 text-nowrap hover:bg-gray-700"
                       >
-                        NFT Marketplace
+                        NFT-Jpg.Store
                       </Link>
                       <Link
+                        to={"/nftcswap"}
+                        className="block px-4 py-2 text-sm text-gray-300 text-nowrap hover:bg-gray-700"
+                      >
+                        NFT-Cswap
+                      </Link>
+                      <Link
+                        to={"/poolpm"}
+                        className="block px-4 py-2 text-sm text-gray-300 text-nowrap hover:bg-gray-700"
+                      >
+                        Pool.pm
+                      </Link>
+                      {/* <Link
+                        to={"/cardanoScan"}
+                        className="block px-4 py-2 text-sm text-gray-300 text-nowrap hover:bg-gray-700"
+                      >
+                        Cardano Scan
+                      </Link> */}
+                      {/* <Link
                         to={"/lending"}
                         className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700"
                       >
                         Lending
-                      </Link>
+                      </Link> */}
                       {/* <Link to={'/bubbles'} className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">Bubbles</Link> */}
-                      <Link
-                        to={"/market-overview"}
-                        className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700"
-                      >
-                        Market Data
-                      </Link>
+
                       <Link to={"/gaming"}>
                         {" "}
                         <span
@@ -191,6 +243,18 @@ const TopNavbar = () => {
                           Gaming
                         </span>
                       </Link>
+                      <Link
+                        to={"/market-overview"}
+                        className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700"
+                      >
+                        Market Data
+                      </Link>
+                      {/* <Link
+                        to={"/DexScreener"}
+                        className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700"
+                      >
+                        DexScreener
+                      </Link> */}
                     </div>
                   </div>
                   <Link
@@ -280,7 +344,14 @@ const TopNavbar = () => {
                           <sup className="text-yellow-400 text-[10px]">pro</sup>
                         </span>
                       </Link>
-                      <Link to={"/partner"}>
+                      <Link to={"/educationPro"}>
+                        {" "}
+                        <span className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 cursor-pointer">
+                          EducationPro{" "}
+                          <sup className="text-yellow-400 text-[10px]">pro</sup>
+                        </span>
+                      </Link>
+                      {/* <Link to={"/educationPro"}>
                         {" "}
                         <span
                           className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 w-full cursor-pointer"
@@ -289,7 +360,21 @@ const TopNavbar = () => {
                           Education{" "}
                           <sup className="text-yellow-400 text-[10px]">pro</sup>
                         </span>
-                      </Link>
+                      </Link> */}
+                      {hasToken && (
+                        <Link to={"/marketRakerWishlist"}>
+                          {" "}
+                          <span
+                            className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 w-full cursor-pointer"
+                            style={{ textWrap: "no-wrap !important" }}
+                          >
+                            Market RakerAI{" "}
+                            <sup className="text-yellow-400 text-[10px]">
+                              pro
+                            </sup>
+                          </span>
+                        </Link>
+                      )}
                     </div>
                   </div>
                   <div className="relative group">

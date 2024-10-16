@@ -10,11 +10,14 @@ const ProLanding = (props) => {
         </div>
         <div className="w-[300px] h-[300px] rounded-[54px] overflow-hidden relative">
           <span className="bg-balck absolute" />
-          <img alt="" src={risk} />
+          <img className="w-[300px] h-[300px] rounded-[54px] " alt="" src={risk} />
         </div>
         <div className="text-xl font-semibold text-center">
           {/* <span className="text-[#f2f2f2]"> Buy Warthogs Brigade to access this </span>*/}
-          <span className="text-[#f2f2f2]"> Buy any of Risk nft to access this </span> 
+          <span className="text-[#f2f2f2]">
+            {" "}
+            Buy any of Risk nft to access this{" "}
+          </span>
           <span className="text-yellow-400"> PRO </span>
           <span className="text-[#f2f2f2]"> feature </span>
         </div>

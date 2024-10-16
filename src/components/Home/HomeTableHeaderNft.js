@@ -12,7 +12,7 @@ import {
   topVolumeTokens,
 } from "../../baseurl/baseurl";
 
-const HomeTableHeaderNft = ({ tab }) => {
+const HomeTableHeaderNft = ({ tab, heading }) => {
   const { data, nftTableData } = useSelector((state) => state.tableREducer);
 
   const [rotation, setRotation] = useState(false);
@@ -268,9 +268,7 @@ const HomeTableHeaderNft = ({ tab }) => {
       perPage: 20,
     };
     const encryptedData = {
-      key: encryption({
-        query: data,
-      }),
+      key: encryption(data),
     };
 
     try {
@@ -292,9 +290,7 @@ const HomeTableHeaderNft = ({ tab }) => {
     };
 
     const encryptedData = {
-      key: encryption({
-        query: data,
-      }),
+      key: encryption(data),
     };
 
     try {
@@ -343,9 +339,7 @@ const HomeTableHeaderNft = ({ tab }) => {
     };
 
     const encryptedData = {
-      key: encryption({
-        query: data,
-      }),
+      key: encryption(data),
     };
 
     try {
@@ -371,9 +365,7 @@ const HomeTableHeaderNft = ({ tab }) => {
     };
 
     const encryptedData = {
-      key: encryption({
-        query: data,
-      }),
+      key: encryption(data),
     };
 
     try {
@@ -390,174 +382,78 @@ const HomeTableHeaderNft = ({ tab }) => {
   };
 
   return (
-    <div className="">
-      <div className="flex mt-3 px-2  w-full glowClassDiv">
-        <div className="flex items-center xl:w-1/5 w-3/5  ">
-          {/* <div className="flex w-3 h-3 items-center justify-center" >
-            <SVG.WatchList />
-          </div> */}
-          <div className="text-white font-semibold flex justify-center items-center ml-4 sm:text-sm text-xs">
+    <div className="w-full">
+      <div className="flex mt-3 px-2 w-full glowClassDiv items-center justify-between">
+        {/* Left Section - Name */}
+        <div className="flex items-center justify-start w-1/2">
+          <div className="text-white font-semibold flex justify-center items-center sm:text-sm text-xs ml-4">
             #
           </div>
-          <div className="text-white font-normal flex justify-center items-center ml-4 sm:text-sm text-xs">
+          <div className="text-white font-normal flex justify-center items-center sm:text-sm text-xs ml-4">
             Name
           </div>
         </div>
-        {/* Price */}
-        <div className="flex items-center justify-end xl:w-[7%] sm:w-[10%] w-[20%]">
-          <div className="text-white font-normal flex justify-center items-center ml-4 sm:text-sm text-xs">
-            {tab ? "Price" : "Floor Price"}{" "}
-          </div>
-        </div>
-        {/* 24hr */}
-        <div
-          id="24h"
-          onClick={() => {
-            rotateComponent();
-            handleSortTwoFour(rotation ? "asc" : "dsc");
-          }}
-          className={`flex items-center  justify-end cursor-pointer transition-all duration-300 hover:mt-[-8px] xl:w-[7%] sm:w-[10%] w-[20%]`}
-        >
-          <div className="text-white font-normal sm:text-sm text-xs">
-            {tab ? "1h" : "24h"}{" "}
-          </div>
-          <div
-            className={`text-white font-normal ml-0 transition-all duration-300 ${
-              rotation ? " rotate-180" : ""
-            }`}
-          >
-            <SVG.Arrow />{" "}
-          </div>
-        </div>
-        {/* 7 days */}
-        <div
-          onClick={() => {
-            rotatemComponent();
-            handleSortSeven(rotationm ? "asc" : "dsc");
-          }}
-          id="7d"
-          className={`sm:flex sm:items-center hidden justify-end cursor-pointer transition-all duration-300 xl:w-[7%] sm:w-[10%] w-0 hover:mt-[-8px]`}
-        >
-          <div className="text-white font-normal flex justify-center items-center sm:text-sm text-xs">
-            {tab ? "24h" : "7d"}{" "}
-          </div>
-          <div
-            className={`text-white font-normal flex justify-center items-center ml-1 transition-all duration-300 ${
-              rotationm ? " rotate-180" : ""
-            }`}
-          >
-            <SVG.Arrow />{" "}
-          </div>
-        </div>
-        {/* 30days */}
-        <div
-          onClick={() => {
-            rotatedComponent();
-            handleSortThirty(rotationd ? "asc" : "dsc");
-          }}
-          id="30d"
-          className={`sm:flex sm:items-center hidden justify-end cursor-pointer  transition-all duration-300 xl:w-[7%] sm:w-[10%] w-0 hover:mt-[-8px]`}
-        >
-          <div className="text-white font-normal flex justify-center items-center sm:text-sm text-xs">
-            {tab ? "7d" : "30d"}{" "}
-          </div>
-          <div
-            className={`text-white font-normal flex justify-center items-center ml-0 transition-all duration-300 ${
-              rotationd ? " rotate-180" : ""
-            }`}
-          >
-            <SVG.Arrow />{" "}
-          </div>
-        </div>
 
-        {/* MarketCap */}
-        <div
-          onClick={() => {
-            rotateMarketComponent();
-            handleSortMarket(rotationMarket ? "asc" : "dsc");
-          }}
-          id="marketCap"
-          className={`xl:flex xl:items-center hidden justify-end transition-all duration-300 cursor-pointer  w-[12%]  gap-2 hover:mt-[-8px]`}
-        >
-          <div className="text-white font-normal flex justify-center items-center ">
-            MarketCap{" "}
+        {/* Right Section - Price */}
+        <div className="flex items-center justify-end w-1/2">
+          <div className="text-white font-normal flex justify-center items-center sm:text-sm text-xs ml-4">
+            {tab ? "Price" : "Floor Price"}
           </div>
-          {/* <div className="text-white font-normal flex justify-center items-center" title={tab ? "Circulating supply * price " : "Current on-chain * current price"}><SVG.Alert /></div> */}
-          <div
-            className={`text-white font-normal flex justify-center items-center ml-0 transition-all duration-300 ${
-              rotationMarket ? " rotate-180" : ""
-            }`}
-          >
-            <SVG.Arrow />{" "}
-          </div>
-        </div>
-        {/* Volume */}
-        <div
-          onClick={() => {
-            rotateVloumeComponent();
-            handleSortVolume(rotationVolume ? "asc" : "dsc");
-          }}
-          id="volume"
-          className={`xl:flex xl:items-center hidden justify-end  cursor-pointer transition-all duration-300  w-[12%] gap-2 hover:mt-[-8px]`}
-        >
-          <div className="text-white font-normal flex justify-center items-center ">
-            Volume{" "}
-          </div>
-          <div
-            className="text-white font-normal flex justify-center items-center"
-            title={
-              tab
-                ? "Amount of ADA that has been traded with this token in last 24h"
-                : "Total trading volume in last 24h"
-            }
-          >
-            <SVG.Alert />
-          </div>
-          <div
-            className={`text-white font-normal flex justify-center items-center ml-0 transition-all duration-300  ${
-              rotationVolume ? "rotate-180" : ""
-            }`}
-          >
-            <SVG.Arrow />
-          </div>
-        </div>
-        {/* Liquid */}
-        <div
-          onClick={() => {
-            rotateLiquidityComponent();
-            handleSortLiquidity(rotationLiquidity ? "asc" : "dsc");
-          }}
-          id="liquididy"
-          className={`xl:flex xl:items-center hidden  justify-end cursor-pointer  transition-all duration-300 w-[12%] gap-2 hover:mt-[-8px]  `}
-        >
-          <div className="text-white font-normal flex justify-center items-center ">
-            {tab ? "Liquidity" : "%Items Listed"}{" "}
-          </div>
-          <div
-            className="text-white font-normal flex justify-center items-center "
-            title={
-              tab
-                ? "Total amount of ADA in liquidity for this token across all DEXs"
-                : ""
-            }
-          >
-            {tab ? <SVG.Alert /> : ""}{" "}
-          </div>
-          <div
-            className={`text-white font-normal flex justify-center items-center ml-0 transition-all duration-300  ${
-              rotationLiquidity ? " rotate-180" : ""
-            }`}
-          >
-            <SVG.Arrow />{" "}
-          </div>
-        </div>
-        <div className="xl:flex xl:items-center hidden justify-end   gap-2 w-1/5">
-          <div className="text-white font-normal flex justify-center items-center  ">
-            {tab ? "Last 7 Days" : "Last 7 Days"}{" "}
-          </div>
+
+          {/* MarketCap - Only when heading is "TopRanking" */}
+          {heading === "TopRanking" && (
+            <div
+              id="marketCap"
+              className="flex items-center justify-end transition-all duration-300 gap-2 hover:mt-[-8px] ml-8"
+            >
+              <div className="text-white font-normal flex justify-center items-center">
+                MarketCap
+              </div>
+              {/* <div
+                className={`text-white font-normal flex justify-center items-center ml-0 transition-all duration-300 ${
+                  rotationMarket ? "rotate-180" : ""
+                }`}
+              >
+                <SVG.Arrow />
+              </div> */}
+            </div>
+          )}
+          {/* Volume Section */}
+          {heading === "Volume" && (
+            <div className="flex items-center justify-end transition-all duration-300 gap-2 hover:mt-[-8px] ml-8">
+              <div className="text-white font-normal flex justify-center items-center">
+                Volume
+              </div>
+              {/* Left Section - Volume Label */}
+              <div className="w-1/2"></div>
+
+              {/* Right Section - Volume Details */}
+              {/* <div className="w-1/2 flex items-center justify-end">
+            <div
+              className="text-white font-normal flex justify-center items-center"
+              title={
+                tab
+                  ? "Amount of ADA that has been traded with this token in last 24h"
+                  : "Total trading volume in last 24h"
+              }
+            >
+              <SVG.Alert />
+            </div>
+            <div
+              className={`text-white font-normal flex justify-center items-center ml-0 transition-all duration-300 ${
+                rotationVolume ? "rotate-180" : ""
+              }`}
+            >
+              <SVG.Arrow />
+            </div>
+          </div> */}
+            </div>
+          )}
         </div>
       </div>
-      <div className="w-full h-[1px] mt-2 bg-[#232323]"></div>
+
+      {/* Divider */}
+      {/* <div className="w-full h-[1px] mt-2 bg-[#232323]"></div> */}
     </div>
   );
 };

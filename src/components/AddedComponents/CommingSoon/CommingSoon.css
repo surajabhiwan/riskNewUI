@@ -1,0 +1,65 @@
+.coming-soon-image {
+    width: 400px; /* Full width on mobile */
+    height: 400px; /* Maintain aspect ratio */
+  }/* In your CSS or SCSS file */
+
+/* For screens 1025px wide and above (desktop) */
+@media (min-width: 1025px) {
+    .coming-soon-container {
+      padding: 20px;
+    }
+    .coming-soon-image {
+      width: 400px;
+      height: auto;
+      max-width: 100%;
+    }
+  }
+  
+  /* For screens between 768px and 1024px wide (tablet) */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .coming-soon-container {
+      padding: 16px;
+    }
+    .coming-soon-image {
+      width: 300px; /* Decrease the width for tablets */
+      height: auto;
+      max-width: 100%;
+    }
+  }
+  
+  /* For screens between 427px and 767px wide (small tablets and large phones) */
+  @media (min-width: 427px) and (max-width: 767px) {
+    .coming-soon-container {
+      padding: 14px;
+    }
+    .coming-soon-image {
+      width: 250px; /* Further decrease the width */
+      height: auto;
+      max-width: 100%;
+    }
+  }
+  
+  /* For screens between 376px and 426px wide (large phones) */
+  @media (min-width: 376px) and (max-width: 426px) {
+    .coming-soon-container {
+      padding: 12px;
+    }
+    .coming-soon-image {
+      width: 200px; /* Smaller width for larger phones */
+      height: auto;
+      max-width: 100%;
+    }
+  }
+  
+  /* For screens 375px wide and below (small phones) */
+  @media (max-width: 375px) {
+    .coming-soon-container {
+      padding: 10px;
+    }
+    .coming-soon-image {
+      width: 150px; /* Smallest width for small phones */
+      height: auto;
+      max-width: 100%;
+    }
+  }
+  
